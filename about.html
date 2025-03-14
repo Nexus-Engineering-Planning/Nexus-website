@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Nexus Engineering & Planning Ltd.</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .team-member {
+      position: relative;
+      width: 220px;
+      text-align: center;
+    }
+
+    .team-member img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .team-member:hover img {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .bio-popup {
+      display: none;
+      position: absolute;
+      top: 220px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      color: #333;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      z-index: 10;
+    }
+
+    .team-member:hover .bio-popup {
+      display: block;
+    }
+
+    .team-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="images/expanded-logo.png" alt="Nexus Engineering Logo" class="large-logo" />
+      </a>
+      <nav class="site-navigation">
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero fade-in">
+    <div class="container hero-container">
+      <h1>About Nexus Engineering & Planning</h1>
+      <p>Innovating Urban Development for a Sustainable Future</p>
+    </div>
+  </section>
+
+  <!-- Who We Are Section -->
+  <section class="about fade-in">
+    <div class="container about-container">
+      <div class="about-text">
+        <h2>Who We Are</h2>
+        <p>
+          Nexus Engineering & Planning Ltd. is a multidisciplinary consultancy firm dedicated to delivering transformative engineering and planning solutions. Our mission is to drive sustainable urban development and infrastructure across Africa.
+        </p>
+        <p>
+          With a team of experienced professionals, we combine advanced technology, innovative strategies, and a deep understanding of local contexts to deliver impactful projects.
+        </p>
+      </div>
+      <div class="about-image">
+        <img src="images/about.jpg" alt="Our Team at Work" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision Section -->
+  <section class="services fade-in">
+    <div class="container services-container">
+      <h2 class="section-title">Our Mission & Vision</h2>
+      <div class="services-grid">
+        <div class="service-item slide-in-left">
+          <h3>Our Mission</h3>
+          <p>
+            To design and implement sustainable engineering and planning solutions that transform urban environments, empower communities, and foster economic growth.
+          </p>
+        </div>
+        <div class="service-item slide-in-right">
+          <h3>Our Vision</h3>
+          <p>
+            To be the leading catalyst for resilient, inclusive, and innovative urban transformation in Africa and beyond.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Values Section -->
+  <section class="insights fade-in">
+    <div class="container insights-container">
+      <h2 class="section-title">Our Core Values</h2>
+      <div class="insights-grid">
+        <article class="insight-item slide-in-left">
+          <h3>Innovation</h3>
+          <p>We embrace cutting-edge technologies and creative thinking to solve complex challenges.</p>
+        </article>
+        <article class="insight-item slide-in-right">
+          <h3>Sustainability</h3>
+          <p>We prioritize environmentally responsible practices that ensure long-term viability and community well-being.</p>
+        </article>
+        <article class="insight-item fade-in">
+          <h3>Integrity</h3>
+          <p>We uphold the highest ethical standards in all our engagements, ensuring transparency and trustworthiness.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet the Team Section -->
+  <section class="team fade-in">
+    <div class="container team-container">
+      <h2 class="section-title">Meet Our Team</h2>
+      <div class="team-member slide-in-left">
+        <a href="https://www.linkedin.com/in/femiolamijulo/" target="_blank">
+          <img src="images/femi.jpg" alt="Olufemi Olamijulo">
+        </a>
+        <h3>Olufemi Olamijulo</h3>
+        <p>Founder & Principal Consultant</p>
+        <div class="bio-popup">
+          <p>Olufemi Olamijulo is the Founder and Principal Consultant at Nexus Engineering & Planning Ltd. With over a decade of experience in civil engineering, urban planning, and public policy, he leads multidisciplinary teams in delivering sustainable urban development solutions across Africa. A Harvard graduate, he has worked with the UN and the Lincoln Institute of Land Policy on carbon markets and decarbonization strategies.</p>
+        </div>
+      </div>
+      <div class="team-member slide-in-right">
+        <img src="images/ben.jpg" alt="Benjamin Olamijulo">
+        <h3>Engr. Benjamin Olamijulo</h3>
+        <p>Co-Founder & Head of Projects</p>
+        <div class="bio-popup">
+          <p>Engr. Benjamin Olamijulo holds a Bachelor of Science in Civil Engineering from the University of Lagos and is a Fellow of the Nigerian Society of Engineers. With nearly 30 years of experience, he has managed major projects in project design, supervision, and civil engineering construction. He is also a registered engineer with COREN.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <nav>
+        <ul class="footer-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-info">
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
