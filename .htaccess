@@ -1,0 +1,4 @@
+# Force Apache to prioritize index.html
+DirectoryIndex index.html
+
+
