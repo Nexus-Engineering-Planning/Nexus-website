@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/nexuseng/public_html
-    - /bin/cp -R ./* $DEPLOYPATH
+    - export DEPLOYPATH=/home/yourusername/public_html
+    - /bin/cp -r ./* $DEPLOYPATH
