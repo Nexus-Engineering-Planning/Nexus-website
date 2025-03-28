@@ -11,8 +11,8 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 # Allow POST to sendmail.php, block everything else
-RewriteCond %{REQUEST_METHOD} !^POST$
-RewriteRule ^sendmail\.php$ - [F,L]
+# RewriteCond %{REQUEST_METHOD} !^POST$
+# RewriteRule ^sendmail\.php$ - [F,L]
 
 # Leverage browser caching
 <IfModule mod_expires.c>
