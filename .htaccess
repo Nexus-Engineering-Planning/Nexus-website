@@ -11,11 +11,12 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 # Protect sensitive backend files (e.g. sendmail.php)
-<Files "sendmail.php">
-  <If "%{REQUEST_METHOD} != 'POST'">
-    Require all denied
-  </If>
-</Files>
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_METHOD} !^POST$
+  RewriteRule ^sendmail\.php$ - [F,L]
+</IfModule>
+
 
 
 # Leverage browser caching
