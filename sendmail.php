@@ -1,6 +1,6 @@
 <?php
 // CONFIGURATION
-$recaptcha_secret = "6LfFKQMrAAAAADo1jSQ8JKTG25CUz2eQpAHyiaPn";
+$recaptcha_secret = "6LfFKQMrAAAAAEDt_fMWWlydVOPGolrUAF5jjJD4";
 $recipient_email = "support@nexuseng.org";
 
 // Only allow POST requests
