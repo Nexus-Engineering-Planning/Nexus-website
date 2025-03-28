@@ -33,19 +33,7 @@
 <body>
   <!-- Header -->
   <div id="global-header"></div>
-  <script>
-    fetch("header.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("global-header").innerHTML = data;
-        const path = window.location.pathname.split("/").pop();
-        document.querySelectorAll(".nav-menu a").forEach(link => {
-          if (link.getAttribute("href") === path) {
-            link.classList.add("active");
-          }
-        });
-      });
-  </script>
+  
 
   <!-- Hero Section -->
   <section class="hero fade-in">
@@ -77,13 +65,6 @@
 
   <!-- Footer -->
   <div id="global-footer"></div>
-<script>
-  fetch("footer.html")
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById("global-footer").innerHTML = data;
-    });
-</script>
 
 
   <!-- reCAPTCHA Token Assignment -->
@@ -116,4 +97,6 @@
     });
   </script>
 </body>
+<script src="js/header-footer-loader.js" defer></script>
+
 </html>
