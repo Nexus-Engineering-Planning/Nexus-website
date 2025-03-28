@@ -4,75 +4,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>About Us | Nexus Engineering & Planning Ltd.</title>
+  <meta name="description" content="Learn more about Nexus Engineering & Planning Ltd., a multidisciplinary consultancy driving transformative urban development across Africa." />
+  <meta name="keywords" content="Nexus Engineering, urban development, infrastructure, Africa, sustainable planning, engineering consultancy" />
+  <meta name="author" content="Nexus Engineering & Planning Ltd." />
+
+  <!-- Open Graph (for Facebook, LinkedIn) -->
+  <meta property="og:title" content="About Nexus Engineering & Planning Ltd." />
+  <meta property="og:description" content="Discover our mission, vision, and the experienced team behind Nexus Engineering & Planning's impact across Africa." />
+  <meta property="og:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
+  <meta property="og:url" content="https://www.nexuseng.org/about.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About Nexus Engineering & Planning Ltd." />
+  <meta name="twitter:description" content="Meet the team and values behind our innovative, sustainable urban planning work in Africa." />
+  <meta name="twitter:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
+
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .team-member {
-      position: relative;
-      width: 220px;
-      text-align: center;
-    }
+  <link rel="icon" href="images/logo.png" type="image/png" />
 
-    .team-member img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 50%;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-
-    .team-member:hover img {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .bio-popup {
-      display: none;
-      position: absolute;
-      top: 220px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #fff;
-      color: #333;
-      padding: 20px;
-      width: 300px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-      z-index: 10;
-    }
-
-    .team-member:hover .bio-popup {
-      display: block;
-    }
-
-    .team-container {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-  </style>
 </head>
 
 <body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-container">
-      <a href="index.html" class="logo">
-        <img src="images/expanded-logo.png" alt="Nexus Engineering Logo" class="large-logo" />
-      </a>
-      <nav class="site-navigation">
-        <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html" class="active">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="insights.html">Insights</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <div id="global-header"></div>
+  <script>
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("global-header").innerHTML = data;
+  
+        // Highlight active link based on current URL
+        const path = window.location.pathname.split("/").pop();
+        document.querySelectorAll(".nav-menu a").forEach(link => {
+          if (link.getAttribute("href") === path) {
+            link.classList.add("active");
+          }
+        });
+      });
+  </script>
 
   <!-- Hero Section -->
   <section class="hero fade-in">
@@ -145,7 +117,7 @@
       <h2 class="section-title">Meet Our Team</h2>
       <div class="team-member slide-in-left">
         <a href="https://www.linkedin.com/in/femiolamijulo/" target="_blank">
-          <img src="images/femi.jpg" alt="Olufemi Olamijulo">
+          <img src="images/femi.jpg" alt="Olufemi Olamijulo" loading="lazy">
         </a>
         <h3>Olufemi Olamijulo</h3>
         <p>Founder</p>
@@ -154,7 +126,7 @@
         </div>
       </div>
       <div class="team-member slide-in-right">
-        <img src="images/ben.jpg" alt="Benjamin Olamijulo">
+        <img src="images/ben.jpg" alt="Benjamin Olamijulo" loading="lazy">
         <h3>Engr. Benjamin Olamijulo</h3>
         <p>Co-Founder & Head of Projects</p>
         <div class="bio-popup">
@@ -164,22 +136,14 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-container">
-      <nav>
-        <ul class="footer-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html" class="active">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="insights.html">Insights</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="footer-info">
-      </div>
-    </div>
-  </footer>
+  <div id="global-footer"></div>
+  <script>
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("global-footer").innerHTML = data;
+      });
+  </script>
 </body>
 
 </html>

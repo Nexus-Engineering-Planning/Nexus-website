@@ -13,7 +13,7 @@
   <!-- Open Graph -->
   <meta property="og:title" content="Thank You | Nexus Engineering & Planning Ltd." />
   <meta property="og:description" content="We've received your message. Our team will get back to you shortly." />
-  <meta property="og:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
+  <meta property="og:image" content="https://www.nexuseng.org/images/expanded-logo.png" loading="lazy" />
   <meta property="og:url" content="https://www.nexuseng.org/thank-you.html" />
   <meta property="og:type" content="website" />
 
@@ -21,30 +21,29 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Thank You | Nexus Engineering & Planning Ltd." />
   <meta name="twitter:description" content="We appreciate your message. Expect a reply soon from Nexus Engineering." />
-  <meta name="twitter:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
+  <meta name="twitter:image" content="https://www.nexuseng.org/images/expanded-logo.png" loading="lazy" />
 
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link rel="icon" href="images/logo.png" type="image/png" loading="lazy"/>
 </head>
 
 <body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-container">
-      <a href="index.html" class="logo">
-        <img src="images/expanded-logo.png" alt="Nexus Engineering Logo" class="large-logo" />
-      </a>
-      <nav class="site-navigation">
-        <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="insights.html">Insights</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <div id="global-header"></div>
+  <script>
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("global-header").innerHTML = data;
+  
+        // Highlight active link based on current URL
+        const path = window.location.pathname.split("/").pop();
+        document.querySelectorAll(".nav-menu a").forEach(link => {
+          if (link.getAttribute("href") === path) {
+            link.classList.add("active");
+          }
+        });
+      });
+  </script>
 
   <!-- Thank You Section -->
   <section class="hero fade-in">
@@ -56,20 +55,14 @@
   </section>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-container">
-      <nav>
-        <ul class="footer-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="insights.html">Insights</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="footer-info"></div>
-    </div>
-  </footer>
+  <div id="global-footer"></div>
+  <script>
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("global-footer").innerHTML = data;
+      });
+  </script>
 </body>
 
 </html>

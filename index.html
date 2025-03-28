@@ -2,30 +2,49 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nexus Engineering & Planning Ltd.</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Nexus Engineering & Planning Ltd. | Sustainable Urban Solutions in Africa</title>
+  <meta name="description" content="Nexus Engineering & Planning delivers innovative and sustainable infrastructure, planning, and environmental solutions across Africa." />
+  <meta name="keywords" content="Nexus Engineering, urban planning, civil engineering, infrastructure, sustainability, Africa, consultancy" />
+  <meta name="author" content="Nexus Engineering & Planning Ltd." />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Nexus Engineering & Planning Ltd." />
+  <meta property="og:description" content="We provide strategic engineering and planning services that empower communities and shape resilient cities in Africa." />
+  <meta property="og:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
+  <meta property="og:url" content="https://www.nexuseng.org/index.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nexus Engineering & Planning Ltd." />
+  <meta name="twitter:description" content="Explore our sustainable infrastructure projects and planning insights shaping Africa's future." />
+  <meta name="twitter:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="images/logo.png" type="image/png" />
 </head>
 
-<body class="dark-theme">
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-container">
-      <a href="index.html" class="logo">
-        <img src="images/expanded-logo.png" alt="Nexus Engineering Logo" class="large-logo">
-      </a>
-      <nav class="site-navigation">
-        <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="insights.html">Insights</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+
+<body>
+  <div id="global-header"></div>
+  <script>
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("global-header").innerHTML = data;
+  
+        // Highlight active link based on current URL
+        const path = window.location.pathname.split("/").pop();
+        document.querySelectorAll(".nav-menu a").forEach(link => {
+          if (link.getAttribute("href") === path) {
+            link.classList.add("active");
+          }
+        });
+      });
+  </script>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -42,22 +61,22 @@
       <h2 class="section-title">Our Core Services</h2>
       <div class="services-grid">
         <div class="service-item">
-          <img src="images/urban.jpg" alt="Urban Planning">
+          <img src="images/urban.jpg" alt="Urban Planning" loading="lazy">
           <h3>Urban Planning</h3>
           <p>Designing sustainable, inclusive, and innovative urban environments that foster community growth and resilience.</p>
         </div>
         <div class="service-item">
-          <img src="images/project.jpg" alt="Project Management">
+          <img src="images/project.jpg" alt="Project Management" loading="lazy">
           <h3>Project Management</h3>
           <p>End-to-end project oversight ensuring timely delivery, budget control, and adherence to the highest quality standards.</p>
         </div>
         <div class="service-item">
-          <img src="images/civil.jpg" alt="Civil Engineering">
+          <img src="images/civil.jpg" alt="Civil Engineering" loading="lazy">
           <h3>Civil Engineering</h3>
           <p>Providing state-of-the-art infrastructure solutions tailored to support urban transformation and sustainability goals.</p>
         </div>
         <div class="service-item">
-          <img src="images/environmental.jpg" alt="Environmental Consulting">
+          <img src="images/environmental.jpg" alt="Environmental Consulting" loading="lazy">
           <h3>Environmental Consulting</h3>
           <p>Delivering comprehensive environmental assessments and strategic consulting to promote sustainable practices.</p>
         </div>
@@ -66,8 +85,8 @@
   </section>
 
   <!-- About Section -->
-  <section class="about">
-    <div class="container about-container">
+  <section class="about about-home fade-in">
+    <div class="container about-grid">
       <div class="about-text">
         <h2>About Nexus</h2>
         <p>Nexus Engineering & Planning Ltd. is a multidisciplinary consultancy dedicated to driving transformative urban development and infrastructure solutions across Africa.</p>
@@ -75,7 +94,7 @@
         <a href="about.html" class="btn-secondary">Learn More</a>
       </div>
       <div class="about-image">
-        <img src="images/logo.png" alt="About Nexus Engineering">
+        <img src="images/logo.png" alt="About Nexus Engineering" loading="lazy">
       </div>
     </div>
   </section>
@@ -107,20 +126,14 @@
   </section>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-container">
-      <nav>
-        <ul class="footer-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="footer-info">
-      </div>
-    </div>
-  </footer>
+  <div id="global-footer"></div>
+  <script>
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("global-footer").innerHTML = data;
+      });
+  </script>
 </body>
 
 </html>

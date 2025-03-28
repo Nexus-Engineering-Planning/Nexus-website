@@ -4,28 +4,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Insights | Nexus Engineering & Planning Ltd.</title>
+  <meta name="description" content="Explore the latest thinking and expert perspectives from Nexus Engineering on sustainable infrastructure, urban development, and policy innovation." />
+  <meta name="keywords" content="urban insights, sustainable development, planning strategies, Africa, infrastructure policy, Nexus Engineering" />
+  <meta name="author" content="Nexus Engineering & Planning Ltd." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Insights | Nexus Engineering & Planning Ltd." />
+  <meta property="og:description" content="Stay informed with our latest articles on sustainable engineering and planning practices across Africa." />
+  <meta property="og:image" content="https://www.nexuseng.org/images/expanded-logo.png" loading="lazy"/>
+  <meta property="og:url" content="https://www.nexuseng.org/insights.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Insights | Nexus Engineering & Planning Ltd." />
+  <meta name="twitter:description" content="Articles and insights on Africa's urban transformation, engineering innovation, and climate resilience." />
+  <meta name="twitter:image" content="https://www.nexuseng.org/images/expanded-logo.png" loading="lazy"/>
+
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="images/logo.png" type="image/png" />
 </head>
 
 <body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-container">
-      <a href="index.html" class="logo">
-        <img src="images/expanded-logo.png" alt="Nexus Engineering Logo" class="large-logo" />
-      </a>
-      <nav class="site-navigation">
-        <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="insights.html" class="active">Insights</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <div id="global-header"></div>
+  <script>
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("global-header").innerHTML = data;
+  
+        // Highlight active link based on current URL
+        const path = window.location.pathname.split("/").pop();
+        document.querySelectorAll(".nav-menu a").forEach(link => {
+          if (link.getAttribute("href") === path) {
+            link.classList.add("active");
+          }
+        });
+      });
+  </script>
 
   <!-- Hero Section -->
   <section class="hero fade-in">
@@ -77,21 +95,14 @@
   </section>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-container">
-      <nav>
-        <ul class="footer-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="insights.html" class="active">Insights</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="footer-info">
-      </div>
-    </div>
-  </footer>
+  <div id="global-footer"></div>
+  <script>
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("global-footer").innerHTML = data;
+      });
+  </script>
 
 </body>
 
