@@ -67,36 +67,9 @@
   <div id="global-footer"></div>
 
 
-  <!-- reCAPTCHA Token Assignment -->
-  <script>
-    grecaptcha.enterprise.ready(async () => {
-      const token = await grecaptcha.enterprise.execute('6Lcd5QIrAAAAAAZ9pEaBdnbjKbdMccuofeKfIHcS', {
-        action: 'contact_form'
-      });
-      document.getElementById('recaptcha_token').value = token;
-    });
-  </script>
+ <script src="js/header-footer-loader.js" defer></script>
+ <script src="js/contact.js" defer></script>
 
-  <!-- Basic Form Validation -->
-  <script>
-    document.getElementById("contactForm").addEventListener("submit", function (e) {
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const message = document.getElementById("message").value.trim();
-
-      if (!name || !email || !message) {
-        alert("Please fill in all required fields.");
-        e.preventDefault();
-        return;
-      }
-
-      if (!email.includes("@")) {
-        alert("Please enter a valid email address.");
-        e.preventDefault();
-      }
-    });
-  </script>
 </body>
-<script src="js/header-footer-loader.js" defer></script>
 
 </html>
