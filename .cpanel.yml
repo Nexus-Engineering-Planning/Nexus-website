@@ -17,3 +17,4 @@ deployment:
     - /bin/cp .htaccess $DEPLOYPATH
     - /bin/cp robots.txt $DEPLOYPATH
     - /bin/cp sitemap.xml $DEPLOYPATH
+
