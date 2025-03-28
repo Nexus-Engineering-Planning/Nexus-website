@@ -9,8 +9,18 @@ deployment:
     - /bin/cp insights.html $DEPLOYPATH
     - /bin/cp thank-you.html $DEPLOYPATH
     - /bin/cp sendmail.php $DEPLOYPATH
-    - /bin/cp -r css $DEPLOYPATH
-    - /bin/cp -r images $DEPLOYPATH
-    - /bin/cp -r js $DEPLOYPATH
+    - /bin/cp css/styles.css $DEPLOYPATH
+    - /bin/cp images/ben.jpg $DEPLOYPATH
+    - /bin/cp images/civil.jpg $DEPLOYPATH
+    - /bin/cp images/environmental.jpg $DEPLOYPATH
+    - /bin/cp images/expanded-logo.png $DEPLOYPATH
+    - /bin/cp images/femi.jpg $DEPLOYPATH
+    - /bin/cp images/logo.png $DEPLOYPATH
+    - /bin/cp images/project.jpg $DEPLOYPATH
+    - /bin/cp images/urban.jpg $DEPLOYPATH
+    - /bin/cp js/js $DEPLOYPATH
     - /bin/cp header.html $DEPLOYPATH
-    - /bin/cp footer.html $DEPLOYPATH
+    - /bin/cp footer.html $DEPLOYPATH    
+    - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/cp robots.txt $DEPLOYPATH
+    - /bin/cp sitemap.xml $DEPLOYPATH

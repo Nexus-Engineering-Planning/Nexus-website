@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /sendmail.php
+
+Sitemap: https://www.nexuseng.org/sitemap.xml
