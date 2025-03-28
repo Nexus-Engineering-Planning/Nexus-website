@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // reCAPTCHA token assignment
   if (typeof grecaptcha !== "undefined") {
     grecaptcha.enterprise.ready(async () => {
-      const token = await grecaptcha.enterprise.execute('6Lcd5QIrAAAAAAZ9pEaBdnbjKbdMccuofeKfIHcS', {
+      const token = await grecaptcha.enterprise.execute('6LfFKQMrAAAAADo1jSQ8JKTG25CUz2eQpAHyiaPn', {
         action: 'contact_form'
       });
       const tokenInput = document.getElementById("recaptcha_token");
