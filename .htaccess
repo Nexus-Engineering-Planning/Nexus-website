@@ -30,15 +30,28 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
   ExpiresByType image/x-icon "access plus 1 year"
 </IfModule>
 
-# MIME sniffing protection
+# MIME sniffing & framing protection
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
-  Header set X-Frame-Options "DENY"
+  Header always append X-Frame-Options "SAMEORIGIN"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
-  Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://www.google.com https://www.gstatic.com 'sha256-7Q1gl7gSqVzU/J8ldrOcffd4heK7IbrIypYGQbakjKg=' 'sha256-dA69XPZflAqEllLg73DOK4ag91BQFtPjfNojPwo9JdQ='; style-src 'self' 'unsafe-inline';"
+
+  # Updated Content Security Policy
+  Header set Content-Security-Policy "
+    default-src 'self';
+    script-src 'self' https://www.google.com https://www.gstatic.com;
+    style-src 'self' 'unsafe-inline';
+    frame-src 'self' https://www.google.com https://www.gstatic.com https://www.openstreetmap.org;
+    img-src 'self' data: https://www.nexuseng.org https://www.openstreetmap.org;
+    font-src 'self' https://fonts.gstatic.com;
+    connect-src 'self';
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+  "
 </IfModule>
 
-# Disable .htaccess access
+# Deny access to .htaccess itself
 <Files .htaccess>
   Order allow,deny
   Deny from all
