@@ -30,7 +30,7 @@
 <body>
   <div id="global-header"></div>
   <script>
-    fetch("header.html")
+    fetch("/header.html")
       .then(res => res.text())
       .then(data => {
         document.getElementById("global-header").innerHTML = data;
@@ -97,7 +97,7 @@
   <!-- Footer -->
   <div id="global-footer"></div>
   <script>
-    fetch("footer.html")
+    fetch("/footer.html")
       .then(res => res.text())
       .then(data => {
         document.getElementById("global-footer").innerHTML = data;
