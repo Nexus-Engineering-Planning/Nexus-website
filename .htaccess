@@ -10,14 +10,9 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
-# Protect sensitive backend files (e.g. sendmail.php)
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteCond %{REQUEST_METHOD} !^POST$
-  RewriteRule ^sendmail\.php$ - [F,L]
-</IfModule>
-
-
+# Allow POST to sendmail.php, block everything else
+RewriteCond %{REQUEST_METHOD} !^POST$
+RewriteRule ^sendmail\.php$ - [F,L]
 
 # Leverage browser caching
 <IfModule mod_expires.c>
@@ -38,8 +33,6 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
   Header set X-Content-Type-Options "nosniff"
   Header always append X-Frame-Options "SAMEORIGIN"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
-
-  # Updated Content Security Policy
   Header set Content-Security-Policy "
     default-src 'self';
     script-src 'self' https://www.google.com https://www.gstatic.com;
