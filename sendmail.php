@@ -1,19 +1,18 @@
 <?php
 // CONFIGURATION
-$recaptcha_secret = "YOUR_SECRET_KEY"; // Replace with your actual reCAPTCHA v3 secret key
+$recaptcha_secret = "6LfFKQMrAAAAADo1jSQ8JKTG25CUz2eQpAHyiaPn";
 $recipient_email = "support@nexuseng.org";
 
 // Only allow POST requests
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Verify reCAPTCHA token
-    $recaptcha_token = $_POST["recaptcha_token"] ?? "";
+    // Check reCAPTCHA response
+    $recaptcha_response = $_POST["g-recaptcha-response"] ?? "";
     $recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
 
-    $response = file_get_contents($recaptcha_url . "?secret=" . urlencode($recaptcha_secret) . "&response=" . urlencode($recaptcha_token));
+    $response = file_get_contents($recaptcha_url . "?secret=" . urlencode($recaptcha_secret) . "&response=" . urlencode($recaptcha_response));
     $responseKeys = json_decode($response, true);
 
-    // Basic reCAPTCHA validation
-    if (!$responseKeys["success"] || $responseKeys["score"] < 0.5) {
+    if (!$responseKeys["success"]) {
         http_response_code(403);
         echo "reCAPTCHA verification failed.";
         exit;
@@ -30,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    // Compose main email
+    // Compose the email
     $subject = "New Contact Form Submission from $name";
     $headers = "From: $name <$email>\r\n";
     $headers .= "Reply-To: $email\r\n";
@@ -40,11 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email_content .= "Email: $email\n\n";
     $email_content .= "Message:\n$message\n";
 
-    // Send email to admin
+    // Send the email
     $mail_success = mail($recipient_email, $subject, $email_content, $headers);
 
-
-    // Redirect or show error
     if ($mail_success) {
         header("Location: thank-you.html");
         exit;

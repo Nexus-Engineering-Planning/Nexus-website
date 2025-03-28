@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <title>Contact Us | Nexus Engineering & Planning Ltd.</title>
   <meta name="description" content="Get in touch with Nexus Engineering & Planning Ltd. for expert consulting on urban planning, infrastructure, and environmental solutions across Africa." />
   <meta name="keywords" content="contact Nexus Engineering, engineering consultancy Africa, planning firm Nigeria, infrastructure consulting, urban development contact" />
@@ -26,14 +26,13 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="images/logo.png" type="image/png" />
 
-  <!-- reCAPTCHA Enterprise -->
-  <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lcd5QIrAAAAAAZ9pEaBdnbjKbdMccuofeKfIHcS"></script>
+  <!-- reCAPTCHA v2 -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
   <!-- Header -->
   <div id="global-header"></div>
-  
 
   <!-- Hero Section -->
   <section class="hero fade-in">
@@ -50,7 +49,10 @@
         <input type="text" id="name" name="name" placeholder="Your Name" required />
         <input type="email" id="email" name="email" placeholder="Your Email" required />
         <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
-        <input type="hidden" name="recaptcha_token" id="recaptcha_token" />
+
+        <!-- reCAPTCHA checkbox -->
+        <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY_HERE"></div>
+
         <button type="submit" class="btn-primary">Send Message</button>
       </form>
 
@@ -66,10 +68,8 @@
   <!-- Footer -->
   <div id="global-footer"></div>
 
-
-<script src="js/header-footer-loader.js" defer></script>
-<script src="js/contact.js" defer></script>
-
+  <!-- Load header/footer logic -->
+  <script src="js/header-footer-loader.js" defer></script>
 </body>
 
 </html>
