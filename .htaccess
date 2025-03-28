@@ -12,9 +12,11 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 # Protect sensitive backend files (e.g. sendmail.php)
 <Files "sendmail.php">
-  Order allow,deny
-  Deny from all
+  <If "%{REQUEST_METHOD} != 'POST'">
+    Require all denied
+  </If>
 </Files>
+
 
 # Leverage browser caching
 <IfModule mod_expires.c>
