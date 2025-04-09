@@ -23,8 +23,8 @@
   <meta name="twitter:description" content="We're looking for passionate professionals to join our team of engineers, planners, and innovators." />
   <meta name="twitter:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
 
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="/images/logo.png" type="image/png" />
 </head>
 
 <body>
@@ -64,7 +64,7 @@
         <p>Don't see a role that fits? We welcome general applications from passionate professionals. Email your resume to <a href="mailto:support@nexuseng.org">support@nexuseng.org</a>.</p>
       </div>
       <div class="about-image">
-        <img src="images/logo.png" alt="Join Nexus" loading="lazy" />
+        <img src="/images/logo.png" alt="Join Nexus" loading="lazy" />
       </div>
     </div>
   </section>
@@ -80,9 +80,9 @@
 
   <div id="global-footer"></div>
 
-  <script src="js/header-footer-loader.js" defer></script>
+  <script src="/js/header-footer-loader.js" defer></script>
   <script>
-    fetch('js/jobs.json')
+    fetch('/js/jobs.json')
       .then(response => response.json())
       .then(jobs => {
         const container = document.getElementById('jobs-container');
