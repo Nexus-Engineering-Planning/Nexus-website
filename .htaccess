@@ -10,9 +10,14 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
-# Allow POST to sendmail.php, block everything else
-# RewriteCond %{REQUEST_METHOD} !^POST$
-# RewriteRule ^sendmail\.php$ - [F,L]
+# Remove .html extension and add trailing slash
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)/?$ $1.html [L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /(.+)\.html\ HTTP/
+RewriteRule ^(.+)\.html$ /$1/ [R=301,L]
 
 # Leverage browser caching
 <IfModule mod_expires.c>
@@ -51,4 +56,4 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 <Files .htaccess>
   Order allow,deny
   Deny from all
-</Files>
+</Files>  
