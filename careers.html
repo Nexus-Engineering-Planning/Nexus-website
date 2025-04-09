@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Careers | Nexus Engineering & Planning Ltd.</title>
+  <meta name="description" content="Explore career opportunities at Nexus Engineering & Planning Ltd. and join our mission to build resilient, sustainable cities across Africa." />
+  <meta name="keywords" content="careers, jobs, Nexus Engineering, urban planning, infrastructure, Africa, engineering jobs, sustainable development" />
+  <meta name="author" content="Nexus Engineering & Planning Ltd." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Careers at Nexus Engineering & Planning Ltd." />
+  <meta property="og:description" content="We're hiring! Help us shape the future of Africa's infrastructure and urban spaces." />
+  <meta property="og:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
+  <meta property="og:url" content="https://www.nexuseng.org/careers.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Careers | Nexus Engineering & Planning Ltd." />
+  <meta name="twitter:description" content="We're looking for passionate professionals to join our team of engineers, planners, and innovators." />
+  <meta name="twitter:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="images/logo.png" type="image/png" />
+</head>
+
+<body>
+  <div id="global-header"></div>
+
+  <!-- Hero Section -->
+  <section class="hero fade-in">
+    <div class="container hero-container">
+      <h1>Join Our Team</h1>
+      <p>Be part of Africa’s next generation of urban transformation experts.</p>
+    </div>
+  </section>
+
+  <!-- Careers Listing Section -->
+  <section class="services fade-in">
+    <div class="container services-container">
+      <h2 class="section-title">Current Openings</h2>
+      <div id="jobs-container" class="services-grid"></div>
+      <div id="no-jobs-message" style="display: none;">
+        <p>We’re not hiring right now, but we’re always on the lookout for talented professionals.</p>
+        <p>Send your CV to <a href="mailto:support@nexuseng.org">support@nexuseng.org</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Work With Us -->
+  <section class="about fade-in">
+    <div class="container about-container">
+      <div class="about-text">
+        <h2>Why Work With Us?</h2>
+        <p>At Nexus, we value innovation, collaboration, and impact. We offer flexible work arrangements, opportunities for leadership, and a chance to shape communities for the better.</p>
+        <ul>
+          <li>✔ Meaningful work in African cities</li>
+          <li>✔ Remote-friendly culture</li>
+          <li>✔ Learning & growth opportunities</li>
+        </ul>
+        <p>Don't see a role that fits? We welcome general applications from passionate professionals. Email your resume to <a href="mailto:support@nexuseng.org">support@nexuseng.org</a>.</p>
+      </div>
+      <div class="about-image">
+        <img src="images/logo.png" alt="Join Nexus" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="contact fade-in">
+    <div class="container contact-container">
+      <h2>Ready to Make an Impact?</h2>
+      <p>We’re excited to learn more about you.</p>
+      <a href="contact.html" class="btn-primary">Start Your Application</a>
+    </div>
+  </section>
+
+  <div id="global-footer"></div>
+
+  <script src="js/header-footer-loader.js" defer></script>
+  <script>
+    fetch('js/jobs.json')
+      .then(response => response.json())
+      .then(jobs => {
+        const container = document.getElementById('jobs-container');
+        const fallback = document.getElementById('no-jobs-message');
+
+        if (!jobs || jobs.length === 0) {
+          fallback.style.display = 'block';
+          return;
+        }
+
+        jobs.forEach(job => {
+          const jobCard = document.createElement('div');
+          jobCard.classList.add('service-item', 'slide-in-left');
+          jobCard.innerHTML = `
+            <h3>${job.title}</h3>
+            <p>${job.description}</p>
+            <p><strong>Location:</strong> ${job.location}</p>
+            <a href="mailto:support@nexuseng.org?subject=${encodeURIComponent(job.emailSubject)}" class="btn-secondary">Apply Now</a>
+          `;
+          container.appendChild(jobCard);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading jobs:', error);
+        document.getElementById('no-jobs-message').style.display = 'block';
+      });
+  </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/nexuseng/public_html
+    - export DEPLOYPATH=/home/nexuseng/
     - /bin/cp index.html $DEPLOYPATH
     - /bin/cp about.html $DEPLOYPATH
     - /bin/cp contact.html $DEPLOYPATH
@@ -12,10 +12,10 @@ deployment:
     - /bin/cp -R css $DEPLOYPATH
     - /bin/cp -R images $DEPLOYPATH
     - /bin/cp -R js $DEPLOYPATH
-    - /bin/cp js/contact.js $DEPLOYPATH
-    - /bin/cp js/header-footer-loader.js $DEPLOYPATH
     - /bin/cp header.html $DEPLOYPATH
     - /bin/cp footer.html $DEPLOYPATH    
     - /bin/cp .htaccess $DEPLOYPATH
     - /bin/cp robots.txt $DEPLOYPATH
     - /bin/cp sitemap.xml $DEPLOYPATH
+    - /bin/cp careers.html $DEPLOYPATH
+    
