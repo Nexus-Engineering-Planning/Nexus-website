@@ -14,7 +14,7 @@ deployment:
     - /bin/cp -R js $DEPLOYPATH
     - /bin/cp js/contact.js $DEPLOYPATH
     - /bin/cp js/header-footer-loader.js $DEPLOYPATH
-    - /bin/cp js/jobs.json.js $DEPLOYPATH
+    - /bin/cp js/jobs.json $DEPLOYPATH
     - /bin/cp header.html $DEPLOYPATH
     - /bin/cp footer.html $DEPLOYPATH    
     - /bin/cp .htaccess $DEPLOYPATH
