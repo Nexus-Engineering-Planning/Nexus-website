@@ -11,9 +11,7 @@ deployment:
     - /bin/cp sendmail.php $DEPLOYPATH
     - /bin/cp -R css $DEPLOYPATH
     - /bin/cp -R images $DEPLOYPATH
-    - /bin/cp js/contact.js $DEPLOYPATH
-    - /bin/cp js/header-footer-loader.js $DEPLOYPATH/js/header-footer-loader.js
-    - /bin/cp js/jobs.json $DEPLOYPATH
+    - /bin/cp -R js $DEPLOYPATH
     - /bin/cp header.html $DEPLOYPATH
     - /bin/cp footer.html $DEPLOYPATH    
     - /bin/cp .htaccess $DEPLOYPATH
