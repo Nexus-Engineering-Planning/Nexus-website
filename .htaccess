@@ -10,14 +10,14 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
-# Remove .html extension and add trailing slash
+# Clean URLs: remove .html and enforce trailing slash
+RewriteCond %{THE_REQUEST} /([^.]+)\.html[\s?] [NC]
+RewriteRule ^ %1/ [R=301,L]
+
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.*)/?$ $1.html [L]
-
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /(.+)\.html\ HTTP/
-RewriteRule ^(.+)\.html$ /$1/ [R=301,L]
+RewriteRule ^([^.]+)/$ $1.html [L]
 
 # Leverage browser caching
 <IfModule mod_expires.c>
@@ -56,4 +56,4 @@ RewriteRule ^(.+)\.html$ /$1/ [R=301,L]
 <Files .htaccess>
   Order allow,deny
   Deny from all
-</Files>  
+</Files>
