@@ -10,7 +10,7 @@
   <meta name="author" content="Nexus Engineering & Planning Ltd." />
   <meta property="og:title" content="Careers at Nexus Engineering & Planning Ltd." />
   <meta property="og:description" content="We're hiring! Help us shape the future of Africa's infrastructure and urban spaces." />
-  <meta property="og:image" content="/images/expanded-logo.png" />
+  <meta property="og:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
   <meta property="og:url" content="https://www.nexuseng.org/careers.html" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -28,6 +28,12 @@
       background: #fff;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #jobs-container .service-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
     .job-details {
@@ -38,32 +44,62 @@
     .job-details h3 {
       margin-top: 0;
       font-size: 1.5rem;
+      color: #2c3e50;
+    }
+
+    .job-details h3 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .job-details h3 a:hover {
+      color: #3498db;
     }
 
     .job-details p {
       margin: 0.5rem 0;
+      color: #555;
+    }
+
+    #jobs-loading {
+      text-align: center;
+      padding: 2rem;
+      font-style: italic;
+      color: #666;
+    }
+
+    #jobs-error {
+      text-align: center;
+      padding: 2rem;
+      color: #e74c3c;
     }
   </style>
 </head>
 
 <body>
   <div id="global-header"></div>
+  
   <section class="hero fade-in">
     <div class="container hero-container">
       <h1>Join Our Team</h1>
-      <p>Be part of Africa’s next generation of urban transformation experts.</p>
+      <p>Be part of Africa's next generation of urban transformation experts.</p>
     </div>
   </section>
+  
   <section class="services fade-in">
     <div class="container services-container">
       <h2 class="section-title">Current Openings</h2>
-      <div id="jobs-container" class="services-grid"></div>
+      <div id="jobs-container" class="services-grid">
+        <div id="jobs-loading">Loading available positions...</div>
+      </div>
       <div id="no-jobs-message" style="display: none;">
-        <p>We’re not hiring right now, but we’re always on the lookout for talented professionals.</p>
+        <p>We're not hiring right now, but we're always on the lookout for talented professionals.</p>
         <p>Send your CV to <a href="mailto:support@nexuseng.org">support@nexuseng.org</a>.</p>
       </div>
+      <div id="jobs-error" style="display: none;"></div>
     </div>
   </section>
+  
   <section class="about fade-in">
     <div class="container about-container">
       <div class="about-text">
@@ -73,61 +109,149 @@
           <li>✔ Meaningful work in African cities</li>
           <li>✔ Remote-friendly culture</li>
           <li>✔ Learning & growth opportunities</li>
+          <li>✔ Competitive compensation packages</li>
+          <li>✔ Diverse and inclusive workplace</li>
         </ul>
         <p>Don't see a role that fits? We welcome general applications from passionate professionals. Email your resume to <a href="mailto:support@nexuseng.org">support@nexuseng.org</a>.</p>
       </div>
       <div class="about-image">
-        <img src="/images/logo.png" alt="Join Nexus" loading="lazy" />
+        <img src="/images/logo.png" alt="Nexus Engineering & Planning Ltd. Logo" loading="lazy" />
       </div>
     </div>
   </section>
+  
   <section class="contact fade-in">
     <div class="container contact-container">
       <h2>Ready to Make an Impact?</h2>
-      <p>We’re excited to learn more about you.</p>
+      <p>We're excited to learn more about you.</p>
       <a href="contact.html" class="btn-primary">Start Your Application</a>
     </div>
   </section>
+  
   <div id="global-footer"></div>
+  
   <script src="/js/header-footer-loader.js" defer></script>
   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      loadJobs();
+      setupJobCardAnimations();
+    });
+
     async function loadJobs() {
+      const container = document.getElementById('jobs-container');
+      const fallback = document.getElementById('no-jobs-message');
+      const errorElement = document.getElementById('jobs-error');
+      const loadingElement = document.getElementById('jobs-loading');
+      
       try {
         const res = await fetch('/js/jobs.json');
+        
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        
         const jobs = await res.json();
         const now = new Date();
-
-        const activeJobs = jobs.filter(job => new Date(job.deadline.replace(/WAT/i, 'GMT+0100')) >= now);
-        const container = document.getElementById('jobs-container');
-        const fallback = document.getElementById('no-jobs-message');
-
-        if (activeJobs.length === 0) fallback.style.display = 'block';
-        activeJobs.forEach(job => container.appendChild(renderJobCard(job)));
+        
+        // Clear loading message
+        loadingElement.style.display = 'none';
+        
+        const activeJobs = jobs.filter(job => {
+          try {
+            // Improved date parsing that handles various formats
+            let deadlineStr = job.deadline;
+            
+            // Remove timezone abbreviations and normalize
+            deadlineStr = deadlineStr.replace(/(WAT|GMT|UTC)/i, '').trim();
+            
+            // Convert ordinal dates (1st, 2nd, etc.) to simple numbers
+            deadlineStr = deadlineStr.replace(/(\d+)(?:st|nd|rd|th)/, '$1');
+            
+            const deadlineDate = new Date(deadlineStr);
+            
+            if (isNaN(deadlineDate.getTime())) {
+              console.warn('Invalid deadline format for job:', job.title, 'Deadline:', job.deadline);
+              return false;
+            }
+            
+            return deadlineDate >= now;
+          } catch (e) {
+            console.warn('Error parsing deadline for job:', job.title, 'Error:', e);
+            return false;
+          }
+        });
+        
+        if (activeJobs.length === 0) {
+          fallback.style.display = 'block';
+        } else {
+          container.innerHTML = ''; // Clear loading message
+          activeJobs.forEach(job => {
+            const jobCard = renderJobCard(job);
+            container.appendChild(jobCard);
+          });
+        }
       } catch (error) {
         console.error('Error loading jobs:', error);
-        document.getElementById('no-jobs-message').style.display = 'block';
+        loadingElement.style.display = 'none';
+        errorElement.style.display = 'block';
+        errorElement.innerHTML = `
+          <p>We're having trouble loading our current job openings.</p>
+          <p>Please try again later or email your resume to <a href="mailto:support@nexuseng.org">support@nexuseng.org</a>.</p>
+          <p><small>Error: ${error.message}</small></p>
+        `;
       }
     }
 
     function renderJobCard(job) {
       const card = document.createElement('div');
-      card.className = 'service-item slide-in-left';
-
+      card.className = 'service-item';
+      
+      // Generate slug from title if not provided
+      const slug = job.slug || job.title.toLowerCase()
+        .replace(/[^\w\s]/g, '')
+        .replace(/\s+/g, '-');
+      
       card.innerHTML = `
         <div class="job-details">
-          <h3><a href="/jobs/${job.slug || 'full-stack-developer'}.html">${job.title}</a></h3>
+          <h3><a href="/jobs/${slug}.html">${job.title}</a></h3>
           <p><strong>Location:</strong> ${job.location}</p>
           <p><strong>Type:</strong> ${job.type}</p>
           <p><strong>Deadline:</strong> ${job.deadline}</p>
           <p>${job.summary}</p>
-          <a href="/jobs/${job.slug || 'full-stack-developer'}.html" class="btn-secondary">View Full Description</a>
+          <a href="/jobs/${slug}.html" class="btn-secondary">View Full Description</a>
         </div>
       `;
-
+      
       return card;
     }
 
-    document.addEventListener('DOMContentLoaded', loadJobs);
+    function setupJobCardAnimations() {
+      // This will be called when jobs are loaded to animate them in
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('slide-in-left');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      // Observe all job cards as they're added
+      const container = document.getElementById('jobs-container');
+      const observerConfig = { childList: true };
+      
+      const mutationObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach(node => {
+            if (node.nodeType === 1) { // Element node
+              observer.observe(node);
+            }
+          });
+        });
+      });
+      
+      mutationObserver.observe(container, observerConfig);
+    }
   </script>
 </body>
 </html>
