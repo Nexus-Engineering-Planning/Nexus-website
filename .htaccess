@@ -8,31 +8,32 @@ Options -Indexes -MultiViews
 # Enable Rewrite Engine
 RewriteEngine On
 
+# ------------------------------------------
 # Force HTTPS and www
+# ------------------------------------------
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} !^www\. [NC]
 RewriteRule ^ https://www.nexuseng.org%{REQUEST_URI} [R=301,L,NE]
 
 # ------------------------------------------
-# Clean URLs Setup
+# Clean URLs: remove .html and allow pretty URLs
 # ------------------------------------------
 
-# 1. Special handling for job detail pages
-# Allow /jobs/full-stack-developer/ to serve /jobs/full-stack-developer.html
+# 1. Handle job detail pages (e.g., /jobs/full-stack-developer/)
 RewriteRule ^jobs/([^/]+)/?$ /jobs/$1.html [L,NC]
 
-# 2. Redirect .html URLs (except for /jobs/) to pretty URLs
+# 2. Redirect other .html links to pretty URLs (excluding /jobs/)
 RewriteCond %{REQUEST_URI} !^/jobs/
 RewriteCond %{THE_REQUEST} \s/+(.*?)(?:\.html)[\s?] [NC]
 RewriteRule ^ %1/ [R=301,L]
 
-# 3. Internally rewrite /path/ to /path.html if it exists
+# 3. Internally rewrite pretty URLs to .html if file exists
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.+?)/?$ $1.html [L]
 
 # ------------------------------------------
-# Leverage Browser Caching
+# Browser Caching for Static Assets
 # ------------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
@@ -69,7 +70,7 @@ RewriteRule ^(.+?)/?$ $1.html [L]
     form-action 'self';
   "
 
-  # Fine-grained cache control
+  # Asset-specific caching
   <FilesMatch "\.(png|jpe?g|gif|ico|woff2)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
@@ -80,7 +81,7 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 </IfModule>
 
 # ------------------------------------------
-# Protect Sensitive Files
+# Deny Access to Sensitive Files
 # ------------------------------------------
 <FilesMatch "^(\.htaccess|\.env|composer\.json|composer\.lock)$">
   Order allow,deny
