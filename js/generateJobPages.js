@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 // Path to jobs.json and output folder
-const JOBS_PATH = path.join(__dirname, 'js', 'jobs.json');
-const OUTPUT_DIR = path.join(__dirname, 'jobs');
+const JOBS_PATH = path.join(__dirname, '..','js', 'jobs.json');
+const OUTPUT_DIR = path.join(__dirname, '..', 'jobs');
 
 // Convert WAT to ISO-compliant timezone
 function formatDate(dateStr) {
