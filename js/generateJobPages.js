@@ -19,10 +19,54 @@ function createJobHtml(job) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${job.title} | Careers at Nexus</title>
   <meta name="description" content="${job.summary}" />
-  <link rel="stylesheet" href="/css/style.css" />
+  
+  <!-- Social Media Meta Tags -->
+  <meta property="og:title" content="${job.title} | Careers at Nexus" />
+  <meta property="og:description" content="${job.summary}" />
+  <meta property="og:image" content="../images/jobs/${job.slug}-preview.png" />
+  <meta property="og:url" content="https://www.nexuseng.org/jobs/${job.slug}.html" />
+  
+  <!-- Changed to relative path -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="../images/logo.png" type="image/png" />
+  <style>
+    .job-details.container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .job-details h1 {
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+    }
+    .job-details h2 {
+      color: #2c3e50;
+      margin-top: 2rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.5rem;
+    }
+    .job-details ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+    .job-details li {
+      margin-bottom: 0.5rem;
+    }
+    .job-details strong {
+      color: #2c3e50;
+    }
+    .apply-cta {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
   <div id="global-header"></div>
+  
   <section class="job-details container">
     <h1>${job.title}</h1>
     <p><strong>Company:</strong> ${job.company}</p>
@@ -30,24 +74,42 @@ function createJobHtml(job) {
     <p><strong>Type:</strong> ${job.type}</p>
     <p><strong>Start Date:</strong> ${job.startDate}</p>
     <p><strong>Application Deadline:</strong> ${job.deadline}</p>
+    
     <p>${job.summary}</p>
-    <h2>Why This Role Matters</h2><p>${job.whyItMatters}</p>
-    <h2>Your Mission</h2><p>${job.responsibilities}</p>
+    
+    <h2>Why This Role Matters</h2>
+    <p>${job.whyItMatters}</p>
+    
+    <h2>Your Mission</h2>
+    <p>${job.responsibilities}</p>
+    
     <h2>Stack</h2>
     <ul>
       ${Object.entries(job.stack).map(([key, val]) =>
         `<li><strong>${key}:</strong> ${val.join(', ')}</li>`).join('')}
     </ul>
+    
     <h2>Requirements</h2>
     <ul>${job.requirements.map(r => `<li>${r}</li>`).join('')}</ul>
+    
     <h2>Bonus</h2>
     <ul>${job.bonuses.map(b => `<li>${b}</li>`).join('')}</ul>
+    
     <h2>Terms</h2>
     <ul>${job.terms.map(t => `<li>${t}</li>`).join('')}</ul>
-    <p><strong>Apply:</strong> <a href="${job.applicationLink}" target="_blank">${job.applicationLink}</a></p>
+    
+    <div class="apply-cta">
+      <a href="${job.applicationLink}" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Apply for ${job.title} position">
+        Apply Now
+      </a>
+      <p class="small-text">Application deadline: ${job.deadline}</p>
+    </div>
   </section>
+  
   <div id="global-footer"></div>
-  <script src="/js/header-footer-loader.js" defer></script>
+  
+  <!-- Changed to relative path -->
+  <script src="../js/header-footer-loader.js" defer></script>
 </body>
 </html>`;
 }
@@ -57,7 +119,9 @@ function main() {
   const now = new Date();
   const jobs = JSON.parse(fs.readFileSync(JOBS_PATH, 'utf-8'));
 
-  if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  }
 
   const activeSlugs = [];
 
@@ -68,11 +132,13 @@ function main() {
       return;
     }
 
-    const slug = job.slug || 'job-' + job.title.toLowerCase().replace(/\s+/g, '-');
+    const slug = job.slug || 'job-' + job.title.toLowerCase()
+      .replace(/[^\w\s]/g, '')
+      .replace(/\s+/g, '-');
     activeSlugs.push(slug);
 
     const outFile = path.join(OUTPUT_DIR, `${slug}.html`);
-    const html = createJobHtml(job);
+    const html = createJobHtml({ ...job, slug });
     fs.writeFileSync(outFile, html);
     console.log(`✅ Generated: ${outFile}`);
   });
