@@ -4,41 +4,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Careers | Nexus Engineering & Planning Ltd.</title>
   <meta name="description" content="Explore career opportunities at Nexus Engineering & Planning Ltd. and join our mission to build resilient, sustainable cities across Africa." />
   <meta name="keywords" content="careers, jobs, Nexus Engineering, urban planning, infrastructure, Africa, engineering jobs, sustainable development" />
   <meta name="author" content="Nexus Engineering & Planning Ltd." />
-
-  <!-- Open Graph -->
   <meta property="og:title" content="Careers at Nexus Engineering & Planning Ltd." />
   <meta property="og:description" content="We're hiring! Help us shape the future of Africa's infrastructure and urban spaces." />
   <meta property="og:image" content="/images/expanded-logo.png" />
   <meta property="og:url" content="https://www.nexuseng.org/careers.html" />
   <meta property="og:type" content="website" />
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Careers | Nexus Engineering & Planning Ltd." />
   <meta name="twitter:description" content="We're looking for passionate professionals to join our team of engineers, planners, and innovators." />
   <meta name="twitter:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
-
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="icon" href="/images/logo.png" type="image/png" />
+  <style>
+    #jobs-container .service-item {
+      text-align: left;
+      padding: 2rem;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+    }
+
+    #jobs-container .job-details {
+      padding: 1rem 0;
+      line-height: 1.7;
+    }
+
+    #jobs-container .job-details h3 {
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+
+    #jobs-container .job-details h4 {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    #jobs-container .job-details ul {
+      margin: 0.5rem 0 1rem 1.5rem;
+      padding: 0;
+      list-style: disc;
+    }
+  </style>
 </head>
 
 <body>
   <div id="global-header"></div>
-
-  <!-- Hero Section -->
   <section class="hero fade-in">
     <div class="container hero-container">
       <h1>Join Our Team</h1>
       <p>Be part of Africa’s next generation of urban transformation experts.</p>
     </div>
   </section>
-
-  <!-- Careers Listing Section -->
   <section class="services fade-in">
     <div class="container services-container">
       <h2 class="section-title">Current Openings</h2>
@@ -49,8 +72,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Why Work With Us -->
   <section class="about fade-in">
     <div class="container about-container">
       <div class="about-text">
@@ -68,8 +89,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Call to Action -->
   <section class="contact fade-in">
     <div class="container contact-container">
       <h2>Ready to Make an Impact?</h2>
@@ -77,27 +96,39 @@
       <a href="contact.html" class="btn-primary">Start Your Application</a>
     </div>
   </section>
-
   <div id="global-footer"></div>
-
   <script src="/js/header-footer-loader.js" defer></script>
   <script>
-  fetch('/js/jobs.json')
-    .then(response => response.json())
-    .then(jobs => {
-      const container = document.getElementById('jobs-container');
-      const fallback = document.getElementById('no-jobs-message');
+    async function loadJobs() {
+      try {
+        const res = await fetch('/js/jobs.json');
+        const jobs = await res.json();
+        const container = document.getElementById('jobs-container');
+        const fallback = document.getElementById('no-jobs-message');
 
-      if (!jobs || jobs.length === 0) {
-        fallback.style.display = 'block';
-        return;
+        if (!Array.isArray(jobs) || jobs.length === 0) {
+          fallback.style.display = 'block';
+          return;
+        }
+
+        jobs.forEach(job => container.appendChild(renderJobCard(job)));
+      } catch (error) {
+        console.error('Error loading jobs:', error);
+        document.getElementById('no-jobs-message').style.display = 'block';
       }
+    }
 
-      jobs.forEach(job => {
-        const jobCard = document.createElement('div');
-        jobCard.classList.add('service-item', 'slide-in-left');
+    function renderJobCard(job) {
+      const card = document.createElement('div');
+      card.className = 'service-item slide-in-left';
 
-        jobCard.innerHTML = `
+      const techList = (label, stack) => `
+        <li><strong>${label}:</strong> ${Array.isArray(stack) ? stack.join(', ') : ''}</li>`;
+
+      const list = (items) => Array.isArray(items) ? items.map(item => `<li>${item}</li>`).join('') : '';
+
+      card.innerHTML = `
+        <div class="job-details">
           <h3>${job.title}</h3>
           <p><strong>Company:</strong> ${job.company}</p>
           <p><strong>Location:</strong> ${job.location}</p>
@@ -105,7 +136,7 @@
           <p><strong>Start Date:</strong> ${job.startDate}</p>
           <p><strong>Application Deadline:</strong> ${job.deadline}</p>
           <p>${job.summary}</p>
-          
+
           <h4>Why This Role Matters</h4>
           <p>${job.whyItMatters}</p>
 
@@ -114,36 +145,34 @@
 
           <h4>Tech Stack</h4>
           <ul>
-            <li><strong>Frontend:</strong> ${job.stack.frontend.join(', ')}</li>
-            <li><strong>Backend:</strong> ${job.stack.backend.join(', ')}</li>
-            <li><strong>Database:</strong> ${job.stack.database.join(', ')}</li>
-            <li><strong>Hosting:</strong> ${job.stack.hosting.join(', ')}</li>
-            <li><strong>Mapping:</strong> ${job.stack.mapping.join(', ')}</li>
-            <li><strong>Auth:</strong> ${job.stack.auth.join(', ')}</li>
-            <li><strong>Versioning:</strong> ${job.stack.versioning.join(', ')}</li>
+            ${techList('Frontend', job.stack.frontend)}
+            ${techList('Backend', job.stack.backend)}
+            ${techList('Database', job.stack.database)}
+            ${techList('Hosting', job.stack.hosting)}
+            ${techList('Mapping', job.stack.mapping)}
+            ${techList('Auth', job.stack.auth)}
+            ${techList('Versioning', job.stack.versioning)}
           </ul>
 
           <h4>What You Bring</h4>
-          <ul>${job.requirements.map(req => `<li>${req}</li>`).join('')}</ul>
+          <ul>${list(job.requirements)}</ul>
 
           <h4>Bonus</h4>
-          <ul>${job.bonuses.map(b => `<li>${b}</li>`).join('')}</ul>
+          <ul>${list(job.bonuses)}</ul>
 
           <h4>Terms</h4>
-          <ul>${job.terms.map(t => `<li>${t}</li>`).join('')}</ul>
+          <ul>${list(job.terms)}</ul>
 
           <h4>How to Apply</h4>
           <p>${job.howToApply}</p>
           <a href="${job.applicationLink}" target="_blank" class="btn-secondary">Apply Now</a>
-        `;
+        </div>
+      `;
 
-        container.appendChild(jobCard);
-      });
-    })
-    .catch(error => {
-      console.error('Error loading jobs:', error);
-      document.getElementById('no-jobs-message').style.display = 'block';
-    });
-</script>
+      return card;
+    }
+
+    document.addEventListener('DOMContentLoaded', loadJobs);
+  </script>
 </body>
 </html>
