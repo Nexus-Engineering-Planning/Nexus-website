@@ -20,8 +20,7 @@
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="icon" href="/images/logo.png" type="image/png" />
   <style>
-    #jobs-container .service-item,
-    #past-jobs-container .service-item {
+    #jobs-container .service-item {
       text-align: left;
       padding: 2rem;
       border: 1px solid #eee;
@@ -41,16 +40,8 @@
       font-size: 1.5rem;
     }
 
-    .job-details h4 {
-      margin-top: 1.5rem;
-      font-size: 1.1rem;
-      color: #333;
-    }
-
-    .job-details ul {
-      margin: 0.5rem 0 1rem 1.5rem;
-      padding: 0;
-      list-style: disc;
+    .job-details p {
+      margin: 0.5rem 0;
     }
   </style>
 </head>
@@ -125,11 +116,9 @@
       card.innerHTML = `
         <div class="job-details">
           <h3><a href="/jobs/${job.slug || 'full-stack-developer'}.html">${job.title}</a></h3>
-          <p><strong>Company:</strong> ${job.company}</p>
           <p><strong>Location:</strong> ${job.location}</p>
           <p><strong>Type:</strong> ${job.type}</p>
-          <p><strong>Start Date:</strong> ${job.startDate}</p>
-          <p><strong>Application Deadline:</strong> ${job.deadline}</p>
+          <p><strong>Deadline:</strong> ${job.deadline}</p>
           <p>${job.summary}</p>
           <a href="/jobs/${job.slug || 'full-stack-developer'}.html" class="btn-secondary">View Full Description</a>
         </div>
