@@ -19,73 +19,18 @@
   <meta name="twitter:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="icon" href="/images/logo.png" type="image/png" />
-  <style>
-    #jobs-container .service-item {
-      text-align: left;
-      padding: 2rem;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      margin-bottom: 2rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    #jobs-container .service-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .job-details {
-      padding: 1rem 0;
-      line-height: 1.7;
-    }
-
-    .job-details h3 {
-      margin-top: 0;
-      font-size: 1.5rem;
-      color: #2c3e50;
-    }
-
-    .job-details h3 a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .job-details h3 a:hover {
-      color: #3498db;
-    }
-
-    .job-details p {
-      margin: 0.5rem 0;
-      color: #555;
-    }
-
-    #jobs-loading {
-      text-align: center;
-      padding: 2rem;
-      font-style: italic;
-      color: #666;
-    }
-
-    #jobs-error {
-      text-align: center;
-      padding: 2rem;
-      color: #e74c3c;
-    }
-  </style>
 </head>
 
 <body>
   <div id="global-header"></div>
-  
+
   <section class="hero fade-in">
     <div class="container hero-container">
       <h1>Join Our Team</h1>
       <p>Be part of Africa's next generation of urban transformation experts.</p>
     </div>
   </section>
-  
+
   <section class="services fade-in">
     <div class="container services-container">
       <h2 class="section-title">Current Openings</h2>
@@ -99,7 +44,7 @@
       <div id="jobs-error" style="display: none;"></div>
     </div>
   </section>
-  
+
   <section class="about fade-in">
     <div class="container about-container">
       <div class="about-text">
@@ -119,7 +64,7 @@
       </div>
     </div>
   </section>
-  
+
   <section class="contact fade-in">
     <div class="container contact-container">
       <h2>Ready to Make an Impact?</h2>
@@ -127,9 +72,9 @@
       <a href="contact.html" class="btn-primary">Start Your Application</a>
     </div>
   </section>
-  
+
   <div id="global-footer"></div>
-  
+
   <script src="/js/header-footer-loader.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -142,49 +87,30 @@
       const fallback = document.getElementById('no-jobs-message');
       const errorElement = document.getElementById('jobs-error');
       const loadingElement = document.getElementById('jobs-loading');
-      
+
       try {
         const res = await fetch('/js/jobs.json');
-        
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
         const jobs = await res.json();
         const now = new Date();
-        
-        // Clear loading message
         loadingElement.style.display = 'none';
-        
+
         const activeJobs = jobs.filter(job => {
           try {
-            // Improved date parsing that handles various formats
-            let deadlineStr = job.deadline;
-            
-            // Remove timezone abbreviations and normalize
-            deadlineStr = deadlineStr.replace(/(WAT|GMT|UTC)/i, '').trim();
-            
-            // Convert ordinal dates (1st, 2nd, etc.) to simple numbers
+            let deadlineStr = job.deadline.replace(/(WAT|GMT|UTC)/i, '').trim();
             deadlineStr = deadlineStr.replace(/(\d+)(?:st|nd|rd|th)/, '$1');
-            
             const deadlineDate = new Date(deadlineStr);
-            
-            if (isNaN(deadlineDate.getTime())) {
-              console.warn('Invalid deadline format for job:', job.title, 'Deadline:', job.deadline);
-              return false;
-            }
-            
-            return deadlineDate >= now;
-          } catch (e) {
-            console.warn('Error parsing deadline for job:', job.title, 'Error:', e);
+            return !isNaN(deadlineDate.getTime()) && deadlineDate >= now;
+          } catch {
             return false;
           }
         });
-        
+
         if (activeJobs.length === 0) {
           fallback.style.display = 'block';
         } else {
-          container.innerHTML = ''; // Clear loading message
+          container.innerHTML = '';
           activeJobs.forEach(job => {
             const jobCard = renderJobCard(job);
             container.appendChild(jobCard);
@@ -205,28 +131,23 @@
     function renderJobCard(job) {
       const card = document.createElement('div');
       card.className = 'service-item';
-      
-      // Generate slug from title if not provided
-      const slug = job.slug || job.title.toLowerCase()
-        .replace(/[^\w\s]/g, '')
-        .replace(/\s+/g, '-');
-      
+      const slug = job.slug || job.title.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
+
       card.innerHTML = `
         <div class="job-details">
-          <h3><a href="jobs/${slug}.html">${job.title}</a></h3>
+          <h3><a href="jobs/${slug}/">${job.title}</a></h3>
           <p><strong>Location:</strong> ${job.location}</p>
           <p><strong>Type:</strong> ${job.type}</p>
           <p><strong>Deadline:</strong> ${job.deadline}</p>
           <p>${job.summary}</p>
-          <a href="jobs/${slug}.html" class="btn-secondary">View Full Description</a>
+          <a href="jobs/${slug}/" class="btn-secondary">View Full Description</a>
         </div>
       `;
-      
+
       return card;
     }
 
     function setupJobCardAnimations() {
-      // This will be called when jobs are loaded to animate them in
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -236,21 +157,16 @@
         });
       }, { threshold: 0.1 });
 
-      // Observe all job cards as they're added
       const container = document.getElementById('jobs-container');
-      const observerConfig = { childList: true };
-      
       const mutationObserver = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           mutation.addedNodes.forEach(node => {
-            if (node.nodeType === 1) { // Element node
-              observer.observe(node);
-            }
+            if (node.nodeType === 1) observer.observe(node);
           });
         });
       });
-      
-      mutationObserver.observe(container, observerConfig);
+
+      mutationObserver.observe(container, { childList: true });
     }
   </script>
 </body>
