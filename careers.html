@@ -73,12 +73,6 @@
       </div>
     </div>
   </section>
-  <section class="services fade-in">
-    <div class="container services-container">
-      <h2 class="section-title">Past Openings</h2>
-      <div id="past-jobs-container" class="services-grid"></div>
-    </div>
-  </section>
   <section class="about fade-in">
     <div class="container about-container">
       <div class="about-text">
@@ -113,35 +107,31 @@
         const now = new Date();
 
         const activeJobs = jobs.filter(job => new Date(job.deadline.replace(/WAT/i, 'GMT+0100')) >= now);
-        const pastJobs = jobs.filter(job => new Date(job.deadline.replace(/WAT/i, 'GMT+0100')) < now);
-
         const container = document.getElementById('jobs-container');
-        const pastContainer = document.getElementById('past-jobs-container');
         const fallback = document.getElementById('no-jobs-message');
 
         if (activeJobs.length === 0) fallback.style.display = 'block';
         activeJobs.forEach(job => container.appendChild(renderJobCard(job)));
-        pastJobs.forEach(job => pastContainer.appendChild(renderJobCard(job, true)));
       } catch (error) {
         console.error('Error loading jobs:', error);
         document.getElementById('no-jobs-message').style.display = 'block';
       }
     }
 
-    function renderJobCard(job, isExpired = false) {
+    function renderJobCard(job) {
       const card = document.createElement('div');
       card.className = 'service-item slide-in-left';
 
       card.innerHTML = `
         <div class="job-details">
-          <h3><a href="/jobs/${job.slug || 'full-stack-developer'}.html">${job.title}</a>${isExpired ? ' <span style="color:#999;font-size:0.9em">(Closed)</span>' : ''}</h3>
+          <h3><a href="/jobs/${job.slug || 'full-stack-developer'}.html">${job.title}</a></h3>
           <p><strong>Company:</strong> ${job.company}</p>
           <p><strong>Location:</strong> ${job.location}</p>
           <p><strong>Type:</strong> ${job.type}</p>
           <p><strong>Start Date:</strong> ${job.startDate}</p>
           <p><strong>Application Deadline:</strong> ${job.deadline}</p>
           <p>${job.summary}</p>
-          ${!isExpired ? `<a href="/jobs/${job.slug || 'full-stack-developer'}.html" class="btn-secondary">View Full Description</a>` : ''}
+          <a href="/jobs/${job.slug || 'full-stack-developer'}.html" class="btn-secondary">View Full Description</a>
         </div>
       `;
 
