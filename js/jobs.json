@@ -1,11 +1,43 @@
 [
   {
     "title": "Full-Time Full-Stack Developer – MVP Civic Tech Platform",
-    "description": "Nexus is building a civic-tech platform to make verified public data accessible in real time—helping users engage with accurate, trustworthy information when it matters most. Our mission is to strengthen civic trust through transparent, intuitive, and impactful digital tools. You'll lead full-stack development from scratch, owning the architecture, building fast and secure APIs, integrating mapping tools, managing data workflows, and collaborating closely with design to deliver a user-friendly experience.",
     "location": "Remote",
     "type": "Full-Time Contract (1 year, with potential to extend)",
     "startDate": "August 15, 2025",
-    "deadline": "July 31, 2025 (11:59 PM WAT)",
-    "applyUrl": "https://forms.gle/bfS3LFotXLXfb84i6"
+    "deadline": "11:59 PM WAT, July 31st, 2025",
+    "company": "Nexus Engineering & Planning Ltd.",
+    "website": "https://www.nexuseng.org",
+    "summary": "We're hiring a full-time developer to build a new civic-tech platform from scratch. You'll work independently, shape product direction, and implement full-stack features using modern tools and open data principles.",
+    "whyItMatters": "Nexus is building a civic-tech platform to make verified public data accessible in real time—helping users engage with accurate, trustworthy information when it matters most. We're laying the foundation for a suite of open-access dashboards spanning governance, housing, transit, health, and more—all built on a unified architecture designed for long-term public value.",
+    "responsibilities": "Own full-stack development including architecture, backend APIs, frontend interfaces, authentication, mapping, and deployment. Collaborate with designers and provide feedback to help shape the product vision.",
+    "stack": {
+      "frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+      "backend": ["Node.js", "Express", "GraphQL"],
+      "database": ["DynamoDB", "PostgreSQL"],
+      "hosting": ["AWS Amplify", "Netlify", "S3 + CloudFront"],
+      "mapping": ["Mapbox GL JS", "Leaflet"],
+      "auth": ["AWS Cognito", "Firebase Auth"],
+      "versioning": ["GitHub"]
+    },
+    "requirements": [
+      "3+ years of full-stack development experience",
+      "Strong proficiency in React and TypeScript",
+      "Experience building and consuming REST or GraphQL APIs",
+      "Ability to deploy and maintain scalable, secure backend services",
+      "Self-directed with excellent communication skills"
+    ],
+    "bonuses": [
+      "Experience with civic tech, geospatial data, or election-related tools",
+      "Familiarity with Nigeria’s electoral/polling unit landscape",
+      "Experience working with open data or digital transparency platforms"
+    ],
+    "howToApply": "Please submit your application via the form. You'll be asked to share a brief introduction, links to relevant past work (GitHub, portfolio, etc.), your availability, and expected monthly salary in NGN. Applications will be reviewed from the week of August 5. We aim to onboard by mid-August.",
+    "applicationLink": "https://forms.gle/bfS3LFotXLXfb84i6",
+    "terms": [
+      "Full-time",
+      "1-year initial contract with 3-month probation",
+      "Fully remote",
+      "All IP retained by Nexus Engineering & Planning Ltd."
+    ]
   }
 ]

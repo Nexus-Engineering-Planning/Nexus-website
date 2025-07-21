@@ -82,33 +82,68 @@
 
   <script src="/js/header-footer-loader.js" defer></script>
   <script>
-    fetch('/js/jobs.json')
-      .then(response => response.json())
-      .then(jobs => {
-        const container = document.getElementById('jobs-container');
-        const fallback = document.getElementById('no-jobs-message');
+  fetch('/js/jobs.json')
+    .then(response => response.json())
+    .then(jobs => {
+      const container = document.getElementById('jobs-container');
+      const fallback = document.getElementById('no-jobs-message');
 
-        if (!jobs || jobs.length === 0) {
-          fallback.style.display = 'block';
-          return;
-        }
+      if (!jobs || jobs.length === 0) {
+        fallback.style.display = 'block';
+        return;
+      }
 
-        jobs.forEach(job => {
-          const jobCard = document.createElement('div');
-          jobCard.classList.add('service-item', 'slide-in-left');
-          jobCard.innerHTML = `
-            <h3>${job.title}</h3>
-            <p>${job.description}</p>
-            <p><strong>Location:</strong> ${job.location}</p>
-            <a href="mailto:support@nexuseng.org?subject=${encodeURIComponent(job.emailSubject)}" class="btn-secondary">Apply Now</a>
-          `;
-          container.appendChild(jobCard);
-        });
-      })
-      .catch(error => {
-        console.error('Error loading jobs:', error);
-        document.getElementById('no-jobs-message').style.display = 'block';
+      jobs.forEach(job => {
+        const jobCard = document.createElement('div');
+        jobCard.classList.add('service-item', 'slide-in-left');
+
+        jobCard.innerHTML = `
+          <h3>${job.title}</h3>
+          <p><strong>Company:</strong> ${job.company}</p>
+          <p><strong>Location:</strong> ${job.location}</p>
+          <p><strong>Type:</strong> ${job.type}</p>
+          <p><strong>Start Date:</strong> ${job.startDate}</p>
+          <p><strong>Application Deadline:</strong> ${job.deadline}</p>
+          <p>${job.summary}</p>
+          
+          <h4>Why This Role Matters</h4>
+          <p>${job.whyItMatters}</p>
+
+          <h4>Your Mission</h4>
+          <p>${job.responsibilities}</p>
+
+          <h4>Tech Stack</h4>
+          <ul>
+            <li><strong>Frontend:</strong> ${job.stack.frontend.join(', ')}</li>
+            <li><strong>Backend:</strong> ${job.stack.backend.join(', ')}</li>
+            <li><strong>Database:</strong> ${job.stack.database.join(', ')}</li>
+            <li><strong>Hosting:</strong> ${job.stack.hosting.join(', ')}</li>
+            <li><strong>Mapping:</strong> ${job.stack.mapping.join(', ')}</li>
+            <li><strong>Auth:</strong> ${job.stack.auth.join(', ')}</li>
+            <li><strong>Versioning:</strong> ${job.stack.versioning.join(', ')}</li>
+          </ul>
+
+          <h4>What You Bring</h4>
+          <ul>${job.requirements.map(req => `<li>${req}</li>`).join('')}</ul>
+
+          <h4>Bonus</h4>
+          <ul>${job.bonuses.map(b => `<li>${b}</li>`).join('')}</ul>
+
+          <h4>Terms</h4>
+          <ul>${job.terms.map(t => `<li>${t}</li>`).join('')}</ul>
+
+          <h4>How to Apply</h4>
+          <p>${job.howToApply}</p>
+          <a href="${job.applicationLink}" target="_blank" class="btn-secondary">Apply Now</a>
+        `;
+
+        container.appendChild(jobCard);
       });
-  </script>
+    })
+    .catch(error => {
+      console.error('Error loading jobs:', error);
+      document.getElementById('no-jobs-message').style.display = 'block';
+    });
+</script>
 </body>
 </html>
