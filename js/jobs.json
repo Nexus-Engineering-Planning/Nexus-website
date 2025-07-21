@@ -1,8 +1,11 @@
 [
   {
     "title": "Full-Time Full-Stack Developer – MVP Civic Tech Platform",
-    "description": "Lead the development of a new civic-tech platform aimed at delivering trustworthy public data through open-access dashboards spanning governance, housing, transit, health, and more. This is a greenfield project, and you’ll be responsible for building it from scratch—from architecture and APIs to mapping tools and secure authentication.\n\nPreferred Stack:\n- Frontend: React, Next.js, TypeScript, Tailwind CSS\n- Backend: Node.js, Express or GraphQL\n- Database: DynamoDB or PostgreSQL\n- Hosting: AWS Amplify, Netlify, or S3 + CloudFront\n- Mapping: Mapbox GL JS or Leaflet\n- Auth: AWS Cognito or Firebase\n\nRequirements:\n- 3+ years full-stack experience\n- Deep proficiency in React + TypeScript\n- API development (REST/GraphQL)\n- Self-directed with strong communication\n\nBonus:\n- Experience with civic tech, open data, or geospatial/election systems\n- Familiarity with Nigeria’s polling unit landscape\n\n📅 Application deadline: 11:59 PM WAT, July 31st, 2025\n🚀 Planned start date: August 15th, 2025\n🔗 Apply via form: https://forms.gle/bfS3LFotXLXfb84i6",
+    "description": "Nexus is building a civic-tech platform to make verified public data accessible in real time—helping users engage with accurate, trustworthy information when it matters most. Our mission is to strengthen civic trust through transparent, intuitive, and impactful digital tools. You'll lead full-stack development from scratch, owning the architecture, building fast and secure APIs, integrating mapping tools, managing data workflows, and collaborating closely with design to deliver a user-friendly experience.",
     "location": "Remote",
-    "emailSubject": "Application – Full-Stack Developer (Civic Tech Platform)"
+    "type": "Full-Time Contract (1 year, with potential to extend)",
+    "startDate": "August 15, 2025",
+    "deadline": "July 31, 2025 (11:59 PM WAT)",
+    "applyUrl": "https://forms.gle/bfS3LFotXLXfb84i6"
   }
 ]
