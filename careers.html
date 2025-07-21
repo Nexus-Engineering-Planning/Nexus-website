@@ -20,7 +20,8 @@
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="icon" href="/images/logo.png" type="image/png" />
   <style>
-    #jobs-container .service-item {
+    #jobs-container .service-item,
+    #past-jobs-container .service-item {
       text-align: left;
       padding: 2rem;
       border: 1px solid #eee;
@@ -30,23 +31,23 @@
       margin-bottom: 2rem;
     }
 
-    #jobs-container .job-details {
+    .job-details {
       padding: 1rem 0;
       line-height: 1.7;
     }
 
-    #jobs-container .job-details h3 {
+    .job-details h3 {
       margin-top: 0;
       font-size: 1.5rem;
     }
 
-    #jobs-container .job-details h4 {
+    .job-details h4 {
       margin-top: 1.5rem;
       font-size: 1.1rem;
       color: #333;
     }
 
-    #jobs-container .job-details ul {
+    .job-details ul {
       margin: 0.5rem 0 1rem 1.5rem;
       padding: 0;
       list-style: disc;
@@ -70,6 +71,12 @@
         <p>We’re not hiring right now, but we’re always on the lookout for talented professionals.</p>
         <p>Send your CV to <a href="mailto:support@nexuseng.org">support@nexuseng.org</a>.</p>
       </div>
+    </div>
+  </section>
+  <section class="services fade-in">
+    <div class="container services-container">
+      <h2 class="section-title">Past Openings</h2>
+      <div id="past-jobs-container" class="services-grid"></div>
     </div>
   </section>
   <section class="about fade-in">
@@ -103,69 +110,38 @@
       try {
         const res = await fetch('/js/jobs.json');
         const jobs = await res.json();
+        const now = new Date();
+
+        const activeJobs = jobs.filter(job => new Date(job.deadline.replace(/WAT/i, 'GMT+0100')) >= now);
+        const pastJobs = jobs.filter(job => new Date(job.deadline.replace(/WAT/i, 'GMT+0100')) < now);
+
         const container = document.getElementById('jobs-container');
+        const pastContainer = document.getElementById('past-jobs-container');
         const fallback = document.getElementById('no-jobs-message');
 
-        if (!Array.isArray(jobs) || jobs.length === 0) {
-          fallback.style.display = 'block';
-          return;
-        }
-
-        jobs.forEach(job => container.appendChild(renderJobCard(job)));
+        if (activeJobs.length === 0) fallback.style.display = 'block';
+        activeJobs.forEach(job => container.appendChild(renderJobCard(job)));
+        pastJobs.forEach(job => pastContainer.appendChild(renderJobCard(job, true)));
       } catch (error) {
         console.error('Error loading jobs:', error);
         document.getElementById('no-jobs-message').style.display = 'block';
       }
     }
 
-    function renderJobCard(job) {
+    function renderJobCard(job, isExpired = false) {
       const card = document.createElement('div');
       card.className = 'service-item slide-in-left';
 
-      const techList = (label, stack) => `
-        <li><strong>${label}:</strong> ${Array.isArray(stack) ? stack.join(', ') : ''}</li>`;
-
-      const list = (items) => Array.isArray(items) ? items.map(item => `<li>${item}</li>`).join('') : '';
-
       card.innerHTML = `
         <div class="job-details">
-          <h3>${job.title}</h3>
+          <h3><a href="/jobs/${job.slug || 'full-stack-developer'}.html">${job.title}</a>${isExpired ? ' <span style="color:#999;font-size:0.9em">(Closed)</span>' : ''}</h3>
           <p><strong>Company:</strong> ${job.company}</p>
           <p><strong>Location:</strong> ${job.location}</p>
           <p><strong>Type:</strong> ${job.type}</p>
           <p><strong>Start Date:</strong> ${job.startDate}</p>
           <p><strong>Application Deadline:</strong> ${job.deadline}</p>
           <p>${job.summary}</p>
-
-          <h4>Why This Role Matters</h4>
-          <p>${job.whyItMatters}</p>
-
-          <h4>Your Mission</h4>
-          <p>${job.responsibilities}</p>
-
-          <h4>Tech Stack</h4>
-          <ul>
-            ${techList('Frontend', job.stack.frontend)}
-            ${techList('Backend', job.stack.backend)}
-            ${techList('Database', job.stack.database)}
-            ${techList('Hosting', job.stack.hosting)}
-            ${techList('Mapping', job.stack.mapping)}
-            ${techList('Auth', job.stack.auth)}
-            ${techList('Versioning', job.stack.versioning)}
-          </ul>
-
-          <h4>What You Bring</h4>
-          <ul>${list(job.requirements)}</ul>
-
-          <h4>Bonus</h4>
-          <ul>${list(job.bonuses)}</ul>
-
-          <h4>Terms</h4>
-          <ul>${list(job.terms)}</ul>
-
-          <h4>How to Apply</h4>
-          <p>${job.howToApply}</p>
-          <a href="${job.applicationLink}" target="_blank" class="btn-secondary">Apply Now</a>
+          ${!isExpired ? `<a href="/jobs/${job.slug || 'full-stack-developer'}.html" class="btn-secondary">View Full Description</a>` : ''}
         </div>
       `;
 
