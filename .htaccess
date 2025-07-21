@@ -1,17 +1,13 @@
-RewriteEngine On
-
-# Force HTTPS+WWW
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteRule ^ https://www.nexuseng.org%{REQUEST_URI} [R=301,L,NE]
-
-# Handle /jobs/ URLs (must come first)
-RewriteRule ^jobs/([^/]+)/?$ /jobs/$1.html [L,NC]
-
-# General HTML cleanup
-RewriteCond %{THE_REQUEST} \s/+(.*?)\.html[\s?] [NC]
-RewriteRule ^ /%1/ [R=301,L,NE]
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{DOCUMENT_ROOT}/$1.html -f
-RewriteRule ^(.+?)/?$ $1.html [L]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # 1. EXACT MATCH for this job (temporary for testing)
+    RewriteRule ^jobs/full-stack-developer/?$ /jobs/full-stack-developer.html [L,NC]
+    
+    # 2. General job URL pattern (for future jobs)
+    RewriteRule ^jobs/([a-z0-9-]+)/?$ /jobs/$1.html [L,NC]
+    
+    # 3. Force HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
