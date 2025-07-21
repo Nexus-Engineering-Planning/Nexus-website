@@ -18,4 +18,4 @@ deployment:
     - /bin/cp robots.txt $DEPLOYPATH
     - /bin/cp sitemap.xml $DEPLOYPATH
     - /bin/cp careers.html $DEPLOYPATH
-    
+    - /bin/cp -R jobs $DEPLOYPATH
