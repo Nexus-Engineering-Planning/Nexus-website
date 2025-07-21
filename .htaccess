@@ -5,26 +5,35 @@
 # Disable directory browsing
 Options -Indexes -MultiViews
 
-# Force HTTPS and www (adjust according to your needs)
+# Enable Rewrite Engine
 RewriteEngine On
+
+# Force HTTPS and www
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} !^www\. [NC]
 RewriteRule ^ https://www.nexuseng.org%{REQUEST_URI} [R=301,L,NE]
 
-# Clean URLs: remove .html and enforce trailing slash
-# 1. Redirect /file.html to /file/
-RewriteCond %{THE_REQUEST} \s/+(.*?)\.html[\s?] [NC]
-RewriteRule ^ /%1/ [R=301,L,NE]
+# ------------------------------------------
+# Clean URLs Setup
+# ------------------------------------------
 
-# 2. Internally rewrite /file/ to /file.html
+# 1. Special handling for job detail pages
+# Allow /jobs/full-stack-developer/ to serve /jobs/full-stack-developer.html
+RewriteRule ^jobs/([^/]+)/?$ /jobs/$1.html [L,NC]
+
+# 2. Redirect .html URLs (except for /jobs/) to pretty URLs
+RewriteCond %{REQUEST_URI} !^/jobs/
+RewriteCond %{THE_REQUEST} \s/+(.*?)(?:\.html)[\s?] [NC]
+RewriteRule ^ %1/ [R=301,L]
+
+# 3. Internally rewrite /path/ to /path.html if it exists
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.+?)/?$ $1.html [L]
 
-# Special handling for jobs directory
-RewriteRule ^careers/jobs/([^/]+)/?$ /careers/jobs/$1.html [L,NC]
-
-# Leverage browser caching
+# ------------------------------------------
+# Leverage Browser Caching
+# ------------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType image/jpg "access plus 1 year"
@@ -40,7 +49,9 @@ RewriteRule ^careers/jobs/([^/]+)/?$ /careers/jobs/$1.html [L,NC]
   ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
+# ------------------------------------------
 # Security Headers
+# ------------------------------------------
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
   Header always append X-Frame-Options "SAMEORIGIN"
@@ -57,23 +68,27 @@ RewriteRule ^careers/jobs/([^/]+)/?$ /careers/jobs/$1.html [L,NC]
     base-uri 'self';
     form-action 'self';
   "
-  
-  # Cache control for specific files
+
+  # Fine-grained cache control
   <FilesMatch "\.(png|jpe?g|gif|ico|woff2)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
-  
+
   <FilesMatch "^(404|index|service-worker)\.html$">
     Header set Cache-Control "no-cache, must-revalidate"
   </FilesMatch>
 </IfModule>
 
-# Deny access to sensitive files
+# ------------------------------------------
+# Protect Sensitive Files
+# ------------------------------------------
 <FilesMatch "^(\.htaccess|\.env|composer\.json|composer\.lock)$">
   Order allow,deny
   Deny from all
 </FilesMatch>
 
-# Custom error documents
+# ------------------------------------------
+# Custom Error Pages
+# ------------------------------------------
 ErrorDocument 404 /404.html
 ErrorDocument 403 /404.html
