@@ -53,12 +53,12 @@ function renderJobCard(job) {
 
   card.innerHTML = `
     <div class="job-details">
-      <h3><a href="jobposts/${slug}.html">${job.title}</a></h3>
+      <h3><a href="/jobposts/${slug}.html">${job.title}</a></h3>
       <p><strong>Location:</strong> ${job.location}</p>
       <p><strong>Type:</strong> ${job.type}</p>
       <p><strong>Deadline:</strong> ${job.deadline}</p>
       <p>${job.summary}</p>
-      <a href="jobposts/${slug}.html" class="btn-secondary">View Full Description</a>
+      <a href="/jobposts/${slug}.html" class="btn-secondary">View Full Description</a>
     </div>
   `;
 
