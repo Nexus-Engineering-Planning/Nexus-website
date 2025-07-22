@@ -11,7 +11,7 @@ deployment:
     - /bin/cp -R css $DEPLOYPATH
     - /bin/cp -R images $DEPLOYPATH
     - /bin/cp -R js $DEPLOYPATH
-    - /bin/cp -R jobs $DEPLOYPATH         # ✅ this is key
+    - /bin/cp -R jobposts $DEPLOYPATH       
     - /bin/cp header.html $DEPLOYPATH
     - /bin/cp footer.html $DEPLOYPATH    
     - /bin/cp .htaccess $DEPLOYPATH

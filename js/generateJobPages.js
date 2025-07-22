@@ -3,14 +3,13 @@ const path = require('path');
 
 // Path to jobs.json and output folder
 const JOBS_PATH = path.join(__dirname, '..','js', 'jobs.json');
-const OUTPUT_DIR = path.join(__dirname, '..', 'jobs');
+const OUTPUT_DIR = path.join(__dirname, '..', 'jobposts'); // Changed from 'jobs' to 'jobposts'
 
-// Convert WAT to ISO-compliant timezone
+// Rest of your script remains exactly the same...
 function formatDate(dateStr) {
   return new Date(dateStr.replace(/WAT/i, '+01:00'));
 }
 
-// Template for individual job HTML
 function createJobHtml(job) {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -23,8 +22,8 @@ function createJobHtml(job) {
   <!-- Social Media Meta Tags -->
   <meta property="og:title" content="${job.title} | Careers at Nexus" />
   <meta property="og:description" content="${job.summary}" />
-  <meta property="og:image" content="../images/jobs/${job.slug}-preview.png" />
-  <meta property="og:url" content="https://www.nexuseng.org/jobs/${job.slug}.html" />
+  <meta property="og:image" content="../images/jobposts/${job.slug}-preview.png" />
+  <meta property="og:url" content="https://www.nexuseng.org/jobposts/${job.slug}.html" />
   
   <!-- Changed to relative path -->
   <link rel="stylesheet" href="../css/style.css" />
