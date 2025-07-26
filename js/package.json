@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "node js/generateJobPages.js"
+    "build": "node js/generateJobPages.cjs"
   }
 }
