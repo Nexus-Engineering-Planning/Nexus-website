@@ -1,0 +1,25 @@
+name: Generate Job Pages
+
+on:
+  push:
+    branches:
+      - main  # or 'master' if that's your default
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 📁 List project files (debugging)
+        run: ls -R
+
+      - name: 🏗 Run build script
+        run: npm run build
