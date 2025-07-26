@@ -32,7 +32,7 @@
       "Familiarity with Nigeria’s electoral/polling unit landscape",
       "Experience working with open data or digital transparency platforms"
     ],
-    "howToApply": "Please submit your application via the form. You'll be asked to share a brief introduction, links to relevant past work (GitHub, portfolio, etc.), your availability, and expected monthly salary in NGN. Applications will be reviewed from the week of August 5. We aim to onboard by mid-August.",
+    "howToApply": "Please submit your application via the form. You'll be asked to share a brief introduction, links to relevant past work (GitHub, portfolio, etc.), your availability, and expected monthly salary in NGN. Applications will be reviewed on a rolling basis until the position is filled. We aim to onboard by mid-August.",
     "applicationLink": "https://forms.gle/bfS3LFotXLXfb84i6",
     "terms": [
       "Full-time",
@@ -40,5 +40,46 @@
       "Fully remote",
       "All IP retained by Nexus Engineering & Planning Ltd."
     ]
-  }
+  },
+
+  {
+  "slug": "technical-data-analyst",
+  "title": "Full-Time Technical Data Analyst",
+  "location": "Remote",
+  "type": "Full-Time Contract (1 year, with potential to extend)",
+  "startDate": "August 26, 2025",
+  "deadline": "11:59 PM WAT, August 4, 2025",
+  "company": "Nexus Engineering & Planning Ltd.",
+  "website": "https://www.nexuseng.org",
+  "summary": "We’re hiring a full-time technical data analyst to support the development of data-driven dashboards and public insights. You’ll work across civic and spatial datasets, build clean pipelines, and collaborate with the project team to extract insights that inform visual storytelling and reporting.",
+  "whyItMatters": "At Nexus, we use data to improve public understanding of infrastructure, governance, and planning. Your work will help transform raw datasets into clear insights that support transparency, civic engagement, and better decision-making.",
+  "responsibilities": "Work with structured and spatial datasets to support dashboards and reporting. Develop repeatable data workflows and assist in QA. Collaborate with developers and the project manager to identify key insights for internal and external communications.",
+  "stack": {
+    "languages": ["Python","SQL"],
+    "tools": ["R","Pandas", "GeoPandas", "BigQuery", "Power BI", "QGIS"],
+    "data": ["GeoJSON", "Shapefiles", "CSV", "REST APIs"],
+    "versioning": ["GitHub"]
+  },
+  "requirements": [
+    "2+ years of experience in data analysis or spatial analytics",
+    "Proficiency in Python or R",
+    "Experience working with public or civic datasets",
+    "Strong attention to detail and documentation",
+    "Effective communication and teamwork"
+  ],
+  "bonuses": [
+    "Familiarity with Nigerian public data or election datasets",
+    "Experience supporting blog posts or newsletters with insights",
+    "Experience with dashboard platforms or data visualization tools"
+  ],
+  "howToApply": "Apply via the form. Please include a brief introduction, links to past work (dashboards, repositories, or reports), your availability, and expected monthly rate. Applications will be reviewed on a rolling basis until the position is filled.",
+  "applicationLink": "https://forms.gle/FiRJWuAM9rH58rgb6",
+  "terms": [
+    "Full-time",
+    "1-year contract with 3-month probation",
+    "Remote",
+    "All IP retained by Nexus Engineering & Planning Ltd."
+  ]
+}
+ 
 ]
