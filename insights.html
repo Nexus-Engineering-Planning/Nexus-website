@@ -1,89 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1F2QJJXE4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D1F2QJJXE4');
+  </script>
   <title>Insights | Nexus Engineering & Planning Ltd.</title>
-  <meta name="description" content="Explore the latest thinking and expert perspectives from Nexus Engineering on sustainable infrastructure, urban development, and policy innovation." />
-  <meta name="keywords" content="urban insights, sustainable development, planning strategies, Africa, infrastructure policy, Nexus Engineering" />
-  <meta name="author" content="Nexus Engineering & Planning Ltd." />
+  <meta name="description" content="Explore the latest thinking and expert perspectives from Nexus Engineering and StayGIS on sustainable infrastructure, urban development, and geospatial innovation." />
+  <meta name="keywords" content="urban insights, sustainable development, GIS, interactive maps, Africa, infrastructure policy, Nexus Engineering, StayGIS" />
+  <meta name="author" content="Nexus Engineering & Planning Ltd. and StayGIS LLC" />
+  <link rel="canonical" href="https://www.nexuseng.org/insights/" />
+  <link rel="alternate" type="application/rss+xml" title="Nexus Insights: Powered by StayGIS RSS" href="https://www.nexuseng.org/insights/index.xml" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Insights | Nexus Engineering & Planning Ltd." />
-  <meta property="og:description" content="Stay informed with our latest articles on sustainable engineering and planning practices across Africa." />
-  <meta property="og:image" content="/images/expanded-logo.png" loading="lazy"/>
-  <meta property="og:url" content="/insights.html" />
+  <meta property="og:description" content="Stay informed with articles and interactive maps on Africa's urban transformation, powered by Nexus and StayGIS." />
+  <meta property="og:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
+  <meta property="og:url" content="https://www.nexuseng.org/insights/" />
   <meta property="og:type" content="website" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Insights | Nexus Engineering & Planning Ltd." />
-  <meta name="twitter:description" content="Articles and insights on Africa's urban transformation, engineering innovation, and climate resilience." />
-  <meta name="twitter:image" content="/images/expanded-logo.png" loading="lazy"/>
+  <meta name="twitter:description" content="Articles and interactive maps on Africa's urban transformation, engineering innovation, and geospatial insights." />
+  <meta name="twitter:image" content="https://www.nexuseng.org/images/expanded-logo.png" />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Nexus Insights: Powered by StayGIS",
+    "url": "https://www.nexuseng.org/insights/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Nexus Engineering & Planning Ltd.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.nexuseng.org/images/expanded-logo.png"
+      }
+    }
+  }
+  </script>
 
   <link rel="stylesheet" href="/css/style.css" />
-  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link rel="icon" href="/images/logo.png" type="image/png" />
 </head>
-
 <body>
   <div id="global-header"></div>
-  
 
-  <!-- Hero Section -->
-  <section class="hero fade-in">
-    <div class="container hero-container">
-      <h1>Insights & Perspectives</h1>
-      <p>Exploring the future of urban development and sustainable infrastructure</p>
-    </div>
-  </section>
-
-  <!-- Insights Articles Section -->
-  <section class="insights fade-in">
-    <div class="container insights-container">
-      <h2 class="section-title">Latest Insights</h2>
-      <div class="insights-grid">
-        <article class="insight-item slide-in-left">
-          <h3><a href="#">The Future of Urban Mobility in Africa</a></h3>
-          <p>Exploring emerging trends in sustainable transportation and mobility solutions for growing urban centers.</p>
-          <a href="#" class="btn-secondary">Read More</a>
-        </article>
-
-        <article class="insight-item slide-in-right">
-          <h3><a href="#">Green Infrastructure & Climate Resilience</a></h3>
-          <p>A deep dive into eco-friendly design principles shaping the built environment in a changing climate.</p>
-          <a href="#" class="btn-secondary">Read More</a>
-        </article>
-
-        <article class="insight-item slide-in-left">
-          <h3><a href="#">Harnessing GIS for Urban Planning</a></h3>
-          <p>Discover how geospatial analysis and GIS technologies are transforming data-driven urban planning decisions.</p>
-          <a href="#" class="btn-secondary">Read More</a>
-        </article>
-
-        <article class="insight-item slide-in-right">
-          <h3><a href="#">Decarbonization Strategies for African Cities</a></h3>
-          <p>Policy frameworks and technological innovations driving the clean energy transition in Africa's urban hubs.</p>
-          <a href="#" class="btn-secondary">Read More</a>
-        </article>
+  <main role="main">
+    <!-- Hero Section -->
+    <section class="hero fade-in" aria-labelledby="hero-title">
+      <div class="container hero-container">
+        <h1 id="hero-title">Nexus Insights: Powered by StayGIS</h1>
+        <p>Exploring the future of urban development and sustainable infrastructure through geospatial insights and interactive maps.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Call to Action -->
-  <section class="contact fade-in">
-    <div class="container contact-container">
-      <h2 class="section-title">Have an Idea or Topic in Mind?</h2>
-      <p>We welcome collaboration and guest contributions on topics around urban planning, sustainability, and engineering innovation.</p>
-      <a href="contact.html" class="btn-primary">Contact Us</a>
-    </div>
-  </section>
+    <!-- Insights Articles Section -->
+    <section class="insights fade-in" aria-labelledby="latest-insights">
+      <div class="container insights-container">
+        <h2 id="latest-insights" class="section-title">Latest Insights</h2>
+        <div class="insights-toolbar" style="margin: .5rem 0 1.25rem">
+          <input id="insights-search" type="search" placeholder="Search posts…" aria-label="Search posts"
+                 style="max-width: 360px; width: 100%; padding: .6rem .8rem;">
+        </div>
+        <div id="insights-grid" class="insights-grid" role="list"></div>
+        <div style="text-align:center;margin-top:1rem">
+          <button id="load-more" class="btn-secondary" type="button">Load more</button>
+        </div>
+      </div>
+    </section>
 
-  <!-- Footer -->
+    <!-- Call to Action -->
+    <section class="contact fade-in" aria-labelledby="cta-title">
+      <div class="container contact-container">
+        <h2 id="cta-title" class="section-title">Have an Idea or Topic in Mind?</h2>
+        <p>We welcome collaboration and guest contributions on topics around urban planning, sustainability, and engineering innovation.</p>
+        <form action="YOUR_NEWSLETTER_FORM_ACTION" method="post" class="signup-inline" style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address">
+          <button type="submit" class="btn-primary">Subscribe</button>
+        </form>
+        <a href="../contact.html" class="btn-primary">Contact Us</a>
+      </div>
+    </section>
+  </main>
+
   <div id="global-footer"></div>
 
-</body>
-<script src="/js/header-footer-loader.js" defer></script>
+  <script src="/js/header-footer-loader.js" defer></script>
+  <script>
+  /* RSS -> Cards renderer for Quarto blog */
+  (function () {
+    const FEED_URL = "/insights/index.xml";
+    const GRID = document.getElementById("insights-grid");
+    const BTN = document.getElementById("load-more");
+    const SEARCH = document.getElementById("insights-search");
 
+    let items = [], page = 0, pageSize = 6, filtered = [];
+
+    function strip(html) {
+      let d = new DOMParser().parseFromString(html, "text/html");
+      return d.body.textContent || "";
+    }
+    function getImg(it) {
+      const media = it.getElementsByTagName("media:content")[0] || it.getElementsByTagName("media:thumbnail")[0];
+      if (media && media.getAttribute("url")) return media.getAttribute("url");
+      const desc = it.getElementsByTagName("description")[0]?.textContent || "";
+      const m = desc.match(/<img[^>]+src=["']([^"']+)["']/i);
+      return (m && m[1]) || "/images/expanded-logo.png";
+    }
+    function getText(it, tag) {
+      return it.getElementsByTagName(tag)[0]?.textContent?.trim() || "";
+    }
+    function fmtDate(s) {
+      let d = new Date(s);
+      if (isNaN(d)) return "";
+      return d.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"numeric"});
+    }
+    function cardHTML(post) {
+      return `
+  <article class="insight-item" role="listitem">
+    <a href="${post.link}" class="insight-cover" aria-label="${post.title}">
+      <img src="${post.image}" alt="" loading="lazy" decoding="async">
+    </a>
+    <h3><a href="${post.link}">${post.title}</a></h3>
+    <p>${post.excerpt}</p>
+    <div class="insight-meta">
+      <time datetime="${post.dateISO}">${post.dateHuman}</time>
+      ${post.tags.length ? `<span class="tags">${post.tags.map(t => `<span class="tag">${t}</span>`).join(" ")}</span>` : ""}
+    </div>
+    <a href="${post.link}" class="btn-secondary">Read More</a>
+  </article>`;
+    }
+    function renderPage(reset = false) {
+      if (reset) { GRID.innerHTML = ""; page = 0; }
+      const start = page * pageSize;
+      const chunk = filtered.slice(start, start + pageSize);
+      GRID.insertAdjacentHTML("beforeend", chunk.map(cardHTML).join(""));
+      page++;
+      BTN.style.display = (page * pageSize < filtered.length) ? "inline-block" : "none";
+    }
+    function doFilter() {
+      const q = (SEARCH?.value || "").toLowerCase();
+      filtered = !q ? items : items.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        p.excerpt.toLowerCase().includes(q) ||
+        p.tags.join(" ").toLowerCase().includes(q)
+      );
+      renderPage(true);
+    }
+
+    fetch(FEED_URL).then(r => r.text()).then(xml => {
+      const doc = new window.DOMParser().parseFromString(xml, "text/xml");
+      const list = Array.from(doc.getElementsByTagName("item"));
+      items = list.map(it => {
+        const title = getText(it, "title");
+        const link = getText(it, "link");
+        const desc = getText(it, "description");
+        const date = getText(it, "pubDate");
+        const cats = Array.from(it.getElementsByTagName("category")).map(c => c.textContent.trim()).slice(0, 3);
+        const image = getImg(it);
+        const excerpt = strip(desc).replace(/\s+/g, " ").trim().slice(0, 180) + "…";
+        return {
+          title, link, image, excerpt,
+          tags: cats,
+          dateISO: new Date(date).toISOString(),
+          dateHuman: fmtDate(date)
+        };
+      });
+      filtered = items;
+      renderPage(true);
+    }).catch(err => {
+      console.warn("RSS load failed:", err);
+      GRID.innerHTML = `<p style="opacity:.7">Our latest posts are coming soon. In the meantime, check the <a href="/insights/">blog index</a>.</p>`;
+      BTN.style.display = "none";
+    });
+
+    BTN?.addEventListener("click", () => renderPage());
+    SEARCH?.addEventListener("input", () => doFilter());
+  })();
+  </script>
+</body>
 </html>

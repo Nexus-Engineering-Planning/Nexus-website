@@ -1,0 +1,43 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Nexus Insights: Powered by StayGIS"
+  site-url: "https://www.nexuseng.org/insights"
+  favicon: img/logo.png
+  navbar:
+    left:
+      - text: Insights
+        href: index.qmd
+      - text: About
+        href: about.qmd
+      - text: Contact
+        href: ../contact.html
+  page-navigation: true
+  search: true
+  twitter-card: true
+  open-graph: true
+  sitemap: true
+
+format:
+  html:
+    theme: litera
+    css: styles.css
+    toc: true
+    head-html: |
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1F2QJJXE4"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D1F2QJJXE4');
+      </script>
+
+listing:
+  contents: posts
+  sort: "date desc"
+  page-size: 6
+  categories: true
+  feed: true

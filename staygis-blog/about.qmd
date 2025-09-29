@@ -1,0 +1,7 @@
+---
+title: "About Nexus & StayGIS"
+---
+
+**Nexus Engineering & Planning Ltd.** (Nigeria) delivers innovative solutions for urban development and sustainable infrastructure across Africa. In partnership with our US affiliate, **StayGIS LLC**, we harness geospatial tools to drive data-informed decisions.
+
+This blog shares quick reads, interactive maps, and behind-the-scenes methods for urban planners, policymakers, and civic-tech enthusiasts.
