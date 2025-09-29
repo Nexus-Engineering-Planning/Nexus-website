@@ -7,9 +7,16 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("global-header").innerHTML = data;
 
       // Highlight active nav link based on current URL
-      const path = window.location.pathname.split("/").pop();
+      const normalizePath = path => {
+        const pathname = path.replace(/\/+$/, "");
+        return pathname === "" ? "/" : pathname;
+      };
+
+      const currentPath = normalizePath(new URL(window.location.href).pathname);
+
       document.querySelectorAll(".nav-menu a").forEach(link => {
-        if (link.getAttribute("href") === path) {
+        const linkPath = normalizePath(new URL(link.href, window.location.origin).pathname);
+        if (linkPath === currentPath) {
           link.classList.add("active");
         }
       });
