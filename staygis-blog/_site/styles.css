@@ -1,0 +1,43 @@
+:root {
+  --sgis-green: #008753;
+  --sgis-dark: #0f2d25;
+}
+.navbar, .navbar-brand { font-weight: 600; }
+a { color: var(--sgis-green); }
+.btn-primary, button[type="submit"] {
+  background: var(--sgis-green);
+  border-color: var(--sgis-green);
+  color: #fff;
+}
+.quarto-title-banner {
+  background: linear-gradient(90deg, #eaf6f2, #ffffff);
+  border-bottom: 1px solid #eef2f1;
+}
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.insight-item {
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+.insight-cover img {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 4px;
+}
+.leaflet-container {
+  height: 520px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+body {
+  font-family: inherit;
+}
+h1, h2, h3 {
+  color: inherit;
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Nexus Insights: Powered by StayGIS</title>
+<link>https://www.nexuseng.org/insights/Untitled.html</link>
+<atom:link href="https://www.nexuseng.org/insights/Untitled.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.8.24</generator>
+<lastBuildDate>Wed, 01 Oct 2025 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Nigeria @ 65: Relief, Coastlines, Cities</title>
+  <link>https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This interactive map series explores Nigeria’s urban and geographic evolution over 65 years. Below is a sample map showing night lights growth (1992–2023). More layers on elevation and coastlines coming soon.</p>
+<div id="nigeria-map">
+
+</div>
+<blockquote class="blockquote">
+<p><strong>Data</strong>: VIIRS Night Lights, OpenStreetMap, GADM.</p>
+</blockquote>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="nigeria-night-lights.js"></script>
+<p><a href="https://www.nexuseng.org/insights">Explore more insights</a></p>
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div> ]]></description>
+  <category>Nigeria</category>
+  <category>Independence</category>
+  <category>Mapping</category>
+  <guid>https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/</guid>
+  <pubDate>Wed, 01 Oct 2025 04:00:00 GMT</pubDate>
+  <media:content url="https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/cover.jpg" medium="image" type="image/jpeg"/>
+</item>
+</channel>
+</rss>

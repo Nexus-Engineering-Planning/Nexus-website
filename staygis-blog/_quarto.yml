@@ -18,7 +18,6 @@ website:
   search: true
   twitter-card: true
   open-graph: true
-  sitemap: true
 
 format:
   html:

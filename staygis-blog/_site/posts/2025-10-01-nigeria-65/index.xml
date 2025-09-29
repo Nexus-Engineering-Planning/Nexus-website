@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Nexus Insights: Powered by StayGIS</title>
+<link>https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/</link>
+<atom:link href="https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/index.xml" rel="self" type="application/rss+xml"/>
+<description>A compact visual tour for Independence Day, powered by StayGIS.</description>
+<image>
+<url>https://www.nexuseng.org/insights/cover.jpg</url>
+<title>Nexus Insights: Powered by StayGIS</title>
+<link>https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/</link>
+</image>
+<generator>quarto-1.8.24</generator>
+<lastBuildDate>Mon, 29 Sep 2025 19:16:13 GMT</lastBuildDate>
+</channel>
+</rss>
