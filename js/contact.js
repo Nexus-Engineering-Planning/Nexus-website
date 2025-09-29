@@ -1,19 +1,11 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // reCAPTCHA token assignment
-  if (typeof grecaptcha !== "undefined") {
-    grecaptcha.enterprise.ready(async () => {
-      const token = await grecaptcha.enterprise.execute('6LfFKQMrAAAAADo1jSQ8JKTG25CUz2eQpAHyiaPn', {
-        action: 'contact_form'
-      });
-      const tokenInput = document.getElementById("recaptcha_token");
-      if (tokenInput) {
-        tokenInput.value = token;
-      }
-    });
+function initContactForm() {
+  const form = document.getElementById("contactForm");
+  if (!form) {
+    return;
   }
 
   // Basic form validation
-  document.getElementById("contactForm").addEventListener("submit", function (e) {
+  form.addEventListener("submit", function (e) {
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
     const message = document.getElementById("message").value.trim();
@@ -27,6 +19,29 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!email.includes("@")) {
       alert("Please enter a valid email address.");
       e.preventDefault();
+      return;
+    }
+
+    // Ensure reCAPTCHA v2 checkbox has been completed
+    const recaptchaField = document.getElementById("g-recaptcha-response");
+    let recaptchaValue = recaptchaField ? recaptchaField.value.trim() : "";
+
+    if (!recaptchaValue && typeof grecaptcha !== "undefined" && typeof grecaptcha.getResponse === "function") {
+      recaptchaValue = grecaptcha.getResponse() || "";
+      if (recaptchaField && recaptchaValue) {
+        recaptchaField.value = recaptchaValue;
+      }
+    }
+
+    if (!recaptchaValue) {
+      alert("Please complete the reCAPTCHA challenge.");
+      e.preventDefault();
     }
   });
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initContactForm);
+} else {
+  initContactForm();
+}
