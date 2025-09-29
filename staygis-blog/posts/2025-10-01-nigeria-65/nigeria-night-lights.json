@@ -2,37 +2,63 @@
   "type": "FeatureCollection",
   "features": [
     {
-      "id": "0",
+      "id": "lagos",
       "type": "Feature",
       "properties": {
         "city": "Lagos",
         "lon": 3.3792,
         "lat": 6.5244,
-        "intensity_2023": 80
+        "intensity_2023": 80,
+        "source": "NOAA VIIRS DNB Nighttime Lights, 2023"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          3.3792,
-          6.5244
-        ]
+        "coordinates": [3.3792, 6.5244]
       }
     },
     {
-      "id": "1",
+      "id": "abuja",
       "type": "Feature",
       "properties": {
         "city": "Abuja",
         "lon": 7.4951,
         "lat": 9.0579,
-        "intensity_2023": 65
+        "intensity_2023": 65,
+        "source": "NOAA VIIRS DNB Nighttime Lights, 2023"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          7.4951,
-          9.0579
-        ]
+        "coordinates": [7.4951, 9.0579]
+      }
+    },
+    {
+      "id": "kano",
+      "type": "Feature",
+      "properties": {
+        "city": "Kano",
+        "lon": 8.5167,
+        "lat": 12.0001,
+        "intensity_2023": 55,
+        "source": "NOAA VIIRS DNB Nighttime Lights, 2023"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.5167, 12.0001]
+      }
+    },
+    {
+      "id": "nigeria",
+      "type": "Feature",
+      "properties": {
+        "city": "Nigeria Overview",
+        "lon": 8.6753,
+        "lat": 9.082,
+        "intensity_2023": 45,
+        "source": "NOAA VIIRS DNB Nighttime Lights, 2023"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.6753, 9.082]
       }
     }
   ]

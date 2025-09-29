@@ -32,7 +32,7 @@ fetch('nigeria-night-lights.json')
             {
               "title": "Nigeria @ 65: Looking Ahead",
               "text": "Celebrating 65 years of resilience, Nigeria aims for sustainable cities. Join StayGIS for more insights!",
-              "location": { "center": [9.0820, 8.6753], "zoom": 6 },
+              "location": { "center": [8.6753, 9.0820], "zoom": 6 },
               "media": { "url": "https://source.unsplash.com/1080x608/?nigeria,flag", "type": "image", "caption": "Nigeria @65 Celebration" }
             }
           ]
