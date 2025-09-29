@@ -1,0 +1,19 @@
+---
+title: "Nigeria @ 65: Relief, Coastlines, Cities"
+date: 2025-10-01
+categories: [Nigeria, Independence, Mapping]
+image: cover.jpg
+description: "A compact visual tour for Independence Day, powered by StayGIS."
+---
+
+This interactive map series explores Nigeria’s urban and geographic evolution over 65 years. Below is a sample map showing night lights growth (1992–2023). More layers on elevation and coastlines coming soon.
+
+<div id="nigeria-map"></div>
+
+> **Data**: VIIRS Night Lights, OpenStreetMap, GADM.
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="nigeria-night-lights.js"></script>
+
+[Explore more insights](https://www.nexuseng.org/insights)
