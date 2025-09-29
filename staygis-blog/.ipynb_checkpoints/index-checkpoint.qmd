@@ -1,0 +1,16 @@
+---
+title: "Nexus Insights: Powered by StayGIS"
+listing:
+  type: default
+  contents: posts
+  sort: "date desc"
+  feed: true
+---
+
+Exploring the future of urban development and sustainable infrastructure through geospatial insights and interactive maps.
+
+## Have an Idea or Topic in Mind?
+
+We welcome collaboration and guest contributions on topics around urban planning, sustainability, and engineering innovation.
+
+[Contact Us](../contact.html)

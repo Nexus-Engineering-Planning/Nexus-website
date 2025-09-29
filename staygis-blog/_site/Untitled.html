@@ -20,10 +20,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -100,6 +135,9 @@ ul.task-list li input[type="checkbox"] {
     }
   })
   </script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -191,13 +229,317 @@ window.Quarto = {
 
 
 
+<div id="cac4d67b-da24-4f88-8fc0-b74efde34c9b" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cell 1: Import libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="c745ddcd-517f-4a31-a3ff-00d7c2b433ff" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cell 2: Create output directory</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>os.makedirs(<span class="st">'staygis-blog/posts/2025-10-01-nigeria-65'</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="8a8a8dc8-0bcc-456e-bb9b-f4c870714f8e" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cell 3: Load Nigeria @65 data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"type"</span>: <span class="st">"FeatureCollection"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"features"</span>: [</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"id"</span>: <span class="st">"0"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"type"</span>: <span class="st">"Feature"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"properties"</span>: {<span class="st">"city"</span>: <span class="st">"Lagos"</span>, <span class="st">"intensity_2023"</span>: <span class="dv">80</span>},</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"geometry"</span>: {<span class="st">"type"</span>: <span class="st">"Point"</span>, <span class="st">"coordinates"</span>: [<span class="fl">3.3792</span>, <span class="fl">6.5244</span>]}</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"id"</span>: <span class="st">"1"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"type"</span>: <span class="st">"Feature"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"properties"</span>: {<span class="st">"city"</span>: <span class="st">"Abuja"</span>, <span class="st">"intensity_2023"</span>: <span class="dv">65</span>},</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"geometry"</span>: {<span class="st">"type"</span>: <span class="st">"Point"</span>, <span class="st">"coordinates"</span>: [<span class="fl">7.4951</span>, <span class="fl">9.0579</span>]}</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"id"</span>: <span class="st">"2"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"type"</span>: <span class="st">"Feature"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">"properties"</span>: {<span class="st">"city"</span>: <span class="st">"Kano"</span>, <span class="st">"intensity_2023"</span>: <span class="dv">70</span>},</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">"geometry"</span>: {<span class="st">"type"</span>: <span class="st">"Point"</span>, <span class="st">"coordinates"</span>: [<span class="fl">8.5167</span>, <span class="fl">12.0001</span>]}</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame([</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">'city'</span>: f[<span class="st">'properties'</span>][<span class="st">'city'</span>],</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">'lon'</span>: f[<span class="st">'geometry'</span>][<span class="st">'coordinates'</span>][<span class="dv">0</span>],</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">'lat'</span>: f[<span class="st">'geometry'</span>][<span class="st">'coordinates'</span>][<span class="dv">1</span>],</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">'intensity_2023'</span>: f[<span class="st">'properties'</span>][<span class="st">'intensity_2023'</span>]</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">for</span> f <span class="kw">in</span> data[<span class="st">'features'</span>]</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">city</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">intensity_2023</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Lagos</td>
+<td>3.3792</td>
+<td>6.5244</td>
+<td>80</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Abuja</td>
+<td>7.4951</td>
+<td>9.0579</td>
+<td>65</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Kano</td>
+<td>8.5167</td>
+<td>12.0001</td>
+<td>70</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="6c77c2d3-38ae-491f-82d1-395ed8551cb4" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cell 4: Create GeoDataFrame</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.GeoDataFrame(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    df,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>gpd.points_from_xy(df[<span class="st">'lon'</span>], df[<span class="st">'lat'</span>]),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">"EPSG:4326"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>gdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">city</th>
+<th data-quarto-table-cell-role="th">lon</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">intensity_2023</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Lagos</td>
+<td>3.3792</td>
+<td>6.5244</td>
+<td>80</td>
+<td>POINT (3.3792 6.5244)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Abuja</td>
+<td>7.4951</td>
+<td>9.0579</td>
+<td>65</td>
+<td>POINT (7.4951 9.0579)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Kano</td>
+<td>8.5167</td>
+<td>12.0001</td>
+<td>70</td>
+<td>POINT (8.5167 12.0001)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="c2bef159-0563-41e1-ac48-ac553bb0f65e" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cell 5: Preview Nigeria @65 map</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="fl">9.0820</span>, <span class="fl">8.6753</span>], zoom_start<span class="op">=</span><span class="dv">6</span>, tiles<span class="op">=</span><span class="st">"OpenStreetMap"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> gdf.iterrows():</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    folium.CircleMarker(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        location<span class="op">=</span>[row[<span class="st">'lat'</span>], row[<span class="st">'lon'</span>]],</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        radius<span class="op">=</span>row[<span class="st">'intensity_2023'</span>] <span class="op">/</span> <span class="dv">10</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">"#0f2d25"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        fill<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        fill_color<span class="op">=</span><span class="st">"#008753"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        fill_opacity<span class="op">=</span><span class="fl">0.7</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        popup<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>row[<span class="st">'city'</span>]<span class="sc">}</span><span class="ss">: Night Lights Intensity </span><span class="sc">{</span>row[<span class="st">'intensity_2023'</span>]<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    ).add_to(m)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_a43b8aae84db3680a2a7bcc0d63ad405 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_a43b8aae84db3680a2a7bcc0d63ad405&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_a43b8aae84db3680a2a7bcc0d63ad405 = L.map(
+                &quot;map_a43b8aae84db3680a2a7bcc0d63ad405&quot;,
+                {
+                    center: [9.082, 8.6753],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_3ed2d69af9fd5ed4e987a77858ff5fff = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_3ed2d69af9fd5ed4e987a77858ff5fff.addTo(map_a43b8aae84db3680a2a7bcc0d63ad405);
+        
+    
+            var circle_marker_b6dc57e4d2244dc692fba63787603a05 = L.circleMarker(
+                [6.5244, 3.3792],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#0f2d25&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#008753&quot;, &quot;fillOpacity&quot;: 0.7, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 8.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_a43b8aae84db3680a2a7bcc0d63ad405);
+        
+    
+        var popup_1d4d31226a83ed039f33d6b0ff34445b = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_2b8f51375f24dbca6f9d33a909f74ecc = $(`<div id=&quot;html_2b8f51375f24dbca6f9d33a909f74ecc&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>Lagos: Night Lights Intensity 80</div>`)[0];
+                popup_1d4d31226a83ed039f33d6b0ff34445b.setContent(html_2b8f51375f24dbca6f9d33a909f74ecc);
+            
+        
+
+        circle_marker_b6dc57e4d2244dc692fba63787603a05.bindPopup(popup_1d4d31226a83ed039f33d6b0ff34445b)
+        ;
+
+        
+    
+    
+            var circle_marker_06fa9199bba137694a8b21361d90cb0f = L.circleMarker(
+                [9.0579, 7.4951],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#0f2d25&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#008753&quot;, &quot;fillOpacity&quot;: 0.7, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6.5, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_a43b8aae84db3680a2a7bcc0d63ad405);
+        
+    
+        var popup_61a274b920bed8c3891dd44f89919653 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_85890f669cf6039c80c76303cde09d85 = $(`<div id=&quot;html_85890f669cf6039c80c76303cde09d85&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>Abuja: Night Lights Intensity 65</div>`)[0];
+                popup_61a274b920bed8c3891dd44f89919653.setContent(html_85890f669cf6039c80c76303cde09d85);
+            
+        
+
+        circle_marker_06fa9199bba137694a8b21361d90cb0f.bindPopup(popup_61a274b920bed8c3891dd44f89919653)
+        ;
+
+        
+    
+    
+            var circle_marker_aacadc1628aa35eabdf7ba0fcabd1549 = L.circleMarker(
+                [12.0001, 8.5167],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#0f2d25&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#008753&quot;, &quot;fillOpacity&quot;: 0.7, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 7.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_a43b8aae84db3680a2a7bcc0d63ad405);
+        
+    
+        var popup_b3e11adc56cf4aa17e70e680bfd1c59c = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_0bf53e343cf8872662b5d8e0e1445259 = $(`<div id=&quot;html_0bf53e343cf8872662b5d8e0e1445259&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>Kano: Night Lights Intensity 70</div>`)[0];
+                popup_b3e11adc56cf4aa17e70e680bfd1c59c.setContent(html_0bf53e343cf8872662b5d8e0e1445259);
+            
+        
+
+        circle_marker_aacadc1628aa35eabdf7ba0fcabd1549.bindPopup(popup_b3e11adc56cf4aa17e70e680bfd1c59c)
+        ;
+
+        
+    
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+</div>
+</div>
+<div id="d897787d-2bae-478d-aa9c-28798a2a80d7" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cell 6: Save GeoJSON</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>geojson <span class="op">=</span> json.loads(gdf.to_json())  <span class="co"># Use to_json for compatibility</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'staygis-blog/posts/2025-10-01-nigeria-65/nigeria-night-lights.json'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    json.dump(geojson, f, indent<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"GeoJSON saved to staygis-blog/posts/2025-10-01-nigeria-65/nigeria-night-lights.json"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GeoJSON saved to staygis-blog/posts/2025-10-01-nigeria-65/nigeria-night-lights.json</code></pre>
+</div>
+</div>
 
 
 
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="TmlnZXJpYSUyQ0luZGVwZW5kZW5jZSUyQ01hcHBpbmc=" data-listing-date-sort="1759291200000" data-listing-file-modified-sort="1759172030626" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="45">
+<div class="quarto-post image-right" data-index="0" data-categories="TmlnZXJpYSUyQ0luZGVwZW5kZW5jZSUyQ01hcHBpbmc=" data-listing-date-sort="1759291200000" data-listing-file-modified-sort="1759174516134" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="57">
 <div class="thumbnail"><a href="./posts/2025-10-01-nigeria-65/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/2025-10-01-nigeria-65/cover.jpg" class="thumbnail-image">
@@ -205,7 +547,7 @@ window.Quarto = {
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2025-10-01-nigeria-65/index.html" class="no-external">Nigeria @ 65: Relief, Coastlines, Cities</a>
+<a href="./posts/2025-10-01-nigeria-65/index.html" class="no-external">Nigeria @ 65: A Geospatial Story of Independence &amp; Growth</a>
 </h3>
 <div class="listing-categories">
 
@@ -217,7 +559,7 @@ window.Quarto = {
 
 </div>
 <div class="delink listing-description"><a href="./posts/2025-10-01-nigeria-65/index.html" class="no-external">
-<p>A compact visual tour for Independence Day, powered by StayGIS.</p>
+<p>Celebrating Nigeria’s 65th Independence Day with a geospatial journey through its urban evolution.</p>
 </a></div>
 </div>
 <div class="metadata">

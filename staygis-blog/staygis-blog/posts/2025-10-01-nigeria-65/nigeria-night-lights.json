@@ -34,6 +34,23 @@
           9.0579
         ]
       }
+    },
+    {
+      "id": "2",
+      "type": "Feature",
+      "properties": {
+        "city": "Kano",
+        "lon": 8.5167,
+        "lat": 12.0001,
+        "intensity_2023": 70
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5167,
+          12.0001
+        ]
+      }
     }
   ]
 }

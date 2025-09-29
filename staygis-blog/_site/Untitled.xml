@@ -12,15 +12,15 @@
 <generator>quarto-1.8.24</generator>
 <lastBuildDate>Wed, 01 Oct 2025 04:00:00 GMT</lastBuildDate>
 <item>
-  <title>Nigeria @ 65: Relief, Coastlines, Cities</title>
+  <title>Nigeria @ 65: A Geospatial Story of Independence &amp; Growth</title>
   <link>https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/</link>
   <description><![CDATA[ 
 
 
 
 
-<p>This interactive map series explores Nigeria’s urban and geographic evolution over 65 years. Below is a sample map showing night lights growth (1992–2023). More layers on elevation and coastlines coming soon.</p>
-<div id="nigeria-map">
+<p>On October 1, 2025, Nigeria celebrates 65 years of independence. This storymap explores the nation’s urban growth through night lights data, highlighting key cities and their progress since 1960. Scroll to journey through Nigeria’s past, present, and future.</p>
+<div id="storymap" class="storymap">
 
 </div>
 <blockquote class="blockquote">
@@ -28,7 +28,9 @@
 </blockquote>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="nigeria-night-lights.js"></script>
+<script src="https://unpkg.com/leaflet-storymap@1.0.0/dist/leaflet.storymap.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet-storymap@1.0.0/dist/leaflet.storymap.min.css">
+<script src="nigeria-storymap.js"></script>
 <p><a href="https://www.nexuseng.org/insights">Explore more insights</a></p>
 
 
