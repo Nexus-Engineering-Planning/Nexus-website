@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Independence Day — 1960",
+    "text": "On October 1, 1960, Nigeria gained independence. Lagos—the economic hub—set the pace for growth.",
+    "view": { "lat": 6.5244, "lon": 3.3792, "z": 10 },
+    "img": "https://source.unsplash.com/1200x600/?lagos,skyline",
+    "cap": "Lagos"
+  },
+  {
+    "title": "Abuja — Capital Since 1991",
+    "text": "Abuja reflects modern planning and central connectivity.",
+    "view": { "lat": 9.0579, "lon": 7.4951, "z": 10 },
+    "img": "https://source.unsplash.com/1200x600/?abuja,nigeria",
+    "cap": "Abuja"
+  },
+  {
+    "title": "Kano — Northern Heritage",
+    "text": "A historic trade center showcasing Nigeria's diverse urban legacy.",
+    "view": { "lat": 12.0001, "lon": 8.5167, "z": 10 },
+    "img": "https://source.unsplash.com/1200x600/?kano,nigeria",
+    "cap": "Kano"
+  },
+  {
+    "title": "Nigeria @ 65 — Looking Ahead",
+    "text": "Resilience and growth. StayGIS is mapping cities, coastlines, and connectivity.",
+    "view": { "lat": 9.0820, "lon": 8.6753, "z": 6 },
+    "img": "https://source.unsplash.com/1200x600/?nigeria,flag",
+    "cap": "Nigeria @ 65"
+  }
+]

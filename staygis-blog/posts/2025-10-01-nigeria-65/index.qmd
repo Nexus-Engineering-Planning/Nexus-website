@@ -1,21 +1,102 @@
 ---
-title: "Nigeria @ 65: A Geospatial Story of Independence & Growth"
+title: "Nigeria @ 65 — Mini Story"
 date: 2025-10-01
 categories: [Nigeria, Independence, Mapping]
-image: cover.jpg
-description: "Celebrating Nigeria’s 65th Independence Day with a geospatial journey through its urban evolution."
+image: https://source.unsplash.com/1600x900/?nigeria,flag
+description: "A compact Leaflet mini-story: two maps, four slides, and a clean share bar."
+format:
+  html:
+    toc: false
+    page-layout: article
+    include-in-header: |
+      <link rel="canonical" href="https://example.com/blog/2025-10-01-nigeria-65/">
+      <link rel="preconnect" href="https://unpkg.com" crossorigin>
+      <link rel="preconnect" href="https://tile.openstreetmap.org" crossorigin>
+      <style>
+        :root {
+          --sgis-green:#008753; --sgis-ink:#0f2d25; --sgis-card:#ffffff;
+          --sgis-border:#e6e6e6; --sgis-muted:#6b7280; --sgis-bg:#f6faf8;
+        }
+        .hero { background:linear-gradient(90deg,#eaf6f2,#fff); border:1px solid #eef2f1; border-radius:12px; padding:18px 16px; margin-bottom:14px; }
+        .hero h1{ margin:.1rem 0 .25rem; font:700 1.6rem/1.2 system-ui,Segoe UI,Roboto,sans-serif; color:var(--sgis-ink); }
+        .hero p { margin:0; color:#334155 }
+        .btn, .btn-secondary { display:inline-flex; align-items:center; gap:.4rem; cursor:pointer; padding:.55rem .8rem; border-radius:.6rem; border:1px solid var(--sgis-border); background:#fff; color:#111; text-decoration:none; font:500 .95rem/1 system-ui,Segoe UI,Roboto,sans-serif; }
+        .btn-primary { background:var(--sgis-green); border-color:var(--sgis-green); color:#fff; }
+        .btn:focus, .btn-secondary:focus, .btn-primary:focus { outline:2px solid var(--sgis-green); outline-offset:2px; }
+        .card { background:var(--sgis-card); border:1px solid var(--sgis-border); border-radius:10px; padding:16px; }
+        .meta { color:var(--sgis-muted); font-size:.92rem; }
+        #story { container-type:inline-size; }
+        @container (min-width: 900px) { #story { grid-template-columns: 1.2fr .8fr !important; } }
+      </style>
+      <script>
+      // Silence Quarto list.js error if a template injects an empty listing
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.List && !window.__listGuardPatched) {
+          const OrigList = window.List;
+          window.List = function(el, options) {
+            const node = (typeof el === 'string') ? document.querySelector(el) : el;
+            if (node && !node.querySelector('.list, [data-title], [data-id]')) {
+              const ul = document.createElement('ul'); ul.className='list'; ul.style.display='none'; node.appendChild(ul);
+            }
+            return new OrigList(el, options);
+          };
+          window.List.prototype = OrigList.prototype;
+          window.__listGuardPatched = true;
+        }
+      });
+      </script>
+resources:
+  - nigeria-post.js
+  - nigeria-points.json
+  - nigeria-slides.json
 ---
 
-On October 1, 2025, Nigeria celebrates 65 years of independence. This storymap explores the nation’s urban growth through night lights data, highlighting key cities and their progress since 1960. Scroll to journey through Nigeria’s past, present, and future.
+```{=html}
+<!-- Hidden shim in case a layout injects an empty listing -->
+<div class="quarto-listing" style="display:none"><ul class="list"><li data-title="placeholder"></li></ul></div>
 
-<div id="storymap" class="storymap"></div>
+<div class="hero" role="banner" aria-label="Nigeria at 65 headline"> 
+  <h1>Nigeria @ 65 — Mini Story</h1> 
+  <p>Two quick maps + a four-slide flythrough for Independence Day.</p> 
+</div> 
 
-> **Data**: VIIRS Night Lights, OpenStreetMap, GADM.
+<div class="meta">On <time datetime="2025-10-01">October 1, 2025</time> Nigeria turns 65.</div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet-storymap@1.0.0/dist/leaflet.storymap.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet-storymap@1.0.0/dist/leaflet.storymap.min.css" />
-<script src="nigeria-storymap.js"></script>
+<h2>Map A — Plain Leaflet (sanity check)</h2>
+<div id="mapA" role="region" aria-label="Lagos test map" style="width:100%;height:420px;border-radius:10px;overflow:hidden"></div> 
+<noscript>
+  <p class="meta">JavaScript is disabled; showing a static image instead.</p>
+  <img src="https://source.unsplash.com/1200x400/?lagos,skyline" alt="Lagos skyline" width="100%" loading="lazy">
+</noscript>
 
-[Explore more insights](https://www.nexuseng.org/insights)
+<h2>Slides — Nigeria @ 65 (no plugin)</h2>
+<div id="story" class="card" role="region" aria-labelledby="slides-title" style="display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px"> 
+  <div id="mapB" style="width:100%;height:620px;border-radius:10px;overflow:hidden" aria-label="Nigeria flythrough map"></div> 
+  <div> 
+    <h3 id="slides-title" style="margin:.2rem 0 .6rem">Four moments to fly through</h3> 
+    <div id="slides" class="card"></div> 
+    <div style="display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap"> 
+      <button id="prev" class="btn-secondary" type="button" aria-label="Previous slide">◀ Prev</button> 
+      <button id="next" class="btn-secondary" type="button" aria-label="Next slide">Next ▶</button> 
+      <a id="share-x" class="btn" href="#" rel="noopener" aria-label="Share on X">Share on X</a> 
+      <a id="share-li" class="btn" href="#" rel="noopener" aria-label="Share on LinkedIn">Share on LinkedIn</a> 
+      <button id="copy-link" class="btn" type="button" aria-label="Copy link">Copy link</button> 
+    </div> 
+  </div> 
+</div>
+
+<h2>Stay in the loop</h2>
+<div class="card" style="background:var(--sgis-bg); margin-top:18px"> 
+  <p style="margin:.2rem 0 .8rem">Get the next StoryMap mini-series in your inbox.</p> 
+  <form action="https://YOUR_NEWSLETTER_PROVIDER/FORM_ACTION" method="post" class="signup-inline" style="display:flex;gap:.5rem;flex-wrap:wrap"> 
+    <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address" style="padding:.55rem .8rem; border:1px solid var(--sgis-border); border-radius:.6rem; min-width:240px"> 
+    <button type="submit" class="btn-primary">Subscribe</button> 
+  </form> 
+</div>
+
+<!-- Leaflet core (defer to avoid blocking) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Our app code (loads points + slides JSON) -->
+<script defer src="nigeria-post.js"></script>

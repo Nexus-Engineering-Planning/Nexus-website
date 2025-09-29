@@ -4,14 +4,14 @@
     "href": "Untitled.html",
     "title": "Nexus Insights: Powered by StayGIS",
     "section": "",
-    "text": "# Cell 1: Import libraries\nimport geopandas as gpd\nimport pandas as pd\nimport json\nimport os\nimport folium\n\n\n# Cell 2: Create output directory\nos.makedirs('staygis-blog/posts/2025-10-01-nigeria-65', exist_ok=True)\n\n\n# Cell 3: Load Nigeria @65 data\ndata = {\n    \"type\": \"FeatureCollection\",\n    \"features\": [\n        {\n            \"id\": \"0\",\n            \"type\": \"Feature\",\n            \"properties\": {\"city\": \"Lagos\", \"intensity_2023\": 80},\n            \"geometry\": {\"type\": \"Point\", \"coordinates\": [3.3792, 6.5244]}\n        },\n        {\n            \"id\": \"1\",\n            \"type\": \"Feature\",\n            \"properties\": {\"city\": \"Abuja\", \"intensity_2023\": 65},\n            \"geometry\": {\"type\": \"Point\", \"coordinates\": [7.4951, 9.0579]}\n        },\n        {\n            \"id\": \"2\",\n            \"type\": \"Feature\",\n            \"properties\": {\"city\": \"Kano\", \"intensity_2023\": 70},\n            \"geometry\": {\"type\": \"Point\", \"coordinates\": [8.5167, 12.0001]}\n        }\n    ]\n}\ndf = pd.DataFrame([\n    {\n        'city': f['properties']['city'],\n        'lon': f['geometry']['coordinates'][0],\n        'lat': f['geometry']['coordinates'][1],\n        'intensity_2023': f['properties']['intensity_2023']\n    } for f in data['features']\n])\ndf\n\n\n\n\n\n\n\n\ncity\nlon\nlat\nintensity_2023\n\n\n\n\n0\nLagos\n3.3792\n6.5244\n80\n\n\n1\nAbuja\n7.4951\n9.0579\n65\n\n\n2\nKano\n8.5167\n12.0001\n70\n\n\n\n\n\n\n\n\n# Cell 4: Create GeoDataFrame\ngdf = gpd.GeoDataFrame(\n    df,\n    geometry=gpd.points_from_xy(df['lon'], df['lat']),\n    crs=\"EPSG:4326\"\n)\ngdf\n\n\n\n\n\n\n\n\ncity\nlon\nlat\nintensity_2023\ngeometry\n\n\n\n\n0\nLagos\n3.3792\n6.5244\n80\nPOINT (3.3792 6.5244)\n\n\n1\nAbuja\n7.4951\n9.0579\n65\nPOINT (7.4951 9.0579)\n\n\n2\nKano\n8.5167\n12.0001\n70\nPOINT (8.5167 12.0001)\n\n\n\n\n\n\n\n\n# Cell 5: Preview Nigeria @65 map\nm = folium.Map(location=[9.0820, 8.6753], zoom_start=6, tiles=\"OpenStreetMap\")\nfor _, row in gdf.iterrows():\n    folium.CircleMarker(\n        location=[row['lat'], row['lon']],\n        radius=row['intensity_2023'] / 10,\n        color=\"#0f2d25\",\n        fill=True,\n        fill_color=\"#008753\",\n        fill_opacity=0.7,\n        popup=f\"{row['city']}: Night Lights Intensity {row['intensity_2023']}\"\n    ).add_to(m)\nm\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\n\n# Cell 6: Save GeoJSON\ngeojson = json.loads(gdf.to_json())  # Use to_json for compatibility\nwith open('staygis-blog/posts/2025-10-01-nigeria-65/nigeria-night-lights.json', 'w') as f:\n    json.dump(geojson, f, indent=2)\nprint(\"GeoJSON saved to staygis-blog/posts/2025-10-01-nigeria-65/nigeria-night-lights.json\")\n\nGeoJSON saved to staygis-blog/posts/2025-10-01-nigeria-65/nigeria-night-lights.json\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNigeria @ 65: A Geospatial Story of Independence & Growth\n\n\n\nNigeria\n\nIndependence\n\nMapping\n\n\n\nCelebrating Nigeria’s 65th Independence Day with a geospatial journey through its urban evolution.\n\n\n\n\n\nOct 1, 2025\n\n\n\n\n\nNo matching items"
+    "text": "# Cell 1: Import libraries\nimport geopandas as gpd\nimport pandas as pd\nimport json\nimport os\nimport folium\n\n\n# Cell 2: Create output directory\nos.makedirs('staygis-blog/posts/2025-10-01-nigeria-65', exist_ok=True)\n\n\n# Cell 3: Load Nigeria @65 data\ndata = {\n    \"type\": \"FeatureCollection\",\n    \"features\": [\n        {\n            \"id\": \"0\",\n            \"type\": \"Feature\",\n            \"properties\": {\"city\": \"Lagos\", \"intensity_2023\": 80},\n            \"geometry\": {\"type\": \"Point\", \"coordinates\": [3.3792, 6.5244]}\n        },\n        {\n            \"id\": \"1\",\n            \"type\": \"Feature\",\n            \"properties\": {\"city\": \"Abuja\", \"intensity_2023\": 65},\n            \"geometry\": {\"type\": \"Point\", \"coordinates\": [7.4951, 9.0579]}\n        },\n        {\n            \"id\": \"2\",\n            \"type\": \"Feature\",\n            \"properties\": {\"city\": \"Kano\", \"intensity_2023\": 70},\n            \"geometry\": {\"type\": \"Point\", \"coordinates\": [8.5167, 12.0001]}\n        }\n    ]\n}\ndf = pd.DataFrame([\n    {\n        'city': f['properties']['city'],\n        'lon': f['geometry']['coordinates'][0],\n        'lat': f['geometry']['coordinates'][1],\n        'intensity_2023': f['properties']['intensity_2023']\n    } for f in data['features']\n])\ndf\n\n\n\n\n\n\n\n\ncity\nlon\nlat\nintensity_2023\n\n\n\n\n0\nLagos\n3.3792\n6.5244\n80\n\n\n1\nAbuja\n7.4951\n9.0579\n65\n\n\n2\nKano\n8.5167\n12.0001\n70\n\n\n\n\n\n\n\n\n# Cell 4: Create GeoDataFrame\ngdf = gpd.GeoDataFrame(\n    df,\n    geometry=gpd.points_from_xy(df['lon'], df['lat']),\n    crs=\"EPSG:4326\"\n)\ngdf\n\n\n\n\n\n\n\n\ncity\nlon\nlat\nintensity_2023\ngeometry\n\n\n\n\n0\nLagos\n3.3792\n6.5244\n80\nPOINT (3.3792 6.5244)\n\n\n1\nAbuja\n7.4951\n9.0579\n65\nPOINT (7.4951 9.0579)\n\n\n2\nKano\n8.5167\n12.0001\n70\nPOINT (8.5167 12.0001)\n\n\n\n\n\n\n\n\n# Cell 5: Preview Nigeria @65 map\nm = folium.Map(location=[9.0820, 8.6753], zoom_start=6, tiles=\"OpenStreetMap\")\nfor _, row in gdf.iterrows():\n    folium.CircleMarker(\n        location=[row['lat'], row['lon']],\n        radius=row['intensity_2023'] / 10,\n        color=\"#0f2d25\",\n        fill=True,\n        fill_color=\"#008753\",\n        fill_opacity=0.7,\n        popup=f\"{row['city']}: Night Lights Intensity {row['intensity_2023']}\"\n    ).add_to(m)\nm\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\n\n# Cell 6: Save GeoJSON\ngeojson = json.loads(gdf.to_json())  # Use to_json for compatibility\nwith open('staygis-blog/posts/2025-10-01-nigeria-65/nigeria-night-lights.json', 'w') as f:\n    json.dump(geojson, f, indent=2)\nprint(\"GeoJSON saved to staygis-blog/posts/2025-10-01-nigeria-65/nigeria-night-lights.json\")\n\nGeoJSON saved to staygis-blog/posts/2025-10-01-nigeria-65/nigeria-night-lights.json\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNigeria @ 65 — Mini Story\n\n\n\nNigeria\n\nIndependence\n\nMapping\n\n\n\nA compact Leaflet mini-story: two maps, four slides, and a clean share bar.\n\n\n\n\n\nOct 1, 2025\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Nexus Insights: Powered by StayGIS",
+    "title": "Nigeria @ 65 â€” Mini Story",
     "section": "",
-    "text": "Exploring the future of urban development and sustainable infrastructure through geospatial insights and interactive maps."
+    "text": "This page renders two maps. If Map A works, your Quarto post is wiring scripts correctly.\nIf Map B fails, weâ€™ll know itâ€™s the storymap plugin or data path."
   },
   {
     "objectID": "index.html#have-an-idea-or-topic-in-mind",
@@ -25,13 +25,69 @@
     "href": "about.html",
     "title": "About Nexus & StayGIS",
     "section": "",
-    "text": "Nexus Engineering & Planning Ltd. (Nigeria) delivers innovative solutions for urban development and sustainable infrastructure across Africa. In partnership with our US affiliate, StayGIS LLC, we harness geospatial tools to drive data-informed decisions.\nThis blog shares quick reads, interactive maps, and behind-the-scenes methods for urban planners, policymakers, and civic-tech enthusiasts.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNigeria @ 65: A Geospatial Story of Independence & Growth\n\n\n\nNigeria\n\nIndependence\n\nMapping\n\n\n\nCelebrating Nigeria’s 65th Independence Day with a geospatial journey through its urban evolution.\n\n\n\n\n\nOct 1, 2025\n\n\n\n\n\nNo matching items"
+    "text": "Nexus Engineering & Planning Ltd. (Nigeria) delivers innovative solutions for urban development and sustainable infrastructure across Africa. In partnership with our US affiliate, StayGIS LLC, we harness geospatial tools to drive data-informed decisions.\nThis blog shares quick reads, interactive maps, and behind-the-scenes methods for urban planners, policymakers, and civic-tech enthusiasts.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNigeria @ 65 — Mini Story\n\n\n\nNigeria\n\nIndependence\n\nMapping\n\n\n\nA compact Leaflet mini-story: two maps, four slides, and a clean share bar.\n\n\n\n\n\nOct 1, 2025\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2025-10-01-nigeria-65/index.html",
     "href": "posts/2025-10-01-nigeria-65/index.html",
-    "title": "Nigeria @ 65: A Geospatial Story of Independence & Growth",
+    "title": "Nigeria @ 65 — Mini Story",
     "section": "",
-    "text": "On October 1, 2025, Nigeria celebrates 65 years of independence. This storymap explores the nation’s urban growth through night lights data, highlighting key cities and their progress since 1960. Scroll to journey through Nigeria’s past, present, and future.\n\n\n\n\nData: VIIRS Night Lights, OpenStreetMap, GADM.\n\n\n\n\n\n\nExplore more insights\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Nigeria @ 65 — Mini Story\n\n\nTwo quick maps + a four-slide flythrough for Independence Day.\n\n\n\nOn October 1, 2025 Nigeria turns 65.\n\n\nMap A — Plain Leaflet (sanity check)\n\n\n\n\n\n\nJavaScript is disabled; showing a static image instead.\n\n\n\n\nSlides — Nigeria @ 65 (no plugin)\n\n\n\n\n\n\n&lt;h3 id=\"slides-title\" style=\"margin:.2rem 0 .6rem\"&gt;Four moments to fly through&lt;/h3&gt; \n&lt;div id=\"slides\" class=\"card\"&gt;&lt;/div&gt; \n&lt;div style=\"display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap\"&gt; \n  &lt;button id=\"prev\" class=\"btn-secondary\" type=\"button\" aria-label=\"Previous slide\"&gt;◀ Prev&lt;/button&gt; \n  &lt;button id=\"next\" class=\"btn-secondary\" type=\"button\" aria-label=\"Next slide\"&gt;Next ▶&lt;/button&gt; \n  &lt;a id=\"share-x\" class=\"btn\" href=\"#\" rel=\"noopener\" aria-label=\"Share on X\"&gt;Share on X&lt;/a&gt; \n  &lt;a id=\"share-li\" class=\"btn\" href=\"#\" rel=\"noopener\" aria-label=\"Share on LinkedIn\"&gt;Share on LinkedIn&lt;/a&gt; \n  &lt;button id=\"copy-link\" class=\"btn\" type=\"button\" aria-label=\"Copy link\"&gt;Copy link&lt;/button&gt; \n&lt;/div&gt; \n\n\n\nStay in the loop\n\n\n\nGet the next StoryMap mini-series in your inbox.\n\n\n Subscribe\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html#map-a-plain-leaflet-sanity-check",
+    "href": "index.html#map-a-plain-leaflet-sanity-check",
+    "title": "Nigeria @ 65 — Mini Story",
+    "section": "Map A — Plain Leaflet (sanity check)",
+    "text": "Map A — Plain Leaflet (sanity check)"
+  },
+  {
+    "objectID": "index.html#map-b-storymap-slides-points",
+    "href": "index.html#map-b-storymap-slides-points",
+    "title": "Nigeria @ 65 — Mini Story",
+    "section": "Map B — StoryMap (slides + points)",
+    "text": "Map B — StoryMap (slides + points)"
+  },
+  {
+    "objectID": "posts/2025-10-01-nigeria-65/index.html#map-lagos-sanity-check",
+    "href": "posts/2025-10-01-nigeria-65/index.html#map-lagos-sanity-check",
+    "title": "Nigeria @ 65 — Mini Story",
+    "section": "Map — Lagos sanity check",
+    "text": "Map — Lagos sanity check"
+  },
+  {
+    "objectID": "posts/2025-10-01-nigeria-65/index.html#slides-nigeria-65-no-plugin",
+    "href": "posts/2025-10-01-nigeria-65/index.html#slides-nigeria-65-no-plugin",
+    "title": "Nigeria @ 65 — Mini Story",
+    "section": "Slides — Nigeria @ 65 (no-plugin)",
+    "text": "Slides — Nigeria @ 65 (no-plugin)"
+  },
+  {
+    "objectID": "posts/2025-10-01-nigeria-65/index.html#map-a-plain-leaflet-sanity-check",
+    "href": "posts/2025-10-01-nigeria-65/index.html#map-a-plain-leaflet-sanity-check",
+    "title": "Nigeria @ 65 — Mini Story",
+    "section": "Map A — Plain Leaflet (sanity check)",
+    "text": "Map A — Plain Leaflet (sanity check)"
+  },
+  {
+    "objectID": "posts/2025-10-01-nigeria-65/nigeria-65.html",
+    "href": "posts/2025-10-01-nigeria-65/nigeria-65.html",
+    "title": "Nigeria @ 65 — Mini Story",
+    "section": "",
+    "text": "Nigeria @ 65 — Mini Story\n\n\nTwo quick maps + a four-slide flythrough for Independence Day.\n\n\n\nOn October 1, 2025 Nigeria turns 65.\n\nMap A — Plain Leaflet (sanity check)\n\n\n\n\n\nJavaScript is disabled; showing a static image instead.\n\n\nSlides — Nigeria @ 65 (no plugin)\n\n\n\n\n\n\nFour moments to fly through\n\n\n\n\n\n◀ Prev Next ▶ Share on X Share on LinkedIn Copy link\n\n\n\nStay in the loop\n\n\nGet the next StoryMap mini-series in your inbox.\n\n\n Subscribe\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html#map-a-â-plain-leaflet-sanity-check",
+    "href": "index.html#map-a-â-plain-leaflet-sanity-check",
+    "title": "Nigeria @ 65 â€” Mini Story",
+    "section": "Map A â€” Plain Leaflet (sanity check)",
+    "text": "Map A â€” Plain Leaflet (sanity check)"
+  },
+  {
+    "objectID": "index.html#map-b-â-storymap-slides-points",
+    "href": "index.html#map-b-â-storymap-slides-points",
+    "title": "Nigeria @ 65 â€” Mini Story",
+    "section": "Map B â€” StoryMap (slides + points)",
+    "text": "Map B â€” StoryMap (slides + points)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n:::{#quarto-navigation-envelope .hidden}\n[Nexus Insights: Powered by StayGIS]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl\"}\n[Nexus Insights: Powered by StayGIS]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXItdGl0bGU=\"}\n[Insights]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6SW5zaWdodHM=\"}\n[/index.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L2luZGV4Lmh0bWw=\"}\n[Nigeria @ 65]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6TmlnZXJpYSBAIDY1\"}\n[/posts/2025-10-01-nigeria-65/index.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L3Bvc3RzLzIwMjUtMTAtMDEtbmlnZXJpYS02NS9pbmRleC5odG1s\"}\n[About]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6QWJvdXQ=\"}\n[/about.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6L2Fib3V0Lmh0bWw=\"}\n[Contact]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6Q29udGFjdA==\"}\n[/../contact.html]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWludC1uYXZiYXI6Ly4uL2NvbnRhY3QuaHRtbA==\"}\n:::\n\n\n:::{#quarto-listing-pipeline .hidden}\n[$e = mC^2$]{.hidden .quarto-markdown-envelope-contents render-id=\"cXVhcnRvLWVuYWJsZS1tYXRoLWlubGluZQ==\"}\n\n:::{.hidden .quarto-markdown-envelope-contents render-id=\"cGlwZWxpbmUtbGlzdGluZy1saXN0aW5n\"}\n\n\n::: {.list .quarto-listing-default}\n\n::: {.quarto-post .image-right data-index='0' data-categories='TmlnZXJpYSUyQ0luZGVwZW5kZW5jZSUyQ01hcHBpbmc=' data-listing-date-sort='1759291200000' data-listing-file-modified-sort='1759187270954' data-listing-date-modified-sort='NaN' data-listing-reading-time-sort='2' data-listing-word-count-sort='287'}\n\n```{=html}\n\n\n\n\n\n\n\nNigeria @ 65 — Mini Story\n\n\n\nNigeria\n\nIndependence\n\nMapping\n\n\n\nA compact Leaflet mini-story: two maps, four slides, and a clean share bar.\n\n\n\n\n\nOct 1, 2025\n\n\n\n:::\n:::\nNo matching items\n:::\n:::"
   }
 ]

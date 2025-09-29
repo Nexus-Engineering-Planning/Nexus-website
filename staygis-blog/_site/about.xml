@@ -12,26 +12,78 @@
 <generator>quarto-1.8.24</generator>
 <lastBuildDate>Wed, 01 Oct 2025 04:00:00 GMT</lastBuildDate>
 <item>
-  <title>Nigeria @ 65: A Geospatial Story of Independence &amp; Growth</title>
+  <title>Nigeria @ 65 — Mini Story</title>
   <link>https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/</link>
   <description><![CDATA[ 
 
 
 
 
-<p>On October 1, 2025, Nigeria celebrates 65 years of independence. This storymap explores the nation’s urban growth through night lights data, highlighting key cities and their progress since 1960. Scroll to journey through Nigeria’s past, present, and future.</p>
-<div id="storymap" class="storymap">
+<!-- Hidden shim in case a layout injects an empty listing -->
+<div class="quarto-listing" style="display:none">
+<ul class="list">
+<li data-title="placeholder">
+</li>
+</ul>
+</div>
+<div class="hero" aria-label="Nigeria at 65 headline">
+<h1>
+Nigeria @ 65 — Mini Story
+</h1>
+<p>
+Two quick maps + a four-slide flythrough for Independence Day.
+</p>
+</div>
+<div class="meta">
+On <time datetime="2025-10-01">October 1, 2025</time> Nigeria turns 65.
+</div>
+<h2 class="anchored">
+Map A — Plain Leaflet (sanity check)
+</h2>
+<div id="mapA" aria-label="Lagos test map" style="width:100%;height:420px;border-radius:10px;overflow:hidden">
 
 </div>
-<blockquote class="blockquote">
-<p><strong>Data</strong>: VIIRS Night Lights, OpenStreetMap, GADM.</p>
-</blockquote>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<noscript>
+<p class="meta">
+JavaScript is disabled; showing a static image instead.
+</p>
+<img src="https://source.unsplash.com/1200x400/?lagos,skyline" alt="Lagos skyline" width="100%" loading="lazy">
+</noscript>
+<h2 class="anchored">
+Slides — Nigeria @ 65 (no plugin)
+</h2>
+<div id="story" class="card" aria-labelledby="slides-title" style="display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px">
+<div id="mapB" style="width:100%;height:620px;border-radius:10px;overflow:hidden" aria-label="Nigeria flythrough map">
+
+</div>
+<div>
+<pre><code>&lt;h3 id="slides-title" style="margin:.2rem 0 .6rem"&gt;Four moments to fly through&lt;/h3&gt; 
+&lt;div id="slides" class="card"&gt;&lt;/div&gt; 
+&lt;div style="display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap"&gt; 
+  &lt;button id="prev" class="btn-secondary" type="button" aria-label="Previous slide"&gt;◀ Prev&lt;/button&gt; 
+  &lt;button id="next" class="btn-secondary" type="button" aria-label="Next slide"&gt;Next ▶&lt;/button&gt; 
+  &lt;a id="share-x" class="btn" href="#" rel="noopener" aria-label="Share on X"&gt;Share on X&lt;/a&gt; 
+  &lt;a id="share-li" class="btn" href="#" rel="noopener" aria-label="Share on LinkedIn"&gt;Share on LinkedIn&lt;/a&gt; 
+  &lt;button id="copy-link" class="btn" type="button" aria-label="Copy link"&gt;Copy link&lt;/button&gt; 
+&lt;/div&gt; </code></pre>
+</div>
+</div>
+<h2 class="anchored">
+Stay in the loop
+</h2>
+<div class="card" style="background:var(--sgis-bg); margin-top:18px">
+<p style="margin:.2rem 0 .8rem">
+Get the next StoryMap mini-series in your inbox.
+</p>
+<form action="https://YOUR_NEWSLETTER_PROVIDER/FORM_ACTION" method="post" class="signup-inline" style="display:flex;gap:.5rem;flex-wrap:wrap">
+<input type="email" name="email" placeholder="you@example.com" required="" aria-label="Email address" style="padding:.55rem .8rem; border:1px solid var(--sgis-border); border-radius:.6rem; min-width:240px"> <button type="submit" class="btn-primary">Subscribe</button>
+</form>
+</div>
+<!-- Leaflet core (defer to avoid blocking) -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://unpkg.com/leaflet-storymap@1.0.0/dist/leaflet.storymap.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet-storymap@1.0.0/dist/leaflet.storymap.min.css">
-<script src="nigeria-storymap.js"></script>
-<p><a href="https://www.nexuseng.org/insights">Explore more insights</a></p>
+<script defer="" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Our app code (loads points + slides JSON) -->
+<script defer="" src="nigeria-post.js"></script>
 
 
 
@@ -47,7 +99,7 @@
   <category>Mapping</category>
   <guid>https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/</guid>
   <pubDate>Wed, 01 Oct 2025 04:00:00 GMT</pubDate>
-  <media:content url="https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/cover.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://source.unsplash.com/1600x900/?nigeria,flag" medium="image"/>
 </item>
 </channel>
 </rss>

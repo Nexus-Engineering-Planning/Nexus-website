@@ -10,12 +10,14 @@ website:
     left:
       - text: Insights
         href: index.qmd
+      - text: Nigeria @ 65 
+        href: posts/2025-10-01-nigeria-65/index.html 
       - text: About
         href: about.qmd
       - text: Contact
         href: ../contact.html
   page-navigation: true
-  search: true
+  search: true  # ← Keep this one
   twitter-card: true
   open-graph: true
 

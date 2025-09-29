@@ -6,15 +6,15 @@
       version="2.0">
 <channel>
 <title>Nexus Insights: Powered by StayGIS</title>
-<link>https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/</link>
-<atom:link href="https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/nigeria-65.html</link>
+<atom:link href="https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/nigeria-65.xml" rel="self" type="application/rss+xml"/>
 <description>A compact Leaflet mini-story: two maps, four slides, and a clean share bar.</description>
 <image>
 <url>https://source.unsplash.com/1600x900/?nigeria,flag</url>
 <title>Nexus Insights: Powered by StayGIS</title>
-<link>https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/</link>
+<link>https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/nigeria-65.html</link>
 </image>
 <generator>quarto-1.8.24</generator>
-<lastBuildDate>Mon, 29 Sep 2025 23:11:35 GMT</lastBuildDate>
+<lastBuildDate>Mon, 29 Sep 2025 23:01:18 GMT</lastBuildDate>
 </channel>
 </rss>

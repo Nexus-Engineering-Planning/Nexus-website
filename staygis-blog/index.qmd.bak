@@ -1,5 +1,5 @@
-﻿---
-title: "Nigeria @ 65 ” Mini Story"
+---
+title: "Nigeria @ 65 — Mini Story"
 date: 2025-10-01
 categories: [Nigeria, Independence, Mapping]
 image: cover.jpg
@@ -16,12 +16,12 @@ resources:
 ---
 
 This page renders two maps. If **Map A** works, your Quarto post is wiring scripts correctly.  
-If **Map B** fails, weâ€™ll know itâ€™s the storymap plugin or data path.
+If **Map B** fails, we’ll know it’s the storymap plugin or data path.
 
-## Map A â€” Plain Leaflet (sanity check)
+## Map A — Plain Leaflet (sanity check)
 <div id="mapA" style="width:100%;height:420px;border-radius:10px;overflow:hidden"></div>
 
-## Map B â€” StoryMap (slides + points)
+## Map B — StoryMap (slides + points)
 <div id="mapB" style="width:100%;height:620px;border-radius:10px;overflow:hidden"></div>
 
 ```{=html}
@@ -34,3 +34,5 @@ If **Map B** fails, weâ€™ll know itâ€™s the storymap plugin or data pa
 <script src="https://unpkg.com/leaflet-storymap@1.0.0/dist/leaflet.storymap.min.js"></script>
 
 <!-- Our scripts (must come after Leaflet) -->
+<script src="nigeria-map.js"></script>
+<script src="nigeria-storymap.js"></script>

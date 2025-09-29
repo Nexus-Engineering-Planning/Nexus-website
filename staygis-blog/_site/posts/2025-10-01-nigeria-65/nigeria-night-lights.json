@@ -11,10 +11,7 @@
         "intensity_2023": 80,
         "source": "NOAA VIIRS DNB Nighttime Lights, 2023"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [3.3792, 6.5244]
-      }
+      "geometry": { "type": "Point", "coordinates": [3.3792, 6.5244] }
     },
     {
       "id": "abuja",
@@ -26,10 +23,7 @@
         "intensity_2023": 65,
         "source": "NOAA VIIRS DNB Nighttime Lights, 2023"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [7.4951, 9.0579]
-      }
+      "geometry": { "type": "Point", "coordinates": [7.4951, 9.0579] }
     },
     {
       "id": "kano",
@@ -41,10 +35,7 @@
         "intensity_2023": 55,
         "source": "NOAA VIIRS DNB Nighttime Lights, 2023"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [8.5167, 12.0001]
-      }
+      "geometry": { "type": "Point", "coordinates": [8.5167, 12.0001] }
     },
     {
       "id": "nigeria",
@@ -56,10 +47,7 @@
         "intensity_2023": 45,
         "source": "NOAA VIIRS DNB Nighttime Lights, 2023"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [8.6753, 9.082]
-      }
+      "geometry": { "type": "Point", "coordinates": [8.6753, 9.082] }
     }
   ]
 }

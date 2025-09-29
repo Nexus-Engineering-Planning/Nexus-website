@@ -6,6 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-10-01">
+<meta name="description" content="A tiny, known-good post that renders a Leaflet map and a Leaflet StoryMap.">
 
 <title>Nexus Insights: Powered by StayGIS</title>
 <style>
@@ -101,45 +103,14 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 <link rel="alternate" type="application/rss+xml" title="Nexus Insights: Powered by StayGIS" href="index.xml" data-external="1"><meta property="og:title" content="Nexus Insights: Powered by StayGIS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/cover.jpg">
 <meta property="og:site_name" content="Nexus Insights: Powered by StayGIS">
 <meta name="twitter:title" content="Nexus Insights: Powered by StayGIS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.nexuseng.org/insights/posts/2025-10-01-nigeria-65/cover.jpg">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -166,6 +137,10 @@ window.Quarto = {
 <span class="menu-text">Insights</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./posts/2025-10-01-nigeria-65/index.html"> 
+<span class="menu-text">Nigeria @ 65</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -189,7 +164,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#have-an-idea-or-topic-in-mind" id="toc-have-an-idea-or-topic-in-mind" class="nav-link active" data-scroll-target="#have-an-idea-or-topic-in-mind">Have an Idea or Topic in Mind?</a></li>
+  <li><a href="#map-a-â-plain-leaflet-sanity-check" id="toc-map-a-â-plain-leaflet-sanity-check" class="nav-link active" data-scroll-target="#map-a-â-plain-leaflet-sanity-check">Map A â€” Plain Leaflet (sanity check)</a></li>
+  <li><a href="#map-b-â-storymap-slides-points" id="toc-map-b-â-storymap-slides-points" class="nav-link" data-scroll-target="#map-b-â-storymap-slides-points">Map B â€” StoryMap (slides + points)</a></li>
   </ul>
 </nav>
     <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW5kZXBlbmRlbmNl">Independence <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFwcGluZw==">Mapping <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TmlnZXJpYQ==">Nigeria <span class="quarto-category-count">(1)</span></div></div></div>
@@ -198,14 +174,25 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Nexus Insights: Powered by StayGIS</h1>
+<h1 class="title">Nigeria @ 65 â€” Mini Story</h1>
 </div>
 
+<div>
+  <div class="description">
+    A tiny, known-good post that renders a Leaflet map and a Leaflet StoryMap.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 1, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -215,27 +202,65 @@ window.Quarto = {
 </header>
 
 
-<p>Exploring the future of urban development and sustainable infrastructure through geospatial insights and interactive maps.</p>
-<section id="have-an-idea-or-topic-in-mind" class="level2">
-<h2 class="anchored" data-anchor-id="have-an-idea-or-topic-in-mind">Have an Idea or Topic in Mind?</h2>
-<p>We welcome collaboration and guest contributions on topics around urban planning, sustainability, and engineering innovation.</p>
-<p><a href="../contact.html">Contact Us</a></p>
+<p>This page renders two maps. If <strong>Map A</strong> works, your Quarto post is wiring scripts correctly.<br>
+If <strong>Map B</strong> fails, weâ€™ll know itâ€™s the storymap plugin or data path.</p>
+<section id="map-a-â-plain-leaflet-sanity-check" class="level2">
+<h2 class="anchored" data-anchor-id="map-a-â-plain-leaflet-sanity-check">Map A â€” Plain Leaflet (sanity check)</h2>
+<div id="mapA" style="width:100%;height:420px;border-radius:10px;overflow:hidden">
 
-
-
+</div>
 </section>
+<section id="map-b-â-storymap-slides-points" class="level2">
+<h2 class="anchored" data-anchor-id="map-b-â-storymap-slides-points">Map B â€” StoryMap (slides + points)</h2>
+<div id="mapB" style="width:100%;height:620px;border-radius:10px;overflow:hidden">
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="TmlnZXJpYSUyQ0luZGVwZW5kZW5jZSUyQ01hcHBpbmc=" data-listing-date-sort="1759291200000" data-listing-file-modified-sort="1759174516134" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="57">
+</div>
+<!-- Leaflet core -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Leaflet StoryMap plugin -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-storymap@1.0.0/dist/leaflet.storymap.min.css">
+<script src="https://unpkg.com/leaflet-storymap@1.0.0/dist/leaflet.storymap.min.js"></script>
+
+<!-- Our scripts (must come after Leaflet) -->
+
+
+
+
+:::{#quarto-navigation-envelope .hidden}
+[Nexus Insights: Powered by StayGIS]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl"}
+[Nexus Insights: Powered by StayGIS]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWludC1uYXZiYXItdGl0bGU="}
+[Insights]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWludC1uYXZiYXI6SW5zaWdodHM="}
+[/index.html]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWludC1uYXZiYXI6L2luZGV4Lmh0bWw="}
+[Nigeria @ 65]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWludC1uYXZiYXI6TmlnZXJpYSBAIDY1"}
+[/posts/2025-10-01-nigeria-65/index.html]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWludC1uYXZiYXI6L3Bvc3RzLzIwMjUtMTAtMDEtbmlnZXJpYS02NS9pbmRleC5odG1s"}
+[About]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWludC1uYXZiYXI6QWJvdXQ="}
+[/about.html]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWludC1uYXZiYXI6L2Fib3V0Lmh0bWw="}
+[Contact]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWludC1uYXZiYXI6Q29udGFjdA=="}
+[/../contact.html]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWludC1uYXZiYXI6Ly4uL2NvbnRhY3QuaHRtbA=="}
+:::
+
+
+:::{#quarto-listing-pipeline .hidden}
+[$e = mC^2$]{.hidden .quarto-markdown-envelope-contents render-id="cXVhcnRvLWVuYWJsZS1tYXRoLWlubGluZQ=="}
+
+:::{.hidden .quarto-markdown-envelope-contents render-id="cGlwZWxpbmUtbGlzdGluZy1saXN0aW5n"}
+
+
+::: {.list .quarto-listing-default}
+
+::: {.quarto-post .image-right data-index='0' data-categories='TmlnZXJpYSUyQ0luZGVwZW5kZW5jZSUyQ01hcHBpbmc=' data-listing-date-sort='1759291200000' data-listing-file-modified-sort='1759187270954' data-listing-date-modified-sort='NaN' data-listing-reading-time-sort='2' data-listing-word-count-sort='287'}
+
+```{=html}
 <div class="thumbnail"><a href="./posts/2025-10-01-nigeria-65/index.html" class="no-external">
 
-<img loading="lazy" src="./posts/2025-10-01-nigeria-65/cover.jpg" class="thumbnail-image">
+<img loading="lazy" src="https://source.unsplash.com/1600x900/?nigeria,flag" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2025-10-01-nigeria-65/index.html" class="no-external">Nigeria @ 65: A Geospatial Story of Independence &amp; Growth</a>
+<a href="./posts/2025-10-01-nigeria-65/index.html" class="no-external">Nigeria @ 65 — Mini Story</a>
 </h3>
 <div class="listing-categories">
 
@@ -247,7 +272,7 @@ window.Quarto = {
 
 </div>
 <div class="delink listing-description"><a href="./posts/2025-10-01-nigeria-65/index.html" class="no-external">
-<p>Celebrating Nigeria’s 65th Independence Day with a geospatial journey through its urban evolution.</p>
+<p>A compact Leaflet mini-story: two maps, four slides, and a clean share bar.</p>
 </a></div>
 </div>
 <div class="metadata">
@@ -257,10 +282,15 @@ Oct 1, 2025
 </div>
 </a>
 </div>
-</div>
-</div>
+<p>:::</p>
+<p>:::</p>
 <div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+<p>:::</p>
+<p>:::</p>
+
+</section>
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing"></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
