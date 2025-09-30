@@ -22,7 +22,20 @@ If **Map B** fails, weâ€™ll know itâ€™s the storymap plugin or data pa
 <div id="mapA" style="width:100%;height:420px;border-radius:10px;overflow:hidden"></div>
 
 ## Map B â€” StoryMap (slides + points)
-<div id="mapB" style="width:100%;height:620px;border-radius:10px;overflow:hidden"></div>
+<div id="story" role="region" aria-labelledby="slides-title" style="display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px">
+  <div id="mapB" style="width:100%;height:620px;border-radius:10px;overflow:hidden" aria-label="Nigeria flythrough map"></div>
+  <div>
+    <h3 id="slides-title" style="margin:.2rem 0 .6rem">Four moments to fly through</h3>
+    <div id="slides" style="background:#fff;border:1px solid #e6e6e6;border-radius:10px;padding:16px"></div>
+    <div style="display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap">
+      <button id="prev" type="button" aria-label="Previous slide" style="padding:.55rem .8rem;border-radius:.6rem;border:1px solid #e6e6e6;background:#fff">◀ Prev</button>
+      <button id="next" type="button" aria-label="Next slide" style="padding:.55rem .8rem;border-radius:.6rem;border:1px solid #e6e6e6;background:#fff">Next ▶</button>
+      <a id="share-x" href="#" rel="noopener" aria-label="Share on X" style="padding:.55rem .8rem;border-radius:.6rem;border:1px solid #e6e6e6;background:#fff;text-decoration:none">Share on X</a>
+      <a id="share-li" href="#" rel="noopener" aria-label="Share on LinkedIn" style="padding:.55rem .8rem;border-radius:.6rem;border:1px solid #e6e6e6;background:#fff;text-decoration:none">Share on LinkedIn</a>
+      <button id="copy-link" type="button" aria-label="Copy link" style="padding:.55rem .8rem;border-radius:.6rem;border:1px solid #e6e6e6;background:#fff">Copy link</button>
+    </div>
+  </div>
+</div>
 
 ```{=html}
 <!-- Leaflet core -->
@@ -34,3 +47,6 @@ If **Map B** fails, weâ€™ll know itâ€™s the storymap plugin or data pa
 <script src="https://unpkg.com/leaflet-storymap@1.0.0/dist/leaflet.storymap.min.js"></script>
 
 <!-- Our scripts (must come after Leaflet) -->
+<script defer src="posts/2025-10-01-nigeria-65/nigeria-post.js"></script>
+```
+

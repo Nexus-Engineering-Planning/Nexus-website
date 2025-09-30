@@ -100,3 +100,5 @@ resources:
 
 <!-- Our app code (loads points + slides JSON) -->
 <script defer src="nigeria-post.js"></script>
+```
+
