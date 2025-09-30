@@ -25,8 +25,72 @@ format:
         .btn:focus, .btn-secondary:focus, .btn-primary:focus { outline:2px solid var(--sgis-green); outline-offset:2px; }
         .card { background:var(--sgis-card); border:1px solid var(--sgis-border); border-radius:10px; padding:16px; }
         .meta { color:var(--sgis-muted); font-size:.92rem; }
-        #story { container-type:inline-size; }
-        @container (min-width: 900px) { #story { grid-template-columns: 1.2fr .8fr !important; } }
+        #story {
+          container-type:inline-size;
+          background:var(--sgis-card);
+          border:1px solid var(--sgis-border);
+          border-radius:12px;
+          padding:18px;
+        }
+        .story-grid {
+          display:grid;
+          gap:18px;
+          align-items:start;
+        }
+        .story-map-col { position:relative; }
+        .story-map {
+          width:100%;
+          height:620px;
+          border-radius:10px;
+          overflow:hidden;
+        }
+        .story-steps {
+          display:flex;
+          flex-direction:column;
+          gap:1.5rem;
+        }
+        .story-step {
+          background:var(--sgis-card);
+          border:1px solid var(--sgis-border);
+          border-radius:12px;
+          padding:20px;
+          min-height:60vh;
+          display:flex;
+          flex-direction:column;
+          gap:.75rem;
+          scroll-margin-top:2rem;
+        }
+        .story-step__eyebrow {
+          margin:0;
+          font-size:.85rem;
+          letter-spacing:.08em;
+          text-transform:uppercase;
+          color:var(--sgis-muted);
+        }
+        .story-step__title {
+          margin:.35rem 0 0;
+          font-size:1.1rem;
+          color:var(--sgis-ink);
+        }
+        .story-step__media { margin:0; }
+        .story-step__media img {
+          width:100%;
+          max-height:260px;
+          object-fit:cover;
+          border-radius:8px;
+        }
+        .story-step.is-active {
+          border-color:var(--sgis-green);
+          box-shadow:0 0 0 2px rgba(0,135,83,.12);
+        }
+        .story-controls { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:1rem; }
+        @media (max-width: 899px) {
+          .story-step { min-height:50vh; }
+        }
+        @container (min-width: 900px) {
+          .story-grid { grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); }
+          .story-map-col { position:sticky; top:1.5rem; }
+        }
       </style>
       <script>
       // Silence Quarto list.js error if a template injects an empty listing
@@ -70,19 +134,26 @@ resources:
 </noscript>
 
 <h2>Slides — Nigeria @ 65 (no plugin)</h2>
-<div id="story" class="card" role="region" aria-labelledby="slides-title" style="display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px"> 
-  <div id="mapB" style="width:100%;height:620px;border-radius:10px;overflow:hidden" aria-label="Nigeria flythrough map"></div> 
-  <div> 
-    <h3 id="slides-title" style="margin:.2rem 0 .6rem">Four moments to fly through</h3> 
-    <div id="slides" class="card"></div> 
-    <div style="display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap"> 
-      <button id="prev" class="btn-secondary" type="button" aria-label="Previous slide">◀ Prev</button> 
-      <button id="next" class="btn-secondary" type="button" aria-label="Next slide">Next ▶</button> 
-      <a id="share-x" class="btn" href="#" rel="noopener" aria-label="Share on X">Share on X</a> 
-      <a id="share-li" class="btn" href="#" rel="noopener" aria-label="Share on LinkedIn">Share on LinkedIn</a> 
-      <button id="copy-link" class="btn" type="button" aria-label="Copy link">Copy link</button> 
-    </div> 
-  </div> 
+<div id="story" class="story-grid" role="region" aria-labelledby="slides-title" style="margin-top:16px">
+  <div class="story-map-col">
+    <div id="mapB" class="story-map" aria-label="Nigeria flythrough map"></div>
+  </div>
+  <div>
+    <h3 id="slides-title" style="margin:.2rem 0 .6rem">Four moments to fly through</h3>
+    <div id="slides" class="story-steps" aria-live="polite">
+      <section class="story-step" data-slide="1">
+        <p class="story-step__eyebrow">Slide 1</p>
+        <p class="meta" style="margin:0">Loading…</p>
+      </section>
+    </div>
+    <div class="story-controls">
+      <button id="prev" class="btn-secondary" type="button" aria-label="Previous slide">◀ Prev</button>
+      <button id="next" class="btn-secondary" type="button" aria-label="Next slide">Next ▶</button>
+      <a id="share-x" class="btn" href="#" rel="noopener" aria-label="Share on X">Share on X</a>
+      <a id="share-li" class="btn" href="#" rel="noopener" aria-label="Share on LinkedIn">Share on LinkedIn</a>
+      <button id="copy-link" class="btn" type="button" aria-label="Copy link">Copy link</button>
+    </div>
+  </div>
 </div>
 
 <h2>Stay in the loop</h2>

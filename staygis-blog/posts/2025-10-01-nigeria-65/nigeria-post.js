@@ -60,20 +60,53 @@
 
     // Slides UI
     const box = document.getElementById("slides");
-    box.innerHTML = `
-      <figure style="margin:0">
-        <img id="img" alt="" style="width:100%;max-height:260px;object-fit:cover;border-radius:8px" loading="lazy" />
-        <figcaption id="cap" class="meta" style="margin-top:6px"></figcaption>
-      </figure>
-      <h4 id="title" style="margin:.6rem 0 0"></h4>
-      <p id="text" style="margin:.25rem 0 0"></p>
-    `;
+    if (!box) return;
+
+    box.innerHTML = "";
+    const steps = slides.map((s, idx) => {
+      const section = document.createElement("section");
+      section.className = "story-step";
+      section.dataset.slide = String(idx + 1);
+
+      const eyebrow = document.createElement("p");
+      eyebrow.className = "story-step__eyebrow";
+      eyebrow.textContent = `Slide ${idx + 1}`;
+      section.appendChild(eyebrow);
+
+      const title = document.createElement("h4");
+      title.className = "story-step__title";
+      title.textContent = s.title;
+      section.appendChild(title);
+
+      if (s.img) {
+        const figure = document.createElement("figure");
+        figure.className = "story-step__media";
+        const img = document.createElement("img");
+        img.src = s.img;
+        img.alt = s.cap || s.title;
+        img.loading = "lazy";
+        figure.appendChild(img);
+        if (s.cap) {
+          const caption = document.createElement("figcaption");
+          caption.className = "meta";
+          caption.style.marginTop = "6px";
+          caption.textContent = s.cap;
+          figure.appendChild(caption);
+        }
+        section.appendChild(figure);
+      }
+
+      if (s.text) {
+        const body = document.createElement("p");
+        body.textContent = s.text;
+        section.appendChild(body);
+      }
+
+      box.appendChild(section);
+      return section;
+    });
 
     const els = {
-      title: document.getElementById("title"),
-      text:  document.getElementById("text"),
-      img:   document.getElementById("img"),
-      cap:   document.getElementById("cap"),
       prev:  document.getElementById("prev"),
       next:  document.getElementById("next"),
       shareX: document.getElementById("share-x"),
@@ -81,24 +114,38 @@
       copy:  document.getElementById("copy-link")
     };
 
-    let i = 0;
-    function go(k, pushHash = true) {
-      i = Math.max(0, Math.min(slides.length - 1, k));
+    let i = -1;
+    function go(k, options = {}) {
+      const { pushHash = true, fromObserver = false } = options;
+      const clamped = Math.max(0, Math.min(slides.length - 1, k));
+      if (clamped === i && fromObserver) return;
+      i = clamped;
       const s = slides[i];
-      els.title.textContent = s.title;
-      els.text.textContent  = s.text;
-      els.img.src           = s.img;
-      els.img.alt           = s.cap || s.title;
-      els.cap.textContent   = s.cap || "";
       mapB.flyTo([s.view.lat, s.view.lon], s.view.z, { duration: flyDur });
+      steps.forEach((step, idx) => {
+        const active = idx === i;
+        step.classList.toggle("is-active", active);
+        if (active) {
+          step.setAttribute("aria-current", "step");
+          if (!fromObserver) {
+            const behavior = reduceMotion ? "auto" : "smooth";
+            try { step.scrollIntoView({ behavior, block: "start" }); } catch (_) {}
+          }
+        } else {
+          step.removeAttribute("aria-current");
+        }
+      });
       if (pushHash) location.hash = `#slide-${i+1}`;
     }
 
-    // Start from hash if present
     const start = Math.max(1, Math.min(slides.length, parseInt((location.hash || "").replace("#slide-","")) || 1));
-    go(start-1, false);
+    go(start - 1, { pushHash: false, fromObserver: true });
+    if (location.hash && steps[start - 1]) {
+      try {
+        steps[start - 1].scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      } catch (_) {}
+    }
 
-    // Controls
     els.prev?.addEventListener("click", () => go(i - 1));
     els.next?.addEventListener("click", () => go(i + 1));
     document.addEventListener("keydown", (e) => {
@@ -110,6 +157,18 @@
     mapB.on("click", () => {
       try { mapB.fitBounds(layer.getBounds(), { padding: [20,20] }); } catch (_) {}
     });
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = steps.indexOf(entry.target);
+            if (index !== -1) go(index, { pushHash: false, fromObserver: true });
+          }
+        });
+      }, { threshold: 0.6, rootMargin: "-15% 0px -30%" });
+      steps.forEach((step) => observer.observe(step));
+    }
 
     // Share links + copy
     const pageUrl = window.location.href.split('#')[0];
