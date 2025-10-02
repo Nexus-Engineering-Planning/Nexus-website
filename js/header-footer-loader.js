@@ -1,23 +1,47 @@
 document.addEventListener("DOMContentLoaded", function () {
   const version = 'v3'; // Change this whenever you update header/footer
 
+  // Load header with error handling
   fetch(`/header.html?${version}`)
-    .then(res => res.text())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`Failed to load header: ${res.status}`);
+      }
+      return res.text();
+    })
     .then(data => {
-      document.getElementById("global-header").innerHTML = data;
+      const headerElement = document.getElementById("global-header");
+      if (headerElement) {
+        headerElement.innerHTML = data;
 
-      // Highlight active nav link based on current URL
-      const path = window.location.pathname.split("/").pop();
-      document.querySelectorAll(".nav-menu a").forEach(link => {
-        if (link.getAttribute("href") === path) {
-          link.classList.add("active");
-        }
-      });
+        // Highlight active nav link based on current URL
+        const path = window.location.pathname.split("/").pop();
+        document.querySelectorAll(".nav-menu a").forEach(link => {
+          if (link.getAttribute("href") === path) {
+            link.classList.add("active");
+          }
+        });
+      }
+    })
+    .catch(error => {
+      console.error("Error loading header:", error);
     });
 
+  // Load footer with error handling
   fetch(`/footer.html?${version}`)
-    .then(res => res.text())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`Failed to load footer: ${res.status}`);
+      }
+      return res.text();
+    })
     .then(data => {
-      document.getElementById("global-footer").innerHTML = data;
+      const footerElement = document.getElementById("global-footer");
+      if (footerElement) {
+        footerElement.innerHTML = data;
+      }
+    })
+    .catch(error => {
+      console.error("Error loading footer:", error);
     });
 });

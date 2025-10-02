@@ -1,5 +1,24 @@
-# Ignore Node.js dependencies
+# Node.js dependencies
 js/node_modules/
+node_modules/
 
-# Ignore environment variables
+# Environment variables
 .env.php
+.env
+
+# Development files
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+tmp/
+temp/

@@ -4,7 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
   teamMembers.forEach(member => {
     const popup = member.querySelector(".bio-popup");
 
+    // Initialize aria-expanded attribute
+    if (!member.hasAttribute("aria-expanded")) {
+      member.setAttribute("aria-expanded", "false");
+    }
+
     const showPopup = () => {
+      // Close other open popups first for better UX
+      document.querySelectorAll(".bio-popup.show").forEach(otherPopup => {
+        if (otherPopup !== popup) {
+          otherPopup.classList.remove("show");
+          const otherMember = otherPopup.closest(".team-member");
+          if (otherMember) {
+            otherMember.setAttribute("aria-expanded", "false");
+          }
+        }
+      });
+
       popup.classList.add("show");
       member.setAttribute("aria-expanded", "true");
     };

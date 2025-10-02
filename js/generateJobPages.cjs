@@ -6,7 +6,11 @@ const JOBS_PATH = path.join(__dirname, '..', 'js', 'jobs.json');
 const OUTPUT_DIR = path.join(__dirname, '..', 'jobposts');
 const CAREERS_PATH = path.join(__dirname, '..', 'careers.html');
 
-// HTML escaping utility to prevent XSS
+/**
+ * Escapes HTML characters to prevent XSS attacks
+ * @param {string} unsafe - The string to escape
+ * @returns {string} The escaped string
+ */
 function escapeHtml(unsafe) {
   if (typeof unsafe !== 'string') return '';
   return unsafe
@@ -17,7 +21,11 @@ function escapeHtml(unsafe) {
     .replace(/'/g, "&#039;");
 }
 
-// Generate slug from title
+/**
+ * Generates a URL-friendly slug from a title
+ * @param {string} title - The title to convert
+ * @returns {string} The URL-friendly slug
+ */
 function generateSlug(title) {
   if (!title) return '';
   return title.toLowerCase()
@@ -26,7 +34,12 @@ function generateSlug(title) {
     .replace(/-+/g, '-');
 }
 
-// Utility to parse and normalize deadlines with better error handling
+/**
+ * Parses and normalizes deadline strings into Date objects
+ * Handles various timezone formats (WAT, EST, UTC)
+ * @param {string} dateStr - The date string to parse
+ * @returns {Date} Parsed date or epoch if invalid
+ */
 function formatDate(dateStr) {
   if (!dateStr) return new Date(0); // Return epoch if no date
   
@@ -44,7 +57,11 @@ function formatDate(dateStr) {
   }
 }
 
-// Get valid through date for schema markup with fallback
+/**
+ * Converts deadline string to ISO format for schema.org markup
+ * @param {string} deadlineStr - The deadline string to convert
+ * @returns {string} ISO 8601 formatted date string
+ */
 function getValidThroughDate(deadlineStr) {
   const date = formatDate(deadlineStr);
   // Fallback to 30 days from now if parsing fails
@@ -216,7 +233,7 @@ function generateCareersHTML(activeJobs) {
     }
   </script>
   
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/style.min.css" />
   <link rel="icon" href="/images/logo.png" type="image/png" />
 </head>
 <body>
@@ -262,7 +279,7 @@ function generateCareersHTML(activeJobs) {
     </div>
   </section>
   <div id="global-footer"></div>
-  <script src="/js/header-footer-loader.js" defer></script>
+  <script src="/js/header-footer-loader.min.js" defer></script>
 </body>
 </html>`;
 }
