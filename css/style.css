@@ -105,11 +105,13 @@
   
   .nav-menu a {
     font-weight: 600;
+    transition: color 0.3s ease, transform 0.3s ease;
   }
   
   .nav-menu a.active,
   .nav-menu a:hover {
     color: var(--primary);
+    transform: translateY(-2px);
   }
   
   /* ==========================================================================
@@ -179,7 +181,7 @@
     border-radius: 5px;
     font-weight: bold;
     text-align: center;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .btn-primary {
@@ -189,6 +191,8 @@
   
   .btn-primary:hover {
     background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .btn-secondary {
@@ -200,6 +204,8 @@
   .btn-secondary:hover {
     background-color: var(--primary);
     color: var(--light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   /* ==========================================================================
@@ -452,13 +458,9 @@
     flex-wrap: wrap;
   }
 
-  .footer-menu a {
-    color: var(--light);
-    font-weight: 500;
-  }
-
   .footer-menu a:hover {
     color: var(--primary);
+    transform: translateY(-2px);
   }
 
   .footer-info {
