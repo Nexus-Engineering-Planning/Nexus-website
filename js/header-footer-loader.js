@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const version = 'v3'; // Change this whenever you update header/footer
+  const version = 'v4'; // Change this whenever you update header/footer
 
   fetch(`/header.html?${version}`)
     .then(res => res.text())
@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       setupMobileNav();
+      setupHeaderScroll();
     });
 
   fetch(`/footer.html?${version}`)
@@ -31,6 +32,19 @@ function setupMobileNav() {
   if (mobileNavToggle && navMenu) {
     mobileNavToggle.addEventListener("click", function () {
       navMenu.classList.toggle("active");
+    });
+  }
+}
+
+function setupHeaderScroll() {
+  const header = document.querySelector(".site-header");
+  if (header) {
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
     });
   }
 }

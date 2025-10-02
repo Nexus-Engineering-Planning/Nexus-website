@@ -31,65 +31,6 @@
   <link rel="stylesheet" href="/css/style.min.css" />
   <link rel="icon" href="/images/logo.png" type="image/png" />
 
-  <!-- Custom Designer Styles -->
-  <style>
-    :root {
-      --color-primary: #0057b8; /* A strong, trustworthy blue */
-      --color-secondary: #00a5e3; /* A vibrant, energetic light blue for accents */
-      --color-dark: #121a2d; /* A deep navy for text, richer than black */
-      --color-body: #4a5568; /* A softer grey for body text */
-      --color-light: #f7fafc; /* A very light grey for backgrounds */
-      --color-white: #ffffff;
-      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --border-radius: 12px;
-    }
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      color: var(--color-body);
-      background-color: var(--color-white);
-      line-height: 1.7;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Poppins', sans-serif;
-      color: var(--color-dark);
-      font-weight: 600;
-    }
-
-    .section-title { font-size: 2.5rem; margin-bottom: 1.5rem; }
-    .hero { background: var(--color-dark); color: var(--color-white); text-align: center; }
-    .hero h1 { color: var(--color-white); font-size: 3.5rem; font-weight: 700; }
-    .hero p { font-size: 1.25rem; opacity: 0.9; }
-
-    .btn-primary, .btn-secondary {
-      padding: 14px 32px;
-      border-radius: 50px;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border: none;
-      box-shadow: var(--shadow-sm);
-    }
-    .btn-primary:hover, .btn-secondary:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-
-    /* Header & Navigation */
-    .site-header {
-      background-color: var(--color-white);
-      border-bottom: 1px solid #e2e8f0;
-    }
-    .nav-menu a {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 500;
-      color: var(--color-dark);
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .nav-menu a:hover, .nav-menu a.active { background-color: var(--color-light); color: var(--color-primary); }
-  </style>
-
   <!-- reCAPTCHA v2 -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
@@ -99,32 +40,49 @@
   <div id="global-header"></div>
 
   <!-- Hero Section -->
-  <section class="hero fade-in">
-    <div class="container hero-container">
+  <section class="hero">
+    <div class="container">
       <h1>Contact Nexus</h1>
       <p>Let's build better futures together.</p>
     </div>
   </section>
 
   <!-- Contact Form & Map -->
-  <section class="contact-section fade-in">
-    <div class="container contact-section">
-      <form id="contactForm" action="sendmail.php" method="POST" class="contact-form">
-        <input type="text" id="name" name="name" placeholder="Your Name" required />
-        <input type="email" id="email" name="email" placeholder="Your Email" required />
-        <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
-
-        <!-- reCAPTCHA checkbox -->
-        <div class="g-recaptcha" data-sitekey="6LfFKQMrAAAAADo1jSQ8JKTG25CUz2eQpAHyiaPn"></div>
-
-        <button type="submit" class="btn-primary">Send Message</button>
-      </form>
-
-      <div class="contact-map">
-        <iframe 
-          src="https://www.openstreetmap.org/export/embed.html?bbox=3.449060%2C6.426666%2C3.469060%2C6.446666&amp;layer=mapnik&amp;marker=6.436666%2C3.459060"
-          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-        </iframe>
+  <section class="contact-page">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-form-container">
+          <h2 class="section-title" style="text-align: left;">Send Us a Message</h2>
+          <form id="contactForm" action="sendmail.php" method="POST" class="contact-form">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <div class="g-recaptcha" data-sitekey="6LfFKQMrAAAAADo1jSQ8JKTG25CUz2eQpAHyiaPn" style="margin-bottom: 1.5rem;"></div>
+            <button type="submit" class="btn-primary">Send Message</button>
+          </form>
+        </div>
+        <div class="contact-info-container">
+          <div class="contact-info-box">
+            <h3>Contact Information</h3>
+            <p><span class="icon">📧</span> <a href="mailto:support@nexuseng.org">support@nexuseng.org</a></p>
+            <p><span class="icon">📍</span> Lagos, Nigeria</p>
+          </div>
+          <div class="contact-map">
+            <iframe 
+              src="https://www.openstreetmap.org/export/embed.html?bbox=3.449060%2C6.426666%2C3.469060%2C6.446666&amp;layer=mapnik&amp;marker=6.436666%2C3.459060"
+              style="border:0; border-radius: var(--border-radius);" width="100%" height="100%" allowfullscreen="" loading="lazy">
+            </iframe>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -134,7 +92,6 @@
 
   <!-- Load header/footer logic -->
   <script src="/js/header-footer-loader.min.js" defer></script>
-  <script src="/js/contact.min.js" defer></script>
 </body>
 
 </html>

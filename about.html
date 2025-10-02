@@ -30,109 +30,52 @@
 
   <link rel="stylesheet" href="/css/style.min.css" />
   <link rel="icon" href="/images/logo.png" type="image/png" />
-
-  <!-- Custom Designer Styles -->
-  <style>
-    :root {
-      --color-primary: #0057b8; /* A strong, trustworthy blue */
-      --color-secondary: #00a5e3; /* A vibrant, energetic light blue for accents */
-      --color-dark: #121a2d; /* A deep navy for text, richer than black */
-      --color-body: #4a5568; /* A softer grey for body text */
-      --color-light: #f7fafc; /* A very light grey for backgrounds */
-      --color-white: #ffffff;
-      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --border-radius: 12px;
-    }
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      color: var(--color-body);
-      background-color: var(--color-white);
-      line-height: 1.7;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Poppins', sans-serif;
-      color: var(--color-dark);
-      font-weight: 600;
-    }
-
-    .section-title { font-size: 2.5rem; margin-bottom: 1.5rem; }
-    .hero { background: var(--color-dark); color: var(--color-white); text-align: center; }
-    .hero h1 { color: var(--color-white); font-size: 3.5rem; font-weight: 700; }
-    .hero p { font-size: 1.25rem; opacity: 0.9; }
-
-    .btn-primary, .btn-secondary {
-      padding: 14px 32px;
-      border-radius: 50px;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border: none;
-      box-shadow: var(--shadow-sm);
-    }
-    .btn-primary:hover, .btn-secondary:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-
-    /* Header & Navigation */
-    .site-header { background-color: var(--color-white); border-bottom: 1px solid #e2e8f0; }
-    .nav-menu a { font-family: 'Poppins', sans-serif; font-weight: 500; color: var(--color-dark); padding: 8px 16px; border-radius: 8px; transition: background-color 0.3s ease, color 0.3s ease; }
-    .nav-menu a:hover, .nav-menu a.active { background-color: var(--color-light); color: var(--color-primary); }
-
-    /* Card Styles (for Mission/Vision/Values) */
-    .services, .insights { background-color: var(--color-light); }
-    .service-item, .insight-item {
-      background-color: var(--color-white);
-      border-radius: var(--border-radius);
-      padding: 2rem;
-      text-align: left;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border: 1px solid #e2e8f0;
-    }
-    .service-item:hover, .insight-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-  </style>
 </head>
 
 <body>
   <div id="global-header"></div>
 
   <!-- Hero Section -->
-  <section class="hero fade-in">
-    <div class="container hero-container">
+  <section class="hero">
+    <div class="container">
       <h1>About Nexus Engineering & Planning</h1>
       <p>Innovating Urban Development for a Sustainable Future</p>
     </div>
   </section>
 
   <!-- Who We Are Section -->
-  <section class="about fade-in">
-    <div class="container about-container">
-      <div class="about-text">
-        <h2>Who We Are</h2>
-        <p>
-          Nexus Engineering & Planning Ltd. is a multidisciplinary consultancy firm dedicated to delivering transformative <a href="services.html#urban">engineering and planning</a> solutions. Our mission is to drive <a href="services.html">sustainable urban development</a> and infrastructure across Africa.
-        </p>
-        <p>
-          With a team of experienced professionals, we combine advanced technology, innovative strategies, and a deep understanding of local contexts to deliver impactful projects.
-        </p>
+  <section class="about-page">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-title" style="text-align: left;">Who We Are</h2>
+          <p>
+            Nexus Engineering & Planning Ltd. is a multidisciplinary consultancy firm dedicated to delivering transformative engineering and planning solutions. Our mission is to drive sustainable urban development and infrastructure across Africa.
+          </p>
+          <p>
+            With a team of experienced professionals, we combine advanced technology, innovative strategies, and a deep understanding of local contexts to deliver impactful projects.
+          </p>
+        </div>
+        <div class="about-image">
+          <img src="/images/project.jpg" alt="Team collaboration" loading="lazy">
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Mission & Vision Section -->
-  <section class="services fade-in">
-    <div class="container" style="text-align: center;">
+  <section class="services">
+    <div class="container">
       <h2 class="section-title">Our Mission & Vision</h2>
       <div class="services-grid">
-        <div class="service-item slide-in-left">
-          <h3>Our Mission</h3>
+        <div class="service-item">
+          <h3><span class="icon">🎯</span>Our Mission</h3>
           <p>
             To design and implement sustainable engineering and planning solutions that transform urban environments, empower communities, and foster economic growth.
           </p>
         </div>
-        <div class="service-item slide-in-right">
-          <h3>Our Vision</h3>
+        <div class="service-item">
+          <h3><span class="icon">🔭</span>Our Vision</h3>
           <p>
             To be the leading catalyst for resilient, inclusive, and innovative urban transformation in Africa and beyond.
           </p>
@@ -142,67 +85,56 @@
   </section>
 
   <!-- Core Values Section -->
-  <section class="insights fade-in">
-    <div class="container" style="text-align: center;">
+  <section>
+    <div class="container">
       <h2 class="section-title">Our Core Values</h2>
-      <div class="insights-grid">
-        <article class="insight-item slide-in-left">
-          <h3>Innovation</h3>
+      <div class="services-grid">
+        <div class="service-item">
+          <h3><span class="icon">💡</span>Innovation</h3>
           <p>We embrace cutting-edge technologies and creative thinking to solve complex challenges.</p>
-        </article>
-        <article class="insight-item slide-in-right">
-          <h3>Sustainability</h3>
+        </div>
+        <div class="service-item">
+          <h3><span class="icon">♻️</span>Sustainability</h3>
           <p>We prioritize environmentally responsible practices that ensure long-term viability and community well-being.</p>
-        </article>
-        <article class="insight-item fade-in">
-          <h3>Integrity</h3>
+        </div>
+        <div class="service-item">
+          <h3><span class="icon">🤝</span>Integrity</h3>
           <p>We uphold the highest ethical standards in all our engagements, ensuring transparency and trustworthiness.</p>
-        </article>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Team Section -->
-  <section class="team fade-in">
-    <div class="container" style="text-align: center;">
+  <section class="team services">
+    <div class="container">
       <h2 class="section-title">Meet Our Team</h2>
-
-      <div class="team-member slide-in-left" id="femi-olamijulo" tabindex="0" aria-controls="femi-olamijulo-bio">
-        <a href="https://www.linkedin.com/in/femiolamijulo/" target="_blank">
+      <div class="team-grid">
+        <div class="team-member service-item">
           <img src="/images/femi.jpg" alt="Femi Olamijulo" loading="lazy">
-        </a>
-        <h3 id="femi-olamijulo-name">Femi Olamijulo</h3>
-        <p>Founder</p>
-        <div class="bio-popup" id="femi-olamijulo-bio" role="dialog" aria-labelledby="femi-olamijulo-name">
-          <p>Femi Olamijulo is the Founder of Nexus. With over 7 years of experience spanning civil engineering, urban planning, and public policy, he leads multidisciplinary teams to deliver impactful development solutions. He holds two graduate degrees from Harvard and has contributed to initiatives at the United Nations and the Lincoln Institute of Land Policy.</p>
+          <h3>Femi Olamijulo</h3>
+          <p class="team-title">Founder</p>
+          <p>Femi has over 7 years of experience in civil engineering, urban planning, and public policy. He holds two graduate degrees from Harvard.</p>
+        </div>
+        <div class="team-member service-item">
+          <img src="/images/ben.jpg" alt="Engr. Benjamin Olamijulo" loading="lazy">
+          <h3>Engr. Benjamin Olamijulo</h3>
+          <p class="team-title">Co-Founder & Head of Projects</p>
+          <p>With over 30 years of experience, Benjamin is a Fellow of the Nigerian Society of Engineers and a registered COREN engineer.</p>
+        </div>
+        <div class="team-member service-item">
+          <img src="/images/Tobi.jpg" alt="Tobi Ojenike" loading="lazy">
+          <h3>Tobi Ojenike</h3>
+          <p class="team-title">Corporate Communications</p>
+          <p>Tobi has a strong background in communications, writing, and strategic engagement, with a degree in International Relations.</p>
         </div>
       </div>
-
-      <div class="team-member slide-in-right" id="benjamin-olamijulo" tabindex="0" aria-controls="benjamin-olamijulo-bio">
-        <img src="/images/ben.jpg" alt="Benjamin Olamijulo" loading="lazy">
-        <h3 id="benjamin-olamijulo-name">Engr. Benjamin Olamijulo</h3>
-        <p>Co-Founder & Head of Projects</p>
-        <div class="bio-popup" id="benjamin-olamijulo-bio" role="dialog" aria-labelledby="benjamin-olamijulo-name">
-          <p>Engr. Benjamin Olamijulo holds a Bachelor of Science in Civil Engineering from the University of Lagos and is a Fellow of the Nigerian Society of Engineers. With over 30 years of experience, he has managed major projects in project design, supervision, and civil engineering construction. He is also a registered engineer with COREN.</p>
-        </div>
-      </div>
-
-      <div class="team-member slide-in-left" id="tobi-ojenike" tabindex="0" aria-controls="tobi-ojenike-bio">
-        <img src="/images/Tobi.jpg" alt="Tobi Ojenike" loading="lazy">
-        <h3 id="tobi-ojenike-name">Tobi Ojenike</h3>
-        <p>Corporate Communications</p>
-        <div class="bio-popup" id="tobi-ojenike-bio" role="dialog" aria-labelledby="tobi-ojenike-name">
-          <p>Tobi brings a strong background in communications, writing, and strategic engagement to Nexus Engineering. With a degree in International Relations from Covenant University and experience across corporate communications, media relations, and content strategy, Tobi helps craft messaging that strengthens our brand and builds industry relationships. Passionate about storytelling and community, Tobi also volunteers with the Lagos Food Bank and shares insights on leadership and well-being.</p>
-        </div>
-      </div>
-
     </div>
   </section>
 
   <div id="global-footer"></div>
 
   <script src="/js/header-footer-loader.min.js" defer></script>
-  <script src="/js/about.min.js" defer></script>
 </body>
 
 </html>
