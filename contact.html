@@ -23,8 +23,72 @@
   <meta name="twitter:description" content="Start a conversation with the Nexus team — your partner in sustainable urban development and infrastructure solutions." />
   <meta name="twitter:image" content="/images/expanded-logo.png" />
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/css/style.min.css" />
   <link rel="icon" href="/images/logo.png" type="image/png" />
+
+  <!-- Custom Designer Styles -->
+  <style>
+    :root {
+      --color-primary: #0057b8; /* A strong, trustworthy blue */
+      --color-secondary: #00a5e3; /* A vibrant, energetic light blue for accents */
+      --color-dark: #121a2d; /* A deep navy for text, richer than black */
+      --color-body: #4a5568; /* A softer grey for body text */
+      --color-light: #f7fafc; /* A very light grey for backgrounds */
+      --color-white: #ffffff;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --border-radius: 12px;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: var(--color-body);
+      background-color: var(--color-white);
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+      color: var(--color-dark);
+      font-weight: 600;
+    }
+
+    .section-title { font-size: 2.5rem; margin-bottom: 1.5rem; }
+    .hero { background: var(--color-dark); color: var(--color-white); text-align: center; }
+    .hero h1 { color: var(--color-white); font-size: 3.5rem; font-weight: 700; }
+    .hero p { font-size: 1.25rem; opacity: 0.9; }
+
+    .btn-primary, .btn-secondary {
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: none;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-primary:hover, .btn-secondary:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+    /* Header & Navigation */
+    .site-header {
+      background-color: var(--color-white);
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .nav-menu a {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      color: var(--color-dark);
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .nav-menu a:hover, .nav-menu a.active { background-color: var(--color-light); color: var(--color-primary); }
+  </style>
 
   <!-- reCAPTCHA v2 -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
