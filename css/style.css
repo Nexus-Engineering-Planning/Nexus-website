@@ -2,8 +2,8 @@
    Base Styles
    ========================================================================== */
    :root {
-    --primary: #7ed957;
-    --primary-dark: #6ac24f;
+    --primary: #2E7D32;
+    --primary-dark: #1B5E20;
     --dark: #000000;
     --light: #ffffff;
     --gray: #ccc;
@@ -184,7 +184,7 @@
   
   .btn-primary {
     background-color: var(--primary);
-    color: var(--dark);
+    color: var(--light);
   }
   
   .btn-primary:hover {
