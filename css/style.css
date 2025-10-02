@@ -296,6 +296,13 @@
   .team-member {
     width: 220px;
     text-align: center;
+    position: relative; /* Add position relative for popup positioning */
+    cursor: pointer; /* Add cursor pointer to indicate interactivity */
+  }
+
+  .team-member:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
   }
   
   .team-member img {
@@ -308,15 +315,21 @@
   
   .bio-popup {
     display: none;
+    position: absolute; /* Position it relative to the team member */
+    bottom: 100%; /* Position it above the team member */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px; /* Give it a fixed width */
     background-color: #fff;
     color: #333;
     padding: 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    margin-top: 0.5rem;
+    margin-bottom: 1rem; /* Add some margin */
+    z-index: 10; /* Ensure it's on top */
   }
   
-  .team-member:hover .bio-popup {
+  .bio-popup.show {
     display: block;
   }
   
