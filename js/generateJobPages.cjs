@@ -216,6 +216,9 @@ function generateCareersHTML(activeJobs) {
   <meta name="keywords" content="careers, Nexus Engineering, planning jobs, Africa infrastructure, sustainability" />
   
   <!-- Schema.org markup -->
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.nexuseng.org/careers.html" />
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
