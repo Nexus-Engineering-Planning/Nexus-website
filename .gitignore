@@ -1,16 +1,10 @@
-# Astro build artifacts
-dist/
-.astro/
-
-# Node.js dependencies
+# Node / Astro
 node_modules/
-js/node_modules/
-
-# Environment variables
+.astro/
+dist/
 .env
-.env.php
-
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+.env.*
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
