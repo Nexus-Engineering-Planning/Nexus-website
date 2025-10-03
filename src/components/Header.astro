@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
+import nexusLogo from '../assets/images/expanded-logo.png';
 ---
 <header class="site-header" role="banner">
     <div class="container header-container">
       <a href="/" class="logo">
-        <img src="/images/expanded-logo.png" alt="Nexus Engineering Logo" class="large-logo" loading="lazy"/>
+        <Image src={nexusLogo} alt="Nexus Engineering Logo" class="large-logo" loading="lazy"/>
       </a>
       <nav class="site-navigation" role="navigation" aria-label="Main navigation">
         <ul class="nav-menu">

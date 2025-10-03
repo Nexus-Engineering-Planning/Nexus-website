@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 ---
 <BaseLayout title="Contact Us | Nexus Engineering & Planning Ltd.">
     <section class="hero">
@@ -27,7 +29,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                             <label for="message">Your Message</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
-                        <div class="g-recaptcha" data-sitekey="6LfFKQMrAAAAADo1jSQ8JKTG25CUz2eQpAHyiaPn" style="margin-bottom: 1.5rem;"></div>
+                        <div class="g-recaptcha" data-sitekey={recaptchaSiteKey} style="margin-bottom: 1.5rem;"></div>
                         <button type="submit" class="btn-primary">Send Message</button>
                     </form>
                 </div>
