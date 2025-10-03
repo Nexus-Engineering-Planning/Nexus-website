@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.nexuseng.org/index.html</loc>
+    <loc>https://www.nexuseng.org/</loc>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://www.nexuseng.org/about.html</loc>
+    <loc>https://www.nexuseng.org/about</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.nexuseng.org/services.html</loc>
+    <loc>https://www.nexuseng.org/services</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.nexuseng.org/insights.html</loc>
+    <loc>https://www.nexuseng.org/insights</loc>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://www.nexuseng.org/contact.html</loc>
+    <loc>https://www.nexuseng.org/contact</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.nexuseng.org/thank-you.html</loc>
+    <loc>https://www.nexuseng.org/thank-you</loc>
     <priority>0.5</priority>
     <changefreq>never</changefreq>
   </url>
