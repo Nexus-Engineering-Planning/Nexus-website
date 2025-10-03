@@ -1,0 +1,12 @@
+DirectoryIndex index.html index.php
+
+# Enable rewrite engine
+RewriteEngine On
+
+# Redirect to HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Handle directory index files
+Options +FollowSymLinks
+DirectorySlash On
