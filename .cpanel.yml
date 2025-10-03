@@ -2,9 +2,9 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/nexuseng/public_html
-    # 1. Build the Astro site
-    - npm install
-    - npm run build
+    # 1. Setup Node.js environment (cPanel specific)
+    - /bin/bash -c "source /home/nexuseng/nodevenv/nexus-website/18/bin/activate && npm install"
+    - /bin/bash -c "source /home/nexuseng/nodevenv/nexus-website/18/bin/activate && npm run build"
     # 2. Deploy the contents of the 'dist' folder
     - /bin/cp -R dist/* $DEPLOYPATH
     # 3. Deploy the Astro-specific .htaccess
