@@ -1,11 +1,11 @@
+# .cpanel.yml
 deployment:
   tasks:
     - export DEPLOYPATH=/home/nexuseng/public_html
-    # Navigate to the js directory and run the build script
-    - cd js
+    # 1. Build the Astro site
     - npm install
     - npm run build
-    # Go back to the root directory
-    - cd ..
-    # Copy all necessary files, including the newly generated ones
-    - /bin/cp -R index.html about.html contact.html services.html insights.html thank-you.html sendmail.php css images js/header-footer-loader.js js/header-footer-loader.min.js js/about.js js/about.min.js js/contact.js js/contact.min.js jobposts header.html footer.html .htaccess robots.txt sitemap.xml careers.html $DEPLOYPATH
+    # 2. Deploy the contents of the 'dist' folder
+    - /bin/cp -R dist/* $DEPLOYPATH
+    # 3. Deploy the Astro-specific .htaccess
+    - /bin/cp .htaccess.astro $DEPLOYPATH/.htaccess
