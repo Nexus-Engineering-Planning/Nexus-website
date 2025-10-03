@@ -1,5 +1,16 @@
-# Ignore Node.js dependencies
+# Astro build artifacts
+dist/
+.astro/
+
+# Node.js dependencies
+node_modules/
 js/node_modules/
 
-# Ignore environment variables
+# Environment variables
+.env
 .env.php
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

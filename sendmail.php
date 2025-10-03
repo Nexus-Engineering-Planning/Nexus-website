@@ -1,6 +1,15 @@
 <?php
+// HOW TO SET ENVIRONMENT VARIABLES IN CPANEL:
+// 1. Log in to your cPanel.
+// 2. Find the "Software" section and click on "Setup Node.js App" or "Setup Python App".
+// 3. Even though this is a PHP script, this interface allows setting environment variables for the whole account.
+// 4. Create a new application if you haven't already, or edit an existing one.
+// 5. Scroll down to the "Environment Variables" section.
+// 6. Add a variable with the name 'RECAPTCHA_SECRET' and your actual secret key as the value.
+// 7. Save the changes. The variable will now be available to your PHP scripts via $_ENV.
+
 // CONFIGURATION
-$recaptcha_secret = "6LfFKQMrAAAAAEDt_fMWWlydVOPGolrUAF5jjJD4";
+$recaptcha_secret = $_ENV['RECAPTCHA_SECRET'] ?? '';
 $recipient_email = "support@nexuseng.org";
 
 // Only allow POST requests

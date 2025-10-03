@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allJobs = await getCollection('jobs');
+const jobs = allJobs
+  .filter(job => !job.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Careers | Nexus Engineering & Planning Ltd.">
+    <section class="hero fade-in">
+        <div class="container hero-container">
+            <h1>Join Our Team</h1>
+            <p>Be part of Africa's next generation of urban transformation experts.</p>
+        </div>
+    </section>
+    <section class="services fade-in">
+        <div class="container services-container">
+            <h2 class="section-title">Current Openings</h2>
+            <div id="jobs-container" class="services-grid">
+                {jobs.map(job => (
+                    <div class="service-item slide-in-left" itemscope itemtype="https://schema.org/JobPosting">
+                        <div class="job-details">
+                            <h3 itemprop="title"><a href={`/careers/${job.slug}`}>{job.data.title}</a></h3>
+                            <p itemprop="description">{job.data.description}</p>
+                            <a href={`/careers/${job.slug}`} class="btn-secondary">View Full Description</a>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+    <section class="about fade-in">
+        <div class="container about-container">
+            <div class="about-text">
+                <h2>Why Work With Us?</h2>
+                <p>At Nexus, we value innovation, collaboration, and impact. We offer flexible work arrangements, opportunities for leadership, and a chance to shape communities for the better.</p>
+                <ul>
+                    <li>Meaningful work in African cities</li>
+                    <li>Remote-friendly culture</li>
+                    <li>Learning & growth opportunities</li>
+                    <li>Competitive compensation packages</li>
+                    <li>Diverse and inclusive workplace</li>
+                </ul>
+                <p>Don't see a role that fits? We welcome general applications. Email your resume to <a href="mailto:support@nexuseng.org">support@nexuseng.org</a>.</p>
+            </div>
+            <div class="about-image">
+                <img src="/images/logo.png" alt="Nexus Engineering Logo" loading="lazy" />
+            </div>
+        </div>
+    </section>
+    <section class="contact fade-in">
+        <div class="container contact-container">
+            <h2>Ready to Make an Impact?</h2>
+            <p>We're excited to learn more about you.</p>
+            <a href="/contact" class="btn-primary">Start Your Application</a>
+        </div>
+    </section>
+</BaseLayout>

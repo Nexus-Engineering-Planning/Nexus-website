@@ -1,0 +1,100 @@
+/* src/styles/global.css */
+
+:root {
+  --font-sans: 'Roboto', sans-serif;
+  --font-serif: 'Poppins', serif;
+
+  --color-primary: #0a4d68;
+  --color-secondary: #088395;
+  --color-accent: #05bfdb;
+  --color-light: #f0f0f0;
+  --color-dark: #333;
+  --color-text: #444;
+  --color-background: #fff;
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  --border-radius: 8px;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+
+  /* Fluid Typography */
+  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* 16px -> 18px */
+  --font-size-h1: clamp(2.44rem, 2.07rem + 1.85vw, 3.58rem); /* ~39px -> 57px */
+  --font-size-h2: clamp(1.95rem, 1.69rem + 1.3vw, 2.87rem);  /* ~31px -> 46px */
+  --font-size-h3: clamp(1.56rem, 1.4rem + 0.8vw, 2.29rem);   /* ~25px -> 36px */
+}
+
+html {
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-primary);
+}
+
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+
+/* Reveal Animation */
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .slide-in-left {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Card Style */
+.card {
+  background: var(--color-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
