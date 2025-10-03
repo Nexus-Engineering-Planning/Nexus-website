@@ -7,6 +7,6 @@ export default defineConfig({
   output: 'static',
   integrations: [mdx(), sitemap()],
   build: {
-    inlineStylesheets: 'always',
+    inlineStylesheets: 'never',
   },
 });
