@@ -1,4 +1,11 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/nexuseng/public_html
-    - /bin/cp -R index.html about.html contact.html services.html insights.html thank-you.html sendmail.php css images js jobposts header.html footer.html .htaccess robots.txt sitemap.xml careers.html $DEPLOYPATH
+    # Navigate to the js directory and run the build script
+    - cd js
+    - npm install
+    - npm run build
+    # Go back to the root directory
+    - cd ..
+    # Copy all necessary files, including the newly generated ones
+    - /bin/cp -R index.html about.html contact.html services.html insights.html thank-you.html sendmail.php css images js/header-footer-loader.js js/header-footer-loader.min.js js/about.js js/about.min.js js/contact.js js/contact.min.js jobposts header.html footer.html .htaccess robots.txt sitemap.xml careers.html $DEPLOYPATH
