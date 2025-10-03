@@ -1,0 +1,8 @@
+# .cpanel.yml - Deploy built 'dist' folder
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/nexuseng/public_html
+    # 1. Deploy the contents of the 'dist' folder
+    - /bin/cp -a dist/. $DEPLOYPATH
+    # 2. Deploy the Astro-specific .htaccess
+    - /bin/cp .htaccess.astro $DEPLOYPATH/.htaccess
