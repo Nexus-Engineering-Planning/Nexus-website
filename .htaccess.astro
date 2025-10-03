@@ -14,11 +14,10 @@ RewriteRule ^ https://www.nexuseng.org%{REQUEST_URI} [R=301,L,NE]
 # ------------------------------------------
 # Astro Routing
 # ------------------------------------------
-# Serve the corresponding .html file for requests that don't have an extension
+# Internally rewrite clean URLs to the corresponding /path/index.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.*)$ $1.html [L]
+RewriteRule ^([^/]+)/?$ /$1/index.html [L]
 
 # Handle 404
 ErrorDocument 404 /404.html
