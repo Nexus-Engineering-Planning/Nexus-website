@@ -1,0 +1,36 @@
+name: Build and Deploy to cPanel
+on:
+  push: { branches: [ main ] }
+  workflow_dispatch:
+permissions: { contents: read }
+concurrency: { group: deploy-cpanel, cancel-in-progress: true }
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://nexuseng.org
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: 'npm' }
+      - run: npm ci
+      - run: npm run build
+      - name: Show dist contents (debug)
+        run: find dist -maxdepth 2 -type f | sed 's/^/dist:/'
+      - name: Deploy via FTPS to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: dist
+          server-dir: ${{ secrets.FTP_PATH }}
+          log-level: verbose
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/node_modules/**
+            **/README.md
