@@ -167,6 +167,18 @@ img {
   transition: var(--transition-base);
 }
 
+.mobile-nav-toggle[aria-expanded="true"] .icon-bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .icon-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .icon-bar:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
 /* ==========================================================================
    Hero Section
    ========================================================================== */
