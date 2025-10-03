@@ -1,12 +1,81 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import notFoundImage from '../assets/images/404.png';
 ---
-<BaseLayout title="404: Not Found">
-  <section class="hero">
+<style>
+  .not-found-section {
+    text-align: center;
+    padding: 4rem 0;
+  }
+  .not-found-image {
+    max-width: 400px;
+    margin: 0 auto 2rem;
+  }
+  .not-found-content h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+  }
+  .not-found-content p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .search-form {
+    margin-top: 2.5rem;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    gap: 0.5rem;
+  }
+  .search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 50px;
+    font-size: 1rem;
+  }
+  .search-button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition-base);
+  }
+  .search-button:hover {
+    background-color: var(--color-secondary);
+  }
+</style>
+
+<BaseLayout title="404: Page Not Found">
+  <section class="not-found-section">
     <div class="container">
-      <h1>404: Page Not Found</h1>
-      <p>The page you're looking for doesn't exist or has been moved.</p>
-      <a href="/" class="btn-primary">Go Home</a>
+      <div class="not-found-image">
+        <Image src={notFoundImage} alt="404 Not Found Illustration" loading="eager" />
+      </div>
+      <div class="not-found-content">
+        <h1>Oops! Page Not Found</h1>
+        <p>The page you are looking for might have been moved, deleted, or maybe you just mistyped the URL.</p>
+        <div class="button-group">
+          <a href="/" class="btn-primary">Go to Homepage</a>
+          <button onclick="window.history.back()" class="btn-secondary">Go Back</button>
+        </div>
+        <form class="search-form" action="/search" method="GET">
+          <input type="search" name="q" class="search-input" placeholder="Search our site..." aria-label="Search">
+          <button type="submit" class="search-button">Search</button>
+        </form>
+      </div>
     </div>
   </section>
 </BaseLayout>
