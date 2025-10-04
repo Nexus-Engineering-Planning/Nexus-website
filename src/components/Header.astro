@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import nexusLogo from '../assets/images/expanded-logo.png';
+import { headerLinks } from '../data/navigation.js';
 ---
 <header class="site-header" role="banner">
     <div class="container header-container">
@@ -9,17 +10,18 @@ import nexusLogo from '../assets/images/expanded-logo.png';
       </a>
       <nav class="site-navigation" role="navigation" aria-label="Main navigation">
         <ul class="nav-menu">
-          <li><a href="/">Home</a></li>
-          <li class="has-dropdown">
-            <a href="/about">Company</a>
-            <ul class="dropdown">
-              <li><a href="/about">About</a></li>
-              <li><a href="/careers">Careers</a></li>
-            </ul>
-          </li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/insights">Insights</a></li>
-          <li><a href="/contact">Contact</a></li>
+          {headerLinks.map(link => (
+            <li class={link.dropdown ? 'has-dropdown' : ''}>
+              <a href={link.href}>{link.name}</a>
+              {link.dropdown && (
+                <ul class="dropdown">
+                  {link.dropdown.map(sublink => (
+                    <li><a href={sublink.href}>{sublink.name}</a></li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
         </ul>
       </nav>
       <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">

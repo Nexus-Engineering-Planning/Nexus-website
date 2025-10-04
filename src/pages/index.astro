@@ -1,7 +1,16 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import urbanImg from '../assets/images/urban.jpg';
+import projectImg from '../assets/images/project.jpg';
+import civilImg from '../assets/images/civil.jpg';
+import environmentalImg from '../assets/images/environmental.jpg';
+import aboutImg from '../assets/images/project.jpg'; // Using project.jpg for about section as in original
 ---
-<BaseLayout title="Nexus Engineering & Planning Ltd. | Sustainable Urban Solutions in Africa">
+<BaseLayout 
+    title="Nexus Engineering & Planning Ltd. | Sustainable Urban Solutions in Africa"
+    description="Nexus Engineering & Planning Ltd. is a multidisciplinary consultancy dedicated to driving transformative urban development and infrastructure solutions across Africa."
+>
     <section class="hero" role="main">
         <div class="container">
             <h1>Innovative & Sustainable Development</h1>
@@ -15,22 +24,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <h2 class="section-title">Our Core Services</h2>
             <div class="services-grid">
                 <div class="service-item">
-                    <img src="/images/urban.jpg" alt="Urban Planning" loading="lazy">
+                    <Image src={urbanImg} alt="Urban Planning" loading="lazy"/>
                     <h3><span class="icon">🏙️</span>Urban Planning</h3>
                     <p>Designing sustainable, inclusive, and innovative urban environments that foster community growth and resilience.</p>
                 </div>
                 <div class="service-item">
-                    <img src="/images/project.jpg" alt="Project Management" loading="lazy">
+                    <Image src={projectImg} alt="Project Management" loading="lazy"/>
                     <h3><span class="icon">🏗️</span>Project Management</h3>
                     <p>End-to-end project oversight ensuring timely delivery, budget control, and adherence to the highest quality standards.</p>
                 </div>
                 <div class="service-item">
-                    <img src="/images/civil.jpg" alt="Civil Engineering" loading="lazy">
+                    <Image src={civilImg} alt="Civil Engineering" loading="lazy"/>
                     <h3><span class="icon">🌉</span>Civil Engineering</h3>
                     <p>Providing state-of-the-art infrastructure solutions tailored to support urban transformation and sustainability goals.</p>
                 </div>
                 <div class="service-item">
-                    <img src="/images/environmental.jpg" alt="Environmental Consulting" loading="lazy">
+                    <Image src={environmentalImg} alt="Environmental Consulting" loading="lazy"/>
                     <h3><span class="icon">🌿</span>Environmental Consulting</h3>
                     <p>Delivering comprehensive environmental assessments and strategic consulting to promote sustainable practices.</p>
                 </div>
@@ -47,7 +56,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <a href="/about" class="btn-secondary">Learn More</a>
             </div>
             <div class="about-image">
-                <img src="/images/project.jpg" alt="Nexus Engineering team working on a project" loading="lazy">
+                <Image src={aboutImg} alt="Nexus Engineering team working on a project" loading="lazy"/>
             </div>
         </div>
     </section>
