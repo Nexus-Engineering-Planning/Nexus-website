@@ -424,6 +424,28 @@ img {
     width: 100%;
     background: var(--color-white);
   }
+
+  /* Mobile dropdown adjustments */
+  .nav-menu .has-dropdown {
+    position: relative;
+  }
+
+  .nav-menu .dropdown {
+    position: static;
+    box-shadow: none;
+    display: none;
+    width: 100%;
+    padding: 0;
+  }
+
+  .nav-menu .has-dropdown.active .dropdown {
+    display: block;
+  }
+
+  .nav-menu .dropdown a {
+    padding: 0.5rem 1rem;
+    background-color: var(--color-light);
+  }
   
   .about-grid {
     text-align: center;

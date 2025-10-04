@@ -22,10 +22,65 @@ import nexusLogo from '../assets/images/expanded-logo.png';
           <li><a href="/contact">Contact</a></li>
         </ul>
       </nav>
-      <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
     </div>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileToggle = document.querySelector('.mobile-nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (mobileToggle && navMenu) {
+      // Toggle main mobile menu
+      mobileToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        
+        // Update aria-expanded for accessibility
+        const isExpanded = navMenu.classList.contains('active');
+        mobileToggle.setAttribute('aria-expanded', isExpanded.toString());
+      });
+      
+      // Handle dropdown toggles on mobile
+      const dropdownParents = navMenu.querySelectorAll('.has-dropdown');
+      dropdownParents.forEach(parent => {
+        const parentLink = parent.querySelector('a');
+        if (parentLink) {
+          parentLink.addEventListener('click', (e) => {
+            // Only prevent default and toggle on mobile
+            if (window.innerWidth <= 768) {
+              e.preventDefault();
+              parent.classList.toggle('active');
+            }
+          });
+        }
+      });
+      
+      // Close menu when clicking on a dropdown nav link (not the parent)
+      const dropdownLinks = navMenu.querySelectorAll('.dropdown a');
+      dropdownLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+          // Close all dropdowns
+          dropdownParents.forEach(parent => parent.classList.remove('active'));
+        });
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement;
+        if (!target.closest('.site-navigation') && !target.closest('.mobile-nav-toggle')) {
+          navMenu.classList.remove('active');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+          // Close all dropdowns
+          dropdownParents.forEach(parent => parent.classList.remove('active'));
+        }
+      });
+    }
+  });
+</script>
